@@ -39,13 +39,74 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <div class="container">
                 <div class="breadcrumb">
                     <a href="../index.html#benchmark">Benchmark</a> / 
-                    <span>{category}</span> / 
+                    <a href="{category_link}">{category}</a> / 
                     {group_breadcrumb}
                     <span>{env_name}</span>
                 </div>
 
                 <div class="environment-content">
                     {content}
+                </div>
+
+                <div class="back-link">
+                    <a href="../index.html#benchmark">← Back to Benchmark</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PRBench. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+"""
+
+# HTML template for category pages
+CATEGORY_TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title} | PRBench</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="environment.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <ul class="nav-links">
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#benchmark">Benchmark</a></li>
+                    <li><a href="../index.html#results">Results</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="environment-detail">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="../index.html#benchmark">Benchmark</a> / 
+                    <span>{category_name}</span>
+                </div>
+
+                <h1>{category_name}</h1>
+                
+                <div class="environment-content">
+                    <p class="category-page-description">{category_description}</p>
+                    
+                    <h2>Environment Families</h2>
+                    
+                    <div class="env-families-list">
+{families_html}
+                    </div>
                 </div>
 
                 <div class="back-link">
@@ -94,7 +155,7 @@ GROUP_TEMPLATE = """<!DOCTYPE html>
             <div class="container">
                 <div class="breadcrumb">
                     <a href="../index.html#benchmark">Benchmark</a> / 
-                    <span>{category}</span> / 
+                    <a href="{category_link}">{category}</a> / 
                     <span>{group_name}</span>
                 </div>
 
@@ -213,6 +274,12 @@ def generate_group_filename(base_name):
     clean_name = re.sub(r'[-\s]+', '-', clean_name)
     return f"{clean_name}-group.html"
 
+def generate_category_filename(category_name):
+    """Generate a clean filename for the category page."""
+    clean_name = re.sub(r'[^\w\s-]', '', category_name.lower())
+    clean_name = re.sub(r'[-\s]+', '-', clean_name)
+    return f"{clean_name}.html"
+
 def convert_markdown_to_html(md_file_path):
     """Convert a markdown file to an HTML environment page."""
     # Read the markdown file
@@ -263,6 +330,7 @@ def convert_markdown_to_html(md_file_path):
     # Get base name for breadcrumb
     base_name = extract_base_environment_name(env_name)
     group_filename = generate_group_filename(base_name)
+    category_filename = generate_category_filename(category)
     
     # Check if this environment has a group (will be determined later, so we'll use a placeholder)
     # For now, we'll add the group link if base_name != env_name
@@ -275,6 +343,7 @@ def convert_markdown_to_html(md_file_path):
     html_output = HTML_TEMPLATE.format(
         title=env_name,
         category=category,
+        category_link=category_filename,
         env_name=env_name,
         group_breadcrumb=group_breadcrumb,
         content=html_content
@@ -337,6 +406,7 @@ def extract_group_content(md_file_path):
 def create_group_page(base_name, category, variants):
     """Create an HTML page for an environment group."""
     group_filename = generate_group_filename(base_name)
+    category_filename = generate_category_filename(category)
     output_path = Path('environments') / group_filename
     
     # Sort variants by name
@@ -380,6 +450,7 @@ def create_group_page(base_name, category, variants):
     html_output = GROUP_TEMPLATE.format(
         title=base_name,
         category=category,
+        category_link=category_filename,
         group_name=base_name,
         num_variants=len(variants),
         gifs_html=gifs_html,
@@ -441,12 +512,23 @@ def scan_and_generate():
     
     group_pages = []
     for base_name, variants in sorted(groups.items()):
-        if len(variants) > 1:
-            print(f"\nCreating group page for: {base_name} ({len(variants)} variants)")
-            group_info = create_group_page(base_name, variants[0]['category'], variants)
-            group_pages.append(group_info)
+        # Create group pages for all environments (even single variants)
+        num_variants = len(variants)
+        variant_text = "variant" if num_variants == 1 else "variants"
+        print(f"\nCreating group page for: {base_name} ({num_variants} {variant_text})")
+        group_info = create_group_page(base_name, variants[0]['category'], variants)
+        group_pages.append(group_info)
     
     print(f"\n✓ Created {len(group_pages)} group page(s)")
+    
+    # Create category pages
+    print("\n" + "="*60)
+    print("Creating category pages...")
+    print("="*60)
+    
+    category_pages = create_category_pages(groups)
+    
+    print(f"\n✓ Created {len(category_pages)} category page(s)")
     
     return environments
 
@@ -473,9 +555,11 @@ def generate_category_html(category_name, environments):
         'Dynamic 3D': '3D environments with complex dynamics and physical interactions.'
     }
     
+    category_filename = generate_category_filename(category_name)
+    
     html = f'''
                 <div class="category">
-                    <h3>{category_name}</h3>
+                    <h3><a href="environments/{category_filename}" class="category-title-link">{category_name}</a></h3>
                     <p class="category-description">{category_descriptions.get(category_name, '')}</p>
 '''
     
@@ -523,6 +607,84 @@ def generate_category_html(category_name, environments):
 '''
     
     return html
+
+def create_category_pages(groups):
+    """Create pages for each category listing all environment families."""
+    category_descriptions = {
+        'Geometric 2D': '2D environments focused on geometric reasoning and spatial relationships.',
+        'Geometric 3D': '3D environments for testing spatial reasoning in three dimensions.',
+        'Dynamic 2D': '2D environments involving dynamic physical interactions and motion.',
+        'Dynamic 3D': '3D environments with complex dynamics and physical interactions.'
+    }
+    
+    # Group by category
+    from collections import defaultdict
+    categories = defaultdict(list)
+    
+    for base_name, variants in groups.items():
+        if variants:
+            category = variants[0]['category']
+            categories[category].append({
+                'base_name': base_name,
+                'num_variants': len(variants),
+                'group_filename': generate_group_filename(base_name)
+            })
+    
+    category_pages = []
+    
+    for category_name in ['Geometric 2D', 'Geometric 3D', 'Dynamic 2D', 'Dynamic 3D']:
+        if category_name not in categories:
+            continue
+        
+        families = sorted(categories[category_name], key=lambda x: x['base_name'])
+        
+        print(f"\nCreating category page: {category_name} ({len(families)} families)")
+        
+        # Generate HTML for families list
+        families_html = ''
+        for family in families:
+            if family['num_variants'] > 1:
+                # Multiple variants - link to group page
+                families_html += f'''                        <div class="family-card">
+                            <a href="{family['group_filename']}" class="family-link">
+                                <h3>{family['base_name']}</h3>
+                                <p class="family-meta">{family['num_variants']} variants</p>
+                            </a>
+                        </div>
+'''
+            else:
+                # Single variant - could link to group page still (which exists) or directly
+                families_html += f'''                        <div class="family-card">
+                            <a href="{family['group_filename']}" class="family-link">
+                                <h3>{family['base_name']}</h3>
+                                <p class="family-meta">1 variant</p>
+                            </a>
+                        </div>
+'''
+        
+        # Generate category page
+        category_filename = generate_category_filename(category_name)
+        output_path = Path('environments') / category_filename
+        
+        html_output = CATEGORY_TEMPLATE.format(
+            title=category_name,
+            category_name=category_name,
+            category_description=category_descriptions.get(category_name, ''),
+            families_html=families_html
+        )
+        
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(html_output)
+        
+        print(f"  Generated: {output_path}")
+        
+        category_pages.append({
+            'name': category_name,
+            'filename': category_filename,
+            'num_families': len(families)
+        })
+    
+    return category_pages
 
 def update_index_html(environments):
     """Update index.html with the discovered environments."""

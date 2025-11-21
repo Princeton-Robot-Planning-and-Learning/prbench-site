@@ -239,6 +239,55 @@
     font-weight: 500;
 }
 
+/* Category Page Styles */
+.category-page-description {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.env-families-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.family-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.family-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    border-color: #667eea;
+}
+
+.family-link {
+    display: block;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.family-card h3 {
+    font-size: 1.25rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.family-meta {
+    color: #999;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
 @media (max-width: 768px) {
     .environment-detail h1 {
         font-size: 1.8rem;
