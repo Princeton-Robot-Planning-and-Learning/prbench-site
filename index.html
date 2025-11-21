@@ -188,7 +188,31 @@ img = env.render()</code></pre>
                     <pre><code class="language-python">from prbench.envs.geom2d.obstruction2d import ObjectCentricObstruction2DEnv
 env = ObjectCentricObstruction2DEnv(num_obstructions=3)
 obs, _ = env.reset(seed=123)
-print(obs.pretty_str())  # Pretty-printed object-centric state</code></pre>
+print(obs.pretty_str())</code></pre>
+                </div>
+
+                <p>Here, <code>obs</code> is an <a href="https://github.com/tomsilver/relational-structs/blob/main/src/relational_structs/object_centric_state.py#L25" target="_blank">ObjectCentricState</a>, and the printout is:</p>
+                
+                <div class="code-block">
+                    <pre><code>############################################################### STATE ###############################################################
+type: crv_robot           x         y    theta    base_radius    arm_joint    arm_length    vacuum    gripper_height    gripper_width
+-----------------  --------  --------  -------  -------------  -----------  ------------  --------  ----------------  ---------------
+robot              0.885039  0.803795  -1.5708            0.1          0.1           0.2         0              0.07             0.01
+
+type: rectangle           x         y    theta    static    color_r    color_g    color_b    z_order      width     height
+-----------------  --------  --------  -------  --------  ---------  ---------  ---------  ---------  ---------  ---------
+obstruction0       0.422462  0.100001        0         0       0.75        0.1        0.1        100  0.132224   0.0766399
+obstruction1       0.804663  0.100001        0         0       0.75        0.1        0.1        100  0.0805652  0.0955062
+obstruction2       0.559246  0.100001        0         0       0.75        0.1        0.1        100  0.12608    0.180172
+
+type: target_block          x         y    theta    static    color_r    color_g    color_b    z_order     width    height
+--------------------  -------  --------  -------  --------  ---------  ---------  ---------  ---------  --------  --------
+target_block          1.20082  0.100001        0         0   0.501961          0   0.501961        100  0.138302  0.155183
+
+type: target_surface           x    y    theta    static    color_r    color_g    color_b    z_order     width    height
+----------------------  --------  ---  -------  --------  ---------  ---------  ---------  ---------  --------  --------
+target_surface          0.499675    0        0         1   0.501961          0   0.501961        101  0.180286       0.1
+#####################################################################################################################################</code></pre>
                 </div>
 
                 <p>For compatibility with baselines, observations are provided as vectors. Convert between vectors and object-centric states:</p>

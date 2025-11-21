@@ -240,6 +240,31 @@ section p {
     margin: 0 !important;
 }
 
+/* Inline code styling */
+#usage code:not([class*="language-"]) {
+    background: #e8eaf6;
+    color: #667eea;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+/* Plain text output (for object-centric state display) */
+.code-block pre code:not([class*="language-"]) {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+    color: #f8f9fa !important;
+    white-space: pre !important;
+    display: block !important;
+    background: transparent !important;
+}
+
+.code-block pre:has(code:not([class*="language-"])) {
+    background: #2d3748 !important;
+}
+
 /* Benchmark Categories */
 .category {
     margin-top: 3rem;
