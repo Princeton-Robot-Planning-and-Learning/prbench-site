@@ -202,6 +202,44 @@ section p {
     margin: 0;
 }
 
+/* Usage Section */
+#usage h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+#usage a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+#usage a:hover {
+    text-decoration: underline;
+}
+
+.code-block {
+    margin: 1.5rem 0;
+}
+
+.code-block pre {
+    padding: 1.5rem !important;
+    border-radius: 8px !important;
+    overflow-x: auto;
+    margin: 0 !important;
+    background: #2d3748 !important;
+}
+
+.code-block code {
+    font-family: 'Monaco', 'Courier New', monospace !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+}
+
+.code-block pre[class*="language-"] {
+    padding: 1.5rem !important;
+    margin: 0 !important;
+}
+
 /* Benchmark Categories */
 .category {
     margin-top: 3rem;
