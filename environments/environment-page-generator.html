@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environment Page Generator | PRBench</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="environment.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <ul class="nav-links">
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#benchmark">Benchmark</a></li>
+                    <li><a href="../index.html#results">Results</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="environment-detail">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="../index.html#benchmark">Benchmark</a> / 
+                    <span>Geometric 2D</span> / 
+                    <span>Environment Page Generator</span>
+                </div>
+
+                <div class="environment-content">
+                    <h1>Environment Page Generator</h1>
+<p>This tool automatically generates HTML pages from markdown files describing each environment.</p>
+<h2>Setup</h2>
+<ol>
+<li>Install the required Python package:</li>
+</ol>
+<pre><code class="language-bash">pip install markdown
+</code></pre>
+<h2>Usage</h2>
+<ol>
+<li>Place your environment markdown files (e.g., <code>example.md</code>) in the root directory</li>
+<li>Run the generator:</li>
+</ol>
+<pre><code class="language-bash">python3 generate_pages.py
+</code></pre>
+<ol>
+<li>The script will:</li>
+<li>Find all <code>.md</code> files (except <code>README.md</code>)</li>
+<li>Parse the environment name from the first heading</li>
+<li>Automatically categorize each environment based on its name</li>
+<li>Generate an HTML page in the <code>environments/</code> directory</li>
+<li>Display a summary of what was generated</li>
+</ol>
+<h2>Markdown Format</h2>
+<p>Your markdown files should follow this structure:</p>
+<pre><code class="language-markdown"># prbench/EnvironmentName
+
+### Description
+Environment description here...
+
+### Observation Space
+Description and tables...
+
+| **Index** | **Object** | **Feature** |
+| --- | --- | --- |
+| 0 | robot | x |
+
+### Action Space
+
+| **Index** | **Feature** | **Description** | **Min** | **Max** |
+| --- | --- | --- | --- | --- |
+| 0 | dx | Description | -0.050 | 0.050 |
+
+### Rewards
+Reward description...
+
+### References
+References...
+</code></pre>
+<h2>Categorization Rules</h2>
+<p>The script automatically categorizes environments based on their names:</p>
+<ul>
+<li><strong>Geometric 2D</strong>: Contains "2d" but no dynamic keywords</li>
+<li><strong>Geometric 3D</strong>: Contains "3d" but no dynamic keywords  </li>
+<li><strong>Dynamic 2D</strong>: Contains "2d" AND dynamic keywords (stack, push, throw, fall, slide, dynamic, collision)</li>
+<li><strong>Dynamic 3D</strong>: Contains "3d" AND dynamic keywords</li>
+</ul>
+<h2>Output</h2>
+<p>Generated files will be named based on the environment name (lowercased, with special characters removed).</p>
+<p>Example: <code>ClutteredRetrieval2D-o1-v0</code> → <code>clutteredretrieval2d-o1-v0.html</code></p>
+<h2>Styling</h2>
+<p>The generated pages include:
+- Styled markdown headings (h1, h2, h3)
+- Beautiful table formatting with hover effects
+- Responsive image display
+- Code block styling
+- Navigation breadcrumbs
+- Back to benchmark link</p>
+<p>All styling is in <code>environments/environment.css</code>.</p>
+                </div>
+
+                <div class="back-link">
+                    <a href="../index.html#benchmark">← Back to Benchmark</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PRBench. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

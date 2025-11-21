@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutteredRetrieval2D-o1-v0 | PRBench</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="environment.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <ul class="nav-links">
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#benchmark">Benchmark</a></li>
+                    <li><a href="../index.html#results">Results</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="environment-detail">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="../index.html#benchmark">Benchmark</a> / 
+                    <span>Geometric 2D</span> / 
+                    <span>ClutteredRetrieval2D-o1-v0</span>
+                </div>
+
+                <div class="environment-content">
+                    <h1>prbench/ClutteredRetrieval2D-o1-v0</h1>
+<p><img alt="random action GIF" src="assets/random_action_gifs/ClutteredRetrieval2D-o1.gif" /></p>
+<h3>Description</h3>
+<p>A 2D environment where the goal is to "pick up" (suction) a target block.</p>
+<p>The target block may be initially obstructed. In this environment, there are always 2 obstacle blocks.</p>
+<p>The robot has a movable circular base and a retractable arm with a rectangular vacuum end effector. Objects can be grasped and ungrasped when the end effector makes contact.</p>
+<h3>Initial State Distribution</h3>
+<p><img alt="initial state GIF" src="assets/initial_state_gifs/ClutteredRetrieval2D-o1.gif" /></p>
+<h3>Example Demonstration</h3>
+<p><img alt="demo GIF" src="assets/demo_gifs/ClutteredRetrieval2D-o1/ClutteredRetrieval2D-o1_1758719765.gif" /></p>
+<h3>Observation Space</h3>
+<p>The entries of an array in this Box space correspond to the following object features:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Index</strong></th>
+<th><strong>Object</strong></th>
+<th><strong>Feature</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>robot</td>
+<td>x</td>
+</tr>
+<tr>
+<td>1</td>
+<td>robot</td>
+<td>y</td>
+</tr>
+<tr>
+<td>2</td>
+<td>robot</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>3</td>
+<td>robot</td>
+<td>base_radius</td>
+</tr>
+<tr>
+<td>4</td>
+<td>robot</td>
+<td>arm_joint</td>
+</tr>
+<tr>
+<td>5</td>
+<td>robot</td>
+<td>arm_length</td>
+</tr>
+<tr>
+<td>6</td>
+<td>robot</td>
+<td>vacuum</td>
+</tr>
+<tr>
+<td>7</td>
+<td>robot</td>
+<td>gripper_height</td>
+</tr>
+<tr>
+<td>8</td>
+<td>robot</td>
+<td>gripper_width</td>
+</tr>
+<tr>
+<td>9</td>
+<td>target_block</td>
+<td>x</td>
+</tr>
+<tr>
+<td>10</td>
+<td>target_block</td>
+<td>y</td>
+</tr>
+<tr>
+<td>11</td>
+<td>target_block</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>12</td>
+<td>target_block</td>
+<td>static</td>
+</tr>
+<tr>
+<td>13</td>
+<td>target_block</td>
+<td>color_r</td>
+</tr>
+<tr>
+<td>14</td>
+<td>target_block</td>
+<td>color_g</td>
+</tr>
+<tr>
+<td>15</td>
+<td>target_block</td>
+<td>color_b</td>
+</tr>
+<tr>
+<td>16</td>
+<td>target_block</td>
+<td>z_order</td>
+</tr>
+<tr>
+<td>17</td>
+<td>target_block</td>
+<td>width</td>
+</tr>
+<tr>
+<td>18</td>
+<td>target_block</td>
+<td>height</td>
+</tr>
+<tr>
+<td>19</td>
+<td>target_region</td>
+<td>x</td>
+</tr>
+<tr>
+<td>20</td>
+<td>target_region</td>
+<td>y</td>
+</tr>
+<tr>
+<td>21</td>
+<td>target_region</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>22</td>
+<td>target_region</td>
+<td>static</td>
+</tr>
+<tr>
+<td>23</td>
+<td>target_region</td>
+<td>color_r</td>
+</tr>
+<tr>
+<td>24</td>
+<td>target_region</td>
+<td>color_g</td>
+</tr>
+<tr>
+<td>25</td>
+<td>target_region</td>
+<td>color_b</td>
+</tr>
+<tr>
+<td>26</td>
+<td>target_region</td>
+<td>z_order</td>
+</tr>
+<tr>
+<td>27</td>
+<td>target_region</td>
+<td>width</td>
+</tr>
+<tr>
+<td>28</td>
+<td>target_region</td>
+<td>height</td>
+</tr>
+<tr>
+<td>29</td>
+<td>obstruction0</td>
+<td>x</td>
+</tr>
+<tr>
+<td>30</td>
+<td>obstruction0</td>
+<td>y</td>
+</tr>
+<tr>
+<td>31</td>
+<td>obstruction0</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>32</td>
+<td>obstruction0</td>
+<td>static</td>
+</tr>
+<tr>
+<td>33</td>
+<td>obstruction0</td>
+<td>color_r</td>
+</tr>
+<tr>
+<td>34</td>
+<td>obstruction0</td>
+<td>color_g</td>
+</tr>
+<tr>
+<td>35</td>
+<td>obstruction0</td>
+<td>color_b</td>
+</tr>
+<tr>
+<td>36</td>
+<td>obstruction0</td>
+<td>z_order</td>
+</tr>
+<tr>
+<td>37</td>
+<td>obstruction0</td>
+<td>width</td>
+</tr>
+<tr>
+<td>38</td>
+<td>obstruction0</td>
+<td>height</td>
+</tr>
+</tbody>
+</table>
+<h3>Action Space</h3>
+<p>The entries of an array in this Box space correspond to the following action features:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Index</strong></th>
+<th><strong>Feature</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Min</strong></th>
+<th><strong>Max</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>dx</td>
+<td>Change in robot x position (positive is right)</td>
+<td>-0.050</td>
+<td>0.050</td>
+</tr>
+<tr>
+<td>1</td>
+<td>dy</td>
+<td>Change in robot y position (positive is up)</td>
+<td>-0.050</td>
+<td>0.050</td>
+</tr>
+<tr>
+<td>2</td>
+<td>dtheta</td>
+<td>Change in robot angle in radians (positive is ccw)</td>
+<td>-0.196</td>
+<td>0.196</td>
+</tr>
+<tr>
+<td>3</td>
+<td>darm</td>
+<td>Change in robot arm length (positive is out)</td>
+<td>-0.100</td>
+<td>0.100</td>
+</tr>
+<tr>
+<td>4</td>
+<td>vac</td>
+<td>Directly sets the vacuum (0.0 is off, 1.0 is on)</td>
+<td>0.000</td>
+<td>1.000</td>
+</tr>
+</tbody>
+</table>
+<h3>Rewards</h3>
+<p>A penalty of -1.0 is given at every time step until termination, which occurs when the target block is held.</p>
+<h3>References</h3>
+<p>Similar environments have been considered by many others, especially in the task and motion planning literature, e.g., "Combined Task and Motion Planning Through an Extensible Planner-Independent Interface Layer" (Srivastava et al., ICRA 2014).</p>
+                </div>
+
+                <div class="back-link">
+                    <a href="../index.html#benchmark">← Back to Benchmark</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PRBench. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
