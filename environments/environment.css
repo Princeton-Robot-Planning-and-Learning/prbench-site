@@ -1,0 +1,99 @@
+/* Environment Detail Page Styles */
+
+.environment-detail {
+    padding: 2rem 0 4rem;
+}
+
+.breadcrumb {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.breadcrumb a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.environment-detail h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+.environment-content {
+    max-width: 800px;
+}
+
+.environment-content h2 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.environment-content p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.environment-content ul {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.environment-content li {
+    margin-bottom: 0.5rem;
+}
+
+.environment-image-placeholder {
+    background: #f0f0f0;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin: 2rem 0;
+    color: #999;
+}
+
+.back-link {
+    margin-top: 3rem;
+}
+
+.back-link a {
+    display: inline-block;
+    color: #667eea;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+}
+
+.back-link a:hover {
+    transform: translateX(-4px);
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .environment-detail h1 {
+        font-size: 1.8rem;
+    }
+
+    .environment-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .environment-content p,
+    .environment-content ul {
+        font-size: 1rem;
+    }
+}
+
