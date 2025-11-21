@@ -54,7 +54,7 @@ header h1 {
 #hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 4rem 0 3rem;
+    padding: 1rem 0 2rem;
     text-align: center;
 }
 
@@ -70,7 +70,7 @@ header h1 {
 
 /* Demo Showcase */
 .demo-showcase {
-    margin-top: 2rem;
+    margin-top: 0;
     padding: 2rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
