@@ -101,8 +101,43 @@
 
         <section id="about">
             <div class="container">
-                <h2>About</h2>
-                <p>PRBench is designed to assess and compare the physical reasoning capabilities of robotic systems.</p>
+                <h2>About PRBench</h2>
+                <p class="intro-text">A <strong>p</strong>hysical <strong>r</strong>easoning <strong>bench</strong>mark for robotics.</p>
+                
+                <div class="about-content">
+                    <p>There's growing excitement around large language models and their ability to "reason"—but reasoning isn't just about tokens and text. <strong>Robots must reason too</strong>: over long horizons, under uncertainty, and with sparse feedback. And unlike purely symbolic systems, <strong>robotic reasoning is physical</strong>: it's grounded in low-level, continuous state and action spaces. It requires understanding kinematics, geometry, dynamics, contact, force, tool use, and more.</p>
+                    
+                    <p>This benchmark is designed for this kind of physical reasoning with robots. We invite researchers to try their best task and motion planning, reinforcement learning, imitation learning, and foundation models approaches. We hope that PRBench will bridge perspectives and foster shared progress toward physically intelligent robots.</p>
+                </div>
+
+                <h3>What Makes PRBench Challenging?</h3>
+                
+                <div class="challenges-grid">
+                    <div class="challenge-card">
+                        <h4>For Reinforcement Learning</h4>
+                        <p>Environments have long horizons and sparse rewards. Users are welcome to engineer dense rewards, but doing so may be nontrivial. Environments also have very diverse task distributions, so learned policies must generalize.</p>
+                    </div>
+                    
+                    <div class="challenge-card">
+                        <h4>For Imitation Learning</h4>
+                        <p>As with RL, generalization across tasks is a major challenge. Furthermore, we supply some demonstrations, but they are typically suboptimal, multimodal, and limited in quantity.</p>
+                    </div>
+                    
+                    <div class="challenge-card">
+                        <h4>For Language Models</h4>
+                        <p>The physical reasoning required in PRBench is not easy to represent in natural language alone. Vision-language and vision-language-action models may fare better, but the tasks in PRBench are beyond the capabilities of current VLMs and VLAs.</p>
+                    </div>
+                    
+                    <div class="challenge-card">
+                        <h4>For Hierarchical Approaches</h4>
+                        <p>Approaches that first decide "what to do" and then decide "how to do it" will run into difficulties when there are couplings between these high-level and low-level decisions.</p>
+                    </div>
+                    
+                    <div class="challenge-card">
+                        <h4>For Task and Motion Planning</h4>
+                        <p>PRBench does not provide any models for TAMP. Users are welcome to engineer their own, but doing so may be nontrivial. Some environments contain many objects, which may make planning slow.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
