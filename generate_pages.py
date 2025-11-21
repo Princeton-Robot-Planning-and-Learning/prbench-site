@@ -26,7 +26,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
                 <ul class="nav-links">
                     <li><a href="../index.html#about">About</a></li>
-                    <li><a href="../index.html#benchmark">Benchmark</a></li>
+                    <li><a href="../index.html#usage">Usage</a></li>
+                    <li><a href="../index.html#benchmark">Environments</a></li>
                     <li><a href="../index.html#results">Results</a></li>
                     <li><a href="../index.html#contact">Contact</a></li>
                 </ul>
@@ -81,7 +82,8 @@ CATEGORY_TEMPLATE = """<!DOCTYPE html>
                 <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
                 <ul class="nav-links">
                     <li><a href="../index.html#about">About</a></li>
-                    <li><a href="../index.html#benchmark">Benchmark</a></li>
+                    <li><a href="../index.html#usage">Usage</a></li>
+                    <li><a href="../index.html#benchmark">Environments</a></li>
                     <li><a href="../index.html#results">Results</a></li>
                     <li><a href="../index.html#contact">Contact</a></li>
                 </ul>
@@ -142,7 +144,8 @@ GROUP_TEMPLATE = """<!DOCTYPE html>
                 <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
                 <ul class="nav-links">
                     <li><a href="../index.html#about">About</a></li>
-                    <li><a href="../index.html#benchmark">Benchmark</a></li>
+                    <li><a href="../index.html#usage">Usage</a></li>
+                    <li><a href="../index.html#benchmark">Environments</a></li>
                     <li><a href="../index.html#results">Results</a></li>
                     <li><a href="../index.html#contact">Contact</a></li>
                 </ul>
