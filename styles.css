@@ -120,6 +120,24 @@ section p {
     font-weight: 600;
 }
 
+.group-title-link {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.group-title-link:hover {
+    color: #5568d3;
+    text-decoration: underline;
+}
+
+.variant-count {
+    font-size: 1rem;
+    color: #999;
+    font-weight: normal;
+    margin-left: 0.5rem;
+}
+
 /* Environment Grid */
 .environment-grid {
     display: grid;

@@ -170,6 +170,49 @@
     text-decoration: underline;
 }
 
+/* Variant List on Group Pages */
+.variant-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.variant-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.variant-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    border-color: #667eea;
+}
+
+.variant-link {
+    display: block;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.variant-card h3 {
+    font-size: 1.25rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.variant-description {
+    color: #667eea;
+    font-size: 0.95rem;
+    margin: 0;
+    font-weight: 500;
+}
+
 @media (max-width: 768px) {
     .environment-detail h1 {
         font-size: 1.8rem;

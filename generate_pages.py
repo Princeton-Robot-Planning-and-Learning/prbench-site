@@ -40,11 +40,73 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <div class="breadcrumb">
                     <a href="../index.html#benchmark">Benchmark</a> / 
                     <span>{category}</span> / 
+                    {group_breadcrumb}
                     <span>{env_name}</span>
                 </div>
 
                 <div class="environment-content">
                     {content}
+                </div>
+
+                <div class="back-link">
+                    <a href="../index.html#benchmark">← Back to Benchmark</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PRBench. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+"""
+
+# HTML template for environment group pages
+GROUP_TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title} | PRBench</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="environment.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <ul class="nav-links">
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#benchmark">Benchmark</a></li>
+                    <li><a href="../index.html#results">Results</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="environment-detail">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="../index.html#benchmark">Benchmark</a> / 
+                    <span>{category}</span> / 
+                    <span>{group_name}</span>
+                </div>
+
+                <h1>{group_name}</h1>
+                
+                <div class="environment-content">
+                    <h2>Variants</h2>
+                    <p>This environment has {num_variants} variant(s) with different configurations:</p>
+                    
+                    <div class="variant-list">
+{variants_html}
+                    </div>
                 </div>
 
                 <div class="back-link">
@@ -135,6 +197,12 @@ def generate_html_filename(env_name, category):
     clean_name = re.sub(r'[-\s]+', '-', clean_name)
     return f"{clean_name}.html"
 
+def generate_group_filename(base_name):
+    """Generate a clean filename for the group page."""
+    clean_name = re.sub(r'[^\w\s-]', '', base_name.lower())
+    clean_name = re.sub(r'[-\s]+', '-', clean_name)
+    return f"{clean_name}-group.html"
+
 def convert_markdown_to_html(md_file_path):
     """Convert a markdown file to an HTML environment page."""
     # Read the markdown file
@@ -182,11 +250,23 @@ def convert_markdown_to_html(md_file_path):
     md = markdown.Markdown(extensions=['tables', 'fenced_code'])
     html_content = md.convert(md_content)
     
+    # Get base name for breadcrumb
+    base_name = extract_base_environment_name(env_name)
+    group_filename = generate_group_filename(base_name)
+    
+    # Check if this environment has a group (will be determined later, so we'll use a placeholder)
+    # For now, we'll add the group link if base_name != env_name
+    if base_name != env_name:
+        group_breadcrumb = f'<a href="{group_filename}">{base_name}</a> / '
+    else:
+        group_breadcrumb = ''
+    
     # Generate HTML page
     html_output = HTML_TEMPLATE.format(
         title=env_name,
         category=category,
         env_name=env_name,
+        group_breadcrumb=group_breadcrumb,
         content=html_content
     )
     
@@ -208,6 +288,51 @@ def convert_markdown_to_html(md_file_path):
         'category': category,
         'filename': html_filename,
         'html_path': str(output_path)
+    }
+
+def create_group_page(base_name, category, variants):
+    """Create an HTML page for an environment group."""
+    group_filename = generate_group_filename(base_name)
+    output_path = Path('environments') / group_filename
+    
+    # Sort variants by name
+    variants = sorted(variants, key=lambda x: x['name'])
+    
+    # Generate HTML for variants list
+    variants_html = ''
+    for variant in variants:
+        variant_suffix = variant['name'].replace(base_name, '').lstrip('-')
+        if not variant_suffix:
+            variant_suffix = variant['name']
+        
+        variants_html += f'''                        <div class="variant-card">
+                            <a href="{variant['filename']}" class="variant-link">
+                                <h3>{variant['name']}</h3>
+                                <p class="variant-description">View details →</p>
+                            </a>
+                        </div>
+'''
+    
+    # Generate the HTML
+    html_output = GROUP_TEMPLATE.format(
+        title=base_name,
+        category=category,
+        group_name=base_name,
+        num_variants=len(variants),
+        variants_html=variants_html
+    )
+    
+    # Write the file
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(html_output)
+    
+    print(f"  Generated group page: {output_path}")
+    
+    return {
+        'base_name': base_name,
+        'filename': group_filename,
+        'category': category,
+        'num_variants': len(variants)
     }
 
 def scan_and_generate():
@@ -234,6 +359,28 @@ def scan_and_generate():
         print(f"\nProcessing: {md_file}")
         env_info = convert_markdown_to_html(md_file)
         environments.append(env_info)
+    
+    # Group environments by base name and create group pages
+    print("\n" + "="*60)
+    print("Creating environment group pages...")
+    print("="*60)
+    
+    from collections import defaultdict
+    groups = defaultdict(list)
+    
+    for env in environments:
+        base_name = extract_base_environment_name(env['name'])
+        env['base_name'] = base_name
+        groups[base_name].append(env)
+    
+    group_pages = []
+    for base_name, variants in sorted(groups.items()):
+        if len(variants) > 1:
+            print(f"\nCreating group page for: {base_name} ({len(variants)} variants)")
+            group_info = create_group_page(base_name, variants[0]['category'], variants)
+            group_pages.append(group_info)
+    
+    print(f"\n✓ Created {len(group_pages)} group page(s)")
     
     return environments
 
@@ -269,7 +416,7 @@ def generate_category_html(category_name, environments):
     # Generate HTML for each environment group
     for base_name, group in sorted_groups:
         if len(group) == 1:
-            # Single environment - display as a card
+            # Single environment - display as a card linking directly to it
             env = group[0]
             html += f'''                    <div class="env-group">
                         <h4 class="env-group-title">{base_name}</h4>
@@ -282,9 +429,13 @@ def generate_category_html(category_name, environments):
                     </div>
 '''
         else:
-            # Multiple variants - display as a group with expandable variants
+            # Multiple variants - display group title linking to group page, then show variants
+            group_filename = generate_group_filename(base_name)
             html += f'''                    <div class="env-group">
-                        <h4 class="env-group-title">{base_name}</h4>
+                        <h4 class="env-group-title">
+                            <a href="environments/{group_filename}" class="group-title-link">{base_name}</a>
+                            <span class="variant-count">({len(group)} variants)</span>
+                        </h4>
                         <div class="environment-grid">
 '''
             for env in group:
