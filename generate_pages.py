@@ -97,6 +97,37 @@ def categorize_environment(env_name):
         # Default to Geometric 2D if not specified
         return "Geometric 2D"
 
+def extract_base_environment_name(env_name):
+    """Extract the base environment name without variant suffixes.
+    
+    Examples:
+        ClutteredRetrieval2D-o1-v0 -> ClutteredRetrieval2D
+        Motion2D-p3-v0 -> Motion2D
+        TidyBot3D-ground-o3-v0 -> TidyBot3D-ground
+    """
+    # Remove -v0, -v1, etc. version suffixes
+    name = re.sub(r'-v\d+$', '', env_name)
+    
+    # For most environments, remove the variant suffix (like -o1, -o10, -p3, etc.)
+    # But keep multi-part names like "TidyBot3D-ground" or "TidyBot3D-table"
+    
+    # Special handling for TidyBot environments (keep the scene type)
+    if name.startswith('TidyBot3D'):
+        # Pattern: TidyBot3D-{scene_type}-{variant}
+        parts = name.split('-')
+        if len(parts) >= 3:
+            return f"{parts[0]}-{parts[1]}"  # TidyBot3D-ground, TidyBot3D-table, etc.
+    
+    # For other environments, remove the last variant part (usually -o1, -p3, -b5, etc.)
+    parts = name.split('-')
+    if len(parts) >= 2:
+        # Check if the last part is a variant (starts with letter followed by numbers)
+        last_part = parts[-1]
+        if re.match(r'^[a-z]\d+$', last_part):
+            return '-'.join(parts[:-1])
+    
+    return name
+
 def generate_html_filename(env_name, category):
     """Generate a clean filename for the HTML page."""
     # Create a clean filename from environment name
@@ -207,9 +238,20 @@ def scan_and_generate():
     return environments
 
 def generate_category_html(category_name, environments):
-    """Generate HTML for a category section."""
-    # Sort environments by name
-    environments = sorted(environments, key=lambda x: x['name'])
+    """Generate HTML for a category section with environment groups."""
+    # Group environments by base name
+    from collections import defaultdict
+    env_groups = defaultdict(list)
+    
+    for env in environments:
+        base_name = extract_base_environment_name(env['name'])
+        env['base_name'] = base_name
+        env_groups[base_name].append(env)
+    
+    # Sort groups by base name, and within each group sort by full name
+    sorted_groups = sorted(env_groups.items())
+    for base_name, group in sorted_groups:
+        group.sort(key=lambda x: x['name'])
     
     category_descriptions = {
         'Geometric 2D': '2D environments focused on geometric reasoning and spatial relationships.',
@@ -222,18 +264,45 @@ def generate_category_html(category_name, environments):
                 <div class="category">
                     <h3>{category_name}</h3>
                     <p class="category-description">{category_descriptions.get(category_name, '')}</p>
-                    <div class="environment-grid">
 '''
     
-    for env in environments:
-        html += f'''                        <a href="environments/{env['filename']}" class="environment-card">
-                            <h4>{env['name']}</h4>
-                            <p>Click to view details</p>
-                        </a>
+    # Generate HTML for each environment group
+    for base_name, group in sorted_groups:
+        if len(group) == 1:
+            # Single environment - display as a card
+            env = group[0]
+            html += f'''                    <div class="env-group">
+                        <h4 class="env-group-title">{base_name}</h4>
+                        <div class="environment-grid">
+                            <a href="environments/{env['filename']}" class="environment-card">
+                                <h5>{env['name']}</h5>
+                                <p>Click to view details</p>
+                            </a>
+                        </div>
+                    </div>
+'''
+        else:
+            # Multiple variants - display as a group with expandable variants
+            html += f'''                    <div class="env-group">
+                        <h4 class="env-group-title">{base_name}</h4>
+                        <div class="environment-grid">
+'''
+            for env in group:
+                # Extract the variant part for display
+                variant = env['name'].replace(base_name, '').lstrip('-') if base_name in env['name'] else env['name']
+                if not variant:
+                    variant = env['name']
+                
+                html += f'''                            <a href="environments/{env['filename']}" class="environment-card">
+                                <h5>{variant}</h5>
+                                <p>Click to view details</p>
+                            </a>
+'''
+            html += '''                        </div>
+                    </div>
 '''
     
-    html += '''                    </div>
-                </div>
+    html += '''                </div>
 '''
     
     return html

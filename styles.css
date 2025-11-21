@@ -108,6 +108,18 @@ section p {
     margin-bottom: 1.5rem;
 }
 
+/* Environment Groups */
+.env-group {
+    margin-bottom: 2.5rem;
+}
+
+.env-group-title {
+    font-size: 1.35rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
 /* Environment Grid */
 .environment-grid {
     display: grid;
@@ -135,6 +147,12 @@ section p {
 
 .environment-card h4 {
     font-size: 1.25rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.environment-card h5 {
+    font-size: 1.1rem;
     color: #2c3e50;
     margin-bottom: 0.5rem;
 }
