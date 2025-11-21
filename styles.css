@@ -96,6 +96,8 @@ header h1 {
     align-items: center;
     justify-content: center;
     min-height: 200px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .demo-gif-item:hover {
