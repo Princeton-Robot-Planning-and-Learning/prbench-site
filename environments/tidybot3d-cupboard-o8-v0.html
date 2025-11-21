@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TidyBot3D-cupboard-o8-v0 | PRBench</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="environment.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <ul class="nav-links">
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#benchmark">Benchmark</a></li>
+                    <li><a href="../index.html#results">Results</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="environment-detail">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="../index.html#benchmark">Benchmark</a> / 
+                    <span>Dynamic 3D</span> / 
+                    <span>TidyBot3D-cupboard-o8-v0</span>
+                </div>
+
+                <div class="environment-content">
+                    <h1>prbench/TidyBot3D-cupboard-o8-v0</h1>
+<p><em>(Random action GIF could not be generated due to rendering issues)</em></p>
+<h3>Description</h3>
+<p>A 3D mobile manipulation environment using the TidyBot platform.</p>
+<p>The robot has a holonomic mobile base with powered casters and a Kinova Gen3 arm.
+Scene type: cupboard with 8 objects.</p>
+<p>The robot can control:
+- Base pose (x, y, theta)
+- Arm position (x, y, z)
+- Arm orientation (quaternion)
+- Gripper position (open/close)</p>
+<h3>Initial State Distribution</h3>
+<p><em>(Initial state GIF could not be generated due to rendering issues)</em></p>
+<h3>Example Demonstration</h3>
+<p><em>(No demonstration GIFs available)</em></p>
+<h3>Observation Space</h3>
+<p>Observation includes:
+- Robot state: base pose, arm position/orientation, gripper state
+- Object states: positions and orientations of all objects
+- Camera images: RGB images from base and wrist cameras
+- Scene-specific features: handle positions for cabinets/drawers</p>
+<h3>Action Space</h3>
+<p>Actions control:
+- base_pose: [x, y, theta] - Mobile base position and orientation
+- arm_pos: [x, y, z] - End effector position in world coordinates
+- arm_quat: [x, y, z, w] - End effector orientation as quaternion
+- gripper_pos: [pos] - Gripper open/close position (0=closed, 1=open)</p>
+<h3>Rewards</h3>
+<p>Reward function depends on the specific task:
+- Object stacking: Reward for successfully stacking objects
+- Drawer/cabinet tasks: Reward for opening/closing and placing objects
+- General manipulation: Reward for successful pick-and-place operations</p>
+<p>Currently returns a small negative reward (-0.01) per timestep to encourage exploration.</p>
+<h3>References</h3>
+<p>TidyBot++: An Open-Source Holonomic Mobile Manipulator
+for Robot Learning
+- Jimmy Wu, William Chong, Robert Holmberg, Aaditya Prasad, Yihuai Gao,
+  Oussama Khatib, Shuran Song, Szymon Rusinkiewicz, Jeannette Bohg
+- Conference on Robot Learning (CoRL), 2024</p>
+<p>https://github.com/tidybot2/tidybot2</p>
+                </div>
+
+                <div class="back-link">
+                    <a href="../index.html#benchmark">← Back to Benchmark</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PRBench. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

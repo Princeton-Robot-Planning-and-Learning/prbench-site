@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obstruction3D-o2-v0 | PRBench</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="environment.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <ul class="nav-links">
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#benchmark">Benchmark</a></li>
+                    <li><a href="../index.html#results">Results</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="environment-detail">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="../index.html#benchmark">Benchmark</a> / 
+                    <span>Geometric 3D</span> / 
+                    <span>Obstruction3D-o2-v0</span>
+                </div>
+
+                <div class="environment-content">
+                    <h1>prbench/Obstruction3D-o2-v0</h1>
+<p><img alt="random action GIF" src="../markdowns/assets/random_action_gifs/Obstruction3D-o2.gif" /></p>
+<h3>Description</h3>
+<p>A 3D obstruction clearance environment where the goal is to place a target block on a designated target region by first clearing obstructions.</p>
+<p>The robot is a Kinova Gen-3 with 7 degrees of freedom that can grasp and manipulate objects. The environment consists of:
+- A <strong>table</strong> with dimensions 0.400m × 0.800m × 0.500m
+- A <strong>target region</strong> (purple block) with random dimensions between (0.02, 0.02, 0.005) and (0.05, 0.05, 0.005) half-extents
+- A <strong>target block</strong> that must be placed on the target region, sized at 0.8× the target region's x,y dimensions
+- <strong>Obstruction(s)</strong> (red blocks) that may be placed on or near the target region, blocking access</p>
+<p>Obstructions have random dimensions between (0.01, 0.01, 0.01) and (0.02, 0.02, 0.03) half-extents. During initialization, there's a 0.9 probability that each obstruction will be placed on the target region, requiring clearance.</p>
+<p>The task requires planning to grasp and move obstructions out of the way, then place the target block on the target region.</p>
+<h3>Initial State Distribution</h3>
+<p><img alt="initial state GIF" src="../markdowns/assets/initial_state_gifs/Obstruction3D-o2.gif" /></p>
+<h3>Example Demonstration</h3>
+<p><em>(No demonstration GIFs available)</em></p>
+<h3>Observation Space</h3>
+<p>The entries of an array in this Box space correspond to the following object features:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Index</strong></th>
+<th><strong>Object</strong></th>
+<th><strong>Feature</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>robot</td>
+<td>joint_1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>robot</td>
+<td>joint_2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>robot</td>
+<td>joint_3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>robot</td>
+<td>joint_4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>robot</td>
+<td>joint_5</td>
+</tr>
+<tr>
+<td>5</td>
+<td>robot</td>
+<td>joint_6</td>
+</tr>
+<tr>
+<td>6</td>
+<td>robot</td>
+<td>joint_7</td>
+</tr>
+<tr>
+<td>7</td>
+<td>robot</td>
+<td>finger_state</td>
+</tr>
+<tr>
+<td>8</td>
+<td>robot</td>
+<td>grasp_active</td>
+</tr>
+<tr>
+<td>9</td>
+<td>robot</td>
+<td>grasp_tf_x</td>
+</tr>
+<tr>
+<td>10</td>
+<td>robot</td>
+<td>grasp_tf_y</td>
+</tr>
+<tr>
+<td>11</td>
+<td>robot</td>
+<td>grasp_tf_z</td>
+</tr>
+<tr>
+<td>12</td>
+<td>robot</td>
+<td>grasp_tf_qx</td>
+</tr>
+<tr>
+<td>13</td>
+<td>robot</td>
+<td>grasp_tf_qy</td>
+</tr>
+<tr>
+<td>14</td>
+<td>robot</td>
+<td>grasp_tf_qz</td>
+</tr>
+<tr>
+<td>15</td>
+<td>robot</td>
+<td>grasp_tf_qw</td>
+</tr>
+<tr>
+<td>16</td>
+<td>target_region</td>
+<td>pose_x</td>
+</tr>
+<tr>
+<td>17</td>
+<td>target_region</td>
+<td>pose_y</td>
+</tr>
+<tr>
+<td>18</td>
+<td>target_region</td>
+<td>pose_z</td>
+</tr>
+<tr>
+<td>19</td>
+<td>target_region</td>
+<td>pose_qx</td>
+</tr>
+<tr>
+<td>20</td>
+<td>target_region</td>
+<td>pose_qy</td>
+</tr>
+<tr>
+<td>21</td>
+<td>target_region</td>
+<td>pose_qz</td>
+</tr>
+<tr>
+<td>22</td>
+<td>target_region</td>
+<td>pose_qw</td>
+</tr>
+<tr>
+<td>23</td>
+<td>target_region</td>
+<td>grasp_active</td>
+</tr>
+<tr>
+<td>24</td>
+<td>target_region</td>
+<td>half_extent_x</td>
+</tr>
+<tr>
+<td>25</td>
+<td>target_region</td>
+<td>half_extent_y</td>
+</tr>
+<tr>
+<td>26</td>
+<td>target_region</td>
+<td>half_extent_z</td>
+</tr>
+<tr>
+<td>27</td>
+<td>target_block</td>
+<td>pose_x</td>
+</tr>
+<tr>
+<td>28</td>
+<td>target_block</td>
+<td>pose_y</td>
+</tr>
+<tr>
+<td>29</td>
+<td>target_block</td>
+<td>pose_z</td>
+</tr>
+<tr>
+<td>30</td>
+<td>target_block</td>
+<td>pose_qx</td>
+</tr>
+<tr>
+<td>31</td>
+<td>target_block</td>
+<td>pose_qy</td>
+</tr>
+<tr>
+<td>32</td>
+<td>target_block</td>
+<td>pose_qz</td>
+</tr>
+<tr>
+<td>33</td>
+<td>target_block</td>
+<td>pose_qw</td>
+</tr>
+<tr>
+<td>34</td>
+<td>target_block</td>
+<td>grasp_active</td>
+</tr>
+<tr>
+<td>35</td>
+<td>target_block</td>
+<td>half_extent_x</td>
+</tr>
+<tr>
+<td>36</td>
+<td>target_block</td>
+<td>half_extent_y</td>
+</tr>
+<tr>
+<td>37</td>
+<td>target_block</td>
+<td>half_extent_z</td>
+</tr>
+<tr>
+<td>38</td>
+<td>obstruction0</td>
+<td>pose_x</td>
+</tr>
+<tr>
+<td>39</td>
+<td>obstruction0</td>
+<td>pose_y</td>
+</tr>
+<tr>
+<td>40</td>
+<td>obstruction0</td>
+<td>pose_z</td>
+</tr>
+<tr>
+<td>41</td>
+<td>obstruction0</td>
+<td>pose_qx</td>
+</tr>
+<tr>
+<td>42</td>
+<td>obstruction0</td>
+<td>pose_qy</td>
+</tr>
+<tr>
+<td>43</td>
+<td>obstruction0</td>
+<td>pose_qz</td>
+</tr>
+<tr>
+<td>44</td>
+<td>obstruction0</td>
+<td>pose_qw</td>
+</tr>
+<tr>
+<td>45</td>
+<td>obstruction0</td>
+<td>grasp_active</td>
+</tr>
+<tr>
+<td>46</td>
+<td>obstruction0</td>
+<td>half_extent_x</td>
+</tr>
+<tr>
+<td>47</td>
+<td>obstruction0</td>
+<td>half_extent_y</td>
+</tr>
+<tr>
+<td>48</td>
+<td>obstruction0</td>
+<td>half_extent_z</td>
+</tr>
+<tr>
+<td>49</td>
+<td>obstruction1</td>
+<td>pose_x</td>
+</tr>
+<tr>
+<td>50</td>
+<td>obstruction1</td>
+<td>pose_y</td>
+</tr>
+<tr>
+<td>51</td>
+<td>obstruction1</td>
+<td>pose_z</td>
+</tr>
+<tr>
+<td>52</td>
+<td>obstruction1</td>
+<td>pose_qx</td>
+</tr>
+<tr>
+<td>53</td>
+<td>obstruction1</td>
+<td>pose_qy</td>
+</tr>
+<tr>
+<td>54</td>
+<td>obstruction1</td>
+<td>pose_qz</td>
+</tr>
+<tr>
+<td>55</td>
+<td>obstruction1</td>
+<td>pose_qw</td>
+</tr>
+<tr>
+<td>56</td>
+<td>obstruction1</td>
+<td>grasp_active</td>
+</tr>
+<tr>
+<td>57</td>
+<td>obstruction1</td>
+<td>half_extent_x</td>
+</tr>
+<tr>
+<td>58</td>
+<td>obstruction1</td>
+<td>half_extent_y</td>
+</tr>
+<tr>
+<td>59</td>
+<td>obstruction1</td>
+<td>half_extent_z</td>
+</tr>
+</tbody>
+</table>
+<h3>Action Space</h3>
+<p>An action space for a 7 DOF robot that can open and close its gripper.</p>
+<pre><code>Actions are bounded relative joint positions and open / close.
+
+The open / close logic is: &lt;-0.5 is close, &gt;0.5 is open, and otherwise no change.
+</code></pre>
+<h3>Rewards</h3>
+<p>The reward structure is simple:
+- <strong>-1.0</strong> penalty at every timestep until the goal is reached
+- <strong>Termination</strong> occurs when the target block is placed on the target region (while not being grasped)</p>
+<p>The goal is considered reached when:
+1. The robot is not currently grasping the target block
+2. The target block is resting on (supported by) the target region</p>
+<p>Support is determined based on contact between the target block and target region, within a small distance threshold (1e-4).</p>
+<p>This encourages the robot to efficiently clear obstructions and place the target block while avoiding infinite episodes.</p>
+<h3>References</h3>
+<p>Similar environments have been used many times, especially in the task and motion planning literature. We took inspiration especially from the "1D Continuous TAMP" environment in <a href="https://github.com/caelan/pddlstream">PDDLStream</a>.</p>
+                </div>
+
+                <div class="back-link">
+                    <a href="../index.html#benchmark">← Back to Benchmark</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PRBench. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

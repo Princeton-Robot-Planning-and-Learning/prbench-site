@@ -83,18 +83,19 @@ def categorize_environment(env_name):
     is_2d = '2d' in name_lower
     is_3d = '3d' in name_lower
     
-    # Check for dynamic keywords
-    dynamic_keywords = ['stack', 'push', 'throw', 'fall', 'slide', 'dynamic', 'collision']
-    is_dynamic = any(keyword in name_lower for keyword in dynamic_keywords)
-    
-    # Default to geometric if no dynamic keywords
+    # For 2D: Only environments starting with "Dyn" are Dynamic 2D
+    # For 3D: TidyBot environments are Dynamic 3D, others are Geometric 3D
     if is_2d:
+        # Check if the environment name starts with "Dyn" (case insensitive)
+        is_dynamic = env_name.lower().startswith('dyn')
         return "Dynamic 2D" if is_dynamic else "Geometric 2D"
     elif is_3d:
+        # For 3D: TidyBot environments are dynamic, others are geometric
+        is_dynamic = 'tidybot' in name_lower
         return "Dynamic 3D" if is_dynamic else "Geometric 3D"
     else:
-        # Default to 2D if not specified
-        return "Dynamic 2D" if is_dynamic else "Geometric 2D"
+        # Default to Geometric 2D if not specified
+        return "Geometric 2D"
 
 def generate_html_filename(env_name, category):
     """Generate a clean filename for the HTML page."""
@@ -114,6 +115,10 @@ def convert_markdown_to_html(md_file_path):
     
     # Determine category
     category = categorize_environment(env_name)
+    
+    # Fix asset paths: change 'assets/' to '../markdowns/assets/'
+    md_content = md_content.replace('](assets/', '](../markdowns/assets/')
+    md_content = md_content.replace('="assets/', '="../markdowns/assets/')
     
     # Preprocess markdown to ensure tables are properly formatted
     # Tables need blank lines before and after them
@@ -176,14 +181,19 @@ def convert_markdown_to_html(md_file_path):
 
 def scan_and_generate():
     """Scan for markdown files and generate HTML pages."""
-    markdown_dir = Path('.')
+    markdown_dir = Path('markdowns')
+    
+    if not markdown_dir.exists():
+        print(f"Error: {markdown_dir} directory not found!")
+        return []
+    
     md_files = list(markdown_dir.glob('*.md'))
     
     # Filter out README.md
     md_files = [f for f in md_files if f.name.lower() != 'readme.md']
     
     if not md_files:
-        print("No markdown files found!")
+        print("No markdown files found in markdowns/ directory!")
         return []
     
     print(f"Found {len(md_files)} markdown file(s)")
@@ -195,6 +205,38 @@ def scan_and_generate():
         environments.append(env_info)
     
     return environments
+
+def generate_category_html(category_name, environments):
+    """Generate HTML for a category section."""
+    # Sort environments by name
+    environments = sorted(environments, key=lambda x: x['name'])
+    
+    category_descriptions = {
+        'Geometric 2D': '2D environments focused on geometric reasoning and spatial relationships.',
+        'Geometric 3D': '3D environments for testing spatial reasoning in three dimensions.',
+        'Dynamic 2D': '2D environments involving dynamic physical interactions and motion.',
+        'Dynamic 3D': '3D environments with complex dynamics and physical interactions.'
+    }
+    
+    html = f'''
+                <div class="category">
+                    <h3>{category_name}</h3>
+                    <p class="category-description">{category_descriptions.get(category_name, '')}</p>
+                    <div class="environment-grid">
+'''
+    
+    for env in environments:
+        html += f'''                        <a href="environments/{env['filename']}" class="environment-card">
+                            <h4>{env['name']}</h4>
+                            <p>Click to view details</p>
+                        </a>
+'''
+    
+    html += '''                    </div>
+                </div>
+'''
+    
+    return html
 
 def update_index_html(environments):
     """Update index.html with the discovered environments."""
@@ -216,8 +258,40 @@ def update_index_html(environments):
         print(f"  {cat}: {len(envs)} environments")
     print("="*60)
     
-    # TODO: Could automatically update index.html here if needed
-    print("\nNote: You may want to manually update index.html to link to these environments")
+    # Read current index.html
+    index_path = Path('index.html')
+    if not index_path.exists():
+        print("\nWarning: index.html not found!")
+        return
+    
+    with open(index_path, 'r', encoding='utf-8') as f:
+        index_content = f.read()
+    
+    # Generate new benchmark section content
+    benchmark_html = '''        <section id="benchmark">
+            <div class="container">
+                <h2>Benchmark</h2>
+                <p>Our benchmark is organized into four categories of physical reasoning environments:</p>
+'''
+    
+    # Add each category
+    for category_name in ['Geometric 2D', 'Geometric 3D', 'Dynamic 2D', 'Dynamic 3D']:
+        if categories[category_name]:
+            benchmark_html += generate_category_html(category_name, categories[category_name])
+    
+    benchmark_html += '''            </div>
+        </section>'''
+    
+    # Replace the benchmark section
+    import re
+    pattern = r'<section id="benchmark">.*?</section>'
+    new_content = re.sub(pattern, benchmark_html, index_content, flags=re.DOTALL)
+    
+    # Write back to index.html
+    with open(index_path, 'w', encoding='utf-8') as f:
+        f.write(new_content)
+    
+    print("\n✓ Updated index.html with all environments!")
 
 if __name__ == '__main__':
     print("PRBench Environment Page Generator")

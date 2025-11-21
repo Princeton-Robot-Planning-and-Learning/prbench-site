@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DynObstruction2D-o1-v0 | PRBench</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="environment.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <ul class="nav-links">
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#benchmark">Benchmark</a></li>
+                    <li><a href="../index.html#results">Results</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="environment-detail">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="../index.html#benchmark">Benchmark</a> / 
+                    <span>Dynamic 2D</span> / 
+                    <span>DynObstruction2D-o1-v0</span>
+                </div>
+
+                <div class="environment-content">
+                    <h1>prbench/DynObstruction2D-o1-v0</h1>
+<p><img alt="random action GIF" src="../markdowns/assets/random_action_gifs/DynObstruction2D-o1.gif" /></p>
+<h3>Description</h3>
+<p>A 2D physics-based environment where the goal is to place a target block onto a target surface using a fingered robot with PyMunk physics simulation. The block must be completely on the surface.</p>
+<p>The target surface may be initially obstructed. In this environment, there are always 1 obstacle blocks.</p>
+<p>The robot has a movable circular base and an extendable arm with gripper fingers. Objects can be grasped and released through gripper actions. All objects follow realistic physics including gravity, friction, and collisions.</p>
+<p><strong>Observation Space</strong>: The observation is a fixed-size vector containing the state of all objects:
+- <strong>Robot</strong>: position (x,y), orientation (θ), velocities (vx,vy,ω), arm extension, gripper gap
+- <strong>Target Block</strong>: position, orientation, velocities, dimensions (dynamic physics object)
+- <strong>Target Surface</strong>: position, orientation, dimensions (kinematic physics object)
+- <strong>Obstruction Blocks</strong> (1): position, orientation, velocities, dimensions (dynamic physics objects)</p>
+<p>Each object includes physics properties like mass, moment of inertia (for dynamic objects), and color information for rendering.</p>
+<h3>Initial State Distribution</h3>
+<p><img alt="initial state GIF" src="../markdowns/assets/initial_state_gifs/DynObstruction2D-o1.gif" /></p>
+<h3>Example Demonstration</h3>
+<p><img alt="demo GIF" src="../markdowns/assets/demo_gifs/DynObstruction2D-o1/DynObstruction2D-o1_seed0_1757345185.gif" /></p>
+<h3>Observation Space</h3>
+<p>The entries of an array in this Box space correspond to the following object features:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Index</strong></th>
+<th><strong>Object</strong></th>
+<th><strong>Feature</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>target_surface</td>
+<td>x</td>
+</tr>
+<tr>
+<td>1</td>
+<td>target_surface</td>
+<td>y</td>
+</tr>
+<tr>
+<td>2</td>
+<td>target_surface</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>3</td>
+<td>target_surface</td>
+<td>vx</td>
+</tr>
+<tr>
+<td>4</td>
+<td>target_surface</td>
+<td>vy</td>
+</tr>
+<tr>
+<td>5</td>
+<td>target_surface</td>
+<td>omega</td>
+</tr>
+<tr>
+<td>6</td>
+<td>target_surface</td>
+<td>static</td>
+</tr>
+<tr>
+<td>7</td>
+<td>target_surface</td>
+<td>color_r</td>
+</tr>
+<tr>
+<td>8</td>
+<td>target_surface</td>
+<td>color_g</td>
+</tr>
+<tr>
+<td>9</td>
+<td>target_surface</td>
+<td>color_b</td>
+</tr>
+<tr>
+<td>10</td>
+<td>target_surface</td>
+<td>z_order</td>
+</tr>
+<tr>
+<td>11</td>
+<td>target_surface</td>
+<td>width</td>
+</tr>
+<tr>
+<td>12</td>
+<td>target_surface</td>
+<td>height</td>
+</tr>
+<tr>
+<td>13</td>
+<td>target_block</td>
+<td>x</td>
+</tr>
+<tr>
+<td>14</td>
+<td>target_block</td>
+<td>y</td>
+</tr>
+<tr>
+<td>15</td>
+<td>target_block</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>16</td>
+<td>target_block</td>
+<td>vx</td>
+</tr>
+<tr>
+<td>17</td>
+<td>target_block</td>
+<td>vy</td>
+</tr>
+<tr>
+<td>18</td>
+<td>target_block</td>
+<td>omega</td>
+</tr>
+<tr>
+<td>19</td>
+<td>target_block</td>
+<td>static</td>
+</tr>
+<tr>
+<td>20</td>
+<td>target_block</td>
+<td>color_r</td>
+</tr>
+<tr>
+<td>21</td>
+<td>target_block</td>
+<td>color_g</td>
+</tr>
+<tr>
+<td>22</td>
+<td>target_block</td>
+<td>color_b</td>
+</tr>
+<tr>
+<td>23</td>
+<td>target_block</td>
+<td>z_order</td>
+</tr>
+<tr>
+<td>24</td>
+<td>target_block</td>
+<td>width</td>
+</tr>
+<tr>
+<td>25</td>
+<td>target_block</td>
+<td>height</td>
+</tr>
+<tr>
+<td>26</td>
+<td>target_block</td>
+<td>mass</td>
+</tr>
+<tr>
+<td>27</td>
+<td>obstruction0</td>
+<td>x</td>
+</tr>
+<tr>
+<td>28</td>
+<td>obstruction0</td>
+<td>y</td>
+</tr>
+<tr>
+<td>29</td>
+<td>obstruction0</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>30</td>
+<td>obstruction0</td>
+<td>vx</td>
+</tr>
+<tr>
+<td>31</td>
+<td>obstruction0</td>
+<td>vy</td>
+</tr>
+<tr>
+<td>32</td>
+<td>obstruction0</td>
+<td>omega</td>
+</tr>
+<tr>
+<td>33</td>
+<td>obstruction0</td>
+<td>static</td>
+</tr>
+<tr>
+<td>34</td>
+<td>obstruction0</td>
+<td>color_r</td>
+</tr>
+<tr>
+<td>35</td>
+<td>obstruction0</td>
+<td>color_g</td>
+</tr>
+<tr>
+<td>36</td>
+<td>obstruction0</td>
+<td>color_b</td>
+</tr>
+<tr>
+<td>37</td>
+<td>obstruction0</td>
+<td>z_order</td>
+</tr>
+<tr>
+<td>38</td>
+<td>obstruction0</td>
+<td>width</td>
+</tr>
+<tr>
+<td>39</td>
+<td>obstruction0</td>
+<td>height</td>
+</tr>
+<tr>
+<td>40</td>
+<td>obstruction0</td>
+<td>mass</td>
+</tr>
+<tr>
+<td>41</td>
+<td>robot</td>
+<td>x</td>
+</tr>
+<tr>
+<td>42</td>
+<td>robot</td>
+<td>y</td>
+</tr>
+<tr>
+<td>43</td>
+<td>robot</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>44</td>
+<td>robot</td>
+<td>vx</td>
+</tr>
+<tr>
+<td>45</td>
+<td>robot</td>
+<td>vy</td>
+</tr>
+<tr>
+<td>46</td>
+<td>robot</td>
+<td>omega</td>
+</tr>
+<tr>
+<td>47</td>
+<td>robot</td>
+<td>static</td>
+</tr>
+<tr>
+<td>48</td>
+<td>robot</td>
+<td>base_radius</td>
+</tr>
+<tr>
+<td>49</td>
+<td>robot</td>
+<td>arm_joint</td>
+</tr>
+<tr>
+<td>50</td>
+<td>robot</td>
+<td>arm_length</td>
+</tr>
+<tr>
+<td>51</td>
+<td>robot</td>
+<td>gripper_base_width</td>
+</tr>
+<tr>
+<td>52</td>
+<td>robot</td>
+<td>gripper_base_height</td>
+</tr>
+<tr>
+<td>53</td>
+<td>robot</td>
+<td>finger_gap</td>
+</tr>
+<tr>
+<td>54</td>
+<td>robot</td>
+<td>finger_height</td>
+</tr>
+<tr>
+<td>55</td>
+<td>robot</td>
+<td>finger_width</td>
+</tr>
+</tbody>
+</table>
+<h3>Action Space</h3>
+<p>The entries of an array in this Box space correspond to the following action features:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Index</strong></th>
+<th><strong>Feature</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Min</strong></th>
+<th><strong>Max</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>dx</td>
+<td>Change in robot x position (positive is right)</td>
+<td>-0.050</td>
+<td>0.050</td>
+</tr>
+<tr>
+<td>1</td>
+<td>dy</td>
+<td>Change in robot y position (positive is up)</td>
+<td>-0.050</td>
+<td>0.050</td>
+</tr>
+<tr>
+<td>2</td>
+<td>dtheta</td>
+<td>Change in robot angle in radians (positive is ccw)</td>
+<td>-0.196</td>
+<td>0.196</td>
+</tr>
+<tr>
+<td>3</td>
+<td>darm</td>
+<td>Change in robot arm length (positive is out)</td>
+<td>-0.100</td>
+<td>0.100</td>
+</tr>
+<tr>
+<td>4</td>
+<td>dgripper</td>
+<td>Change in gripper gap (positive is open)</td>
+<td>-0.020</td>
+<td>0.020</td>
+</tr>
+</tbody>
+</table>
+<h3>Rewards</h3>
+<p>A penalty of -1.0 is given at every time step until termination, which occurs when the target block is completely "on" the target surface.</p>
+<p><strong>Termination Condition</strong>: The episode terminates when the target block is successfully placed on the target surface. The "on" condition requires that the bottom vertices of the target block are within the bounds of the target surface, accounting for physics-based positioning.</p>
+<p>The definition of "on" is implemented using geometric collision detection:</p>
+<pre><code class="language-python">def is_on(
+    state: ObjectCentricState,
+    top: Object,
+    bottom: Object,
+    static_object_cache: dict[Object, MultiBody2D],
+    tol: float = 0.025,
+) -&gt; bool:
+    &quot;&quot;&quot;Checks top object is completely on the bottom one.
+
+    Only rectangles are currently supported.
+
+    Assumes that &quot;up&quot; is positive y.
+    &quot;&quot;&quot;
+    top_geom = rectangle_object_to_geom(state, top, static_object_cache)
+    bottom_geom = rectangle_object_to_geom(state, bottom, static_object_cache)
+    # The bottom-most vertices of top_geom should be contained within the bottom
+    # geom when those vertices are offset by tol.
+    sorted_vertices = sorted(top_geom.vertices, key=lambda v: v[1])
+    for x, y in sorted_vertices[:2]:
+        offset_y = y - tol
+        if not bottom_geom.contains_point(x, offset_y):
+            return False
+    return True
+</code></pre>
+<p><strong>Physics Integration</strong>: Since this environment uses PyMunk physics simulation, objects have realistic dynamics including:
+- Gravity (objects fall if not supported)
+- Friction between surfaces
+- Collision response and momentum transfer
+- Realistic grasping and manipulation dynamics</p>
+<h3>References</h3>
+<p>This is a physics-based version of manipulation environments commonly used in robotics research. It extends the geometric obstruction environment to include realistic physics simulation using PyMunk.</p>
+<p><strong>Key Features</strong>:
+- <strong>PyMunk Physics Engine</strong>: Provides realistic 2D rigid body dynamics
+- <strong>Dynamic Objects</strong>: Target and obstruction blocks have mass, inertia, and respond to forces
+- <strong>Kinematic Robot</strong>: Multi-DOF robot with base movement, arm extension, and gripper control
+- <strong>Collision Detection</strong>: Physics-based collision handling for grasping and object interactions
+- <strong>Gravity Simulation</strong>: Objects fall and settle naturally under gravitational forces</p>
+<p><strong>Research Applications</strong>:
+- Robot manipulation learning with realistic physics
+- Grasping and placement strategy development<br />
+- Multi-object interaction scenarios
+- Physics-aware motion planning validation
+- Comparative studies between geometric and physics-based environments</p>
+<p>This environment enables more realistic evaluation of manipulation policies compared to purely geometric versions, as agents must account for momentum, friction, and gravitational effects.</p>
+                </div>
+
+                <div class="back-link">
+                    <a href="../index.html#benchmark">← Back to Benchmark</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PRBench. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

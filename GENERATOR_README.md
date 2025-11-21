@@ -11,17 +11,20 @@ pip install markdown
 
 ## Usage
 
-1. Place your environment markdown files (e.g., `example.md`) in the root directory
-2. Run the generator:
+1. Place your environment markdown files in the `markdowns/` directory
+2. Place any assets (images, gifs) in `markdowns/assets/`
+3. Run the generator:
 ```bash
 python3 generate_pages.py
 ```
 
-3. The script will:
-   - Find all `.md` files (except `README.md`)
+4. The script will:
+   - Find all `.md` files in `markdowns/` (except `README.md`)
    - Parse the environment name from the first heading
    - Automatically categorize each environment based on its name
+   - Fix asset paths to point to `../markdowns/assets/`
    - Generate an HTML page in the `environments/` directory
+   - Update `index.html` with all discovered environments
    - Display a summary of what was generated
 
 ## Markdown Format
@@ -57,10 +60,12 @@ References...
 
 The script automatically categorizes environments based on their names:
 
-- **Geometric 2D**: Contains "2d" but no dynamic keywords
-- **Geometric 3D**: Contains "3d" but no dynamic keywords  
-- **Dynamic 2D**: Contains "2d" AND dynamic keywords (stack, push, throw, fall, slide, dynamic, collision)
-- **Dynamic 3D**: Contains "3d" AND dynamic keywords
+- **Geometric 2D**: Contains "2d" + keywords like "motion", "obstruction" (but not "dynobstruction")
+- **Geometric 3D**: Contains "3d" + keywords like "motion", "obstruction" (but not "dynobstruction")
+- **Dynamic 2D**: Contains "2d" + keywords like "dyn", "storage", "hook", "button", "stack", "push", etc.
+- **Dynamic 3D**: Contains "3d" + keywords like "dyn", "tidybot", "storage", etc.
+
+If unsure, environments default to geometric.
 
 ## Output
 
