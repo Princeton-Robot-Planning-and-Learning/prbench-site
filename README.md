@@ -1,6 +1,6 @@
-# Robot Physical Reasoning Benchmark Website
+# PRBench Website
 
-This is the static website for the Robot Physical Reasoning Benchmark, hosted on GitHub Pages.
+This is the static website for PRBench: A Physical Reasoning Benchmark for Robotics, hosted on GitHub Pages.
 
 ## GitHub Pages Setup
 
