@@ -170,6 +170,32 @@
     text-decoration: underline;
 }
 
+/* GIF Grid on Group Pages */
+.gifs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0 3rem;
+}
+
+.gif-container {
+    text-align: center;
+}
+
+.gif-container h3 {
+    font-size: 1rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.gif-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Variant List on Group Pages */
 .variant-list {
     display: grid;

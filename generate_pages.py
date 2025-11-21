@@ -101,12 +101,22 @@ GROUP_TEMPLATE = """<!DOCTYPE html>
                 <h1>{group_name}</h1>
                 
                 <div class="environment-content">
+                    <div class="gifs-grid">
+{gifs_html}
+                    </div>
+
+                    <h2>Description</h2>
+                    {description_html}
+
                     <h2>Variants</h2>
                     <p>This environment has {num_variants} variant(s) with different configurations:</p>
                     
                     <div class="variant-list">
 {variants_html}
                     </div>
+
+                    <h2>References</h2>
+                    {references_html}
                 </div>
 
                 <div class="back-link">
@@ -287,7 +297,41 @@ def convert_markdown_to_html(md_file_path):
         'name': env_name,
         'category': category,
         'filename': html_filename,
-        'html_path': str(output_path)
+        'html_path': str(output_path),
+        'md_file_path': str(md_file_path)
+    }
+
+def extract_group_content(md_file_path):
+    """Extract description, references, and GIFs from a markdown file."""
+    with open(md_file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Extract the three GIFs
+    gif_pattern = r'!\[.*?\]\((assets/.*?\.gif)\)'
+    gifs = re.findall(gif_pattern, content)
+    
+    # Fix paths for the group page
+    gifs = [gif.replace('assets/', '../markdowns/assets/') for gif in gifs]
+    
+    # Extract description section
+    description_match = re.search(r'### Description\s*\n(.*?)(?=\n### |\n##|\Z)', content, re.DOTALL)
+    description = description_match.group(1).strip() if description_match else ''
+    
+    # Extract references section
+    references_match = re.search(r'### References\s*\n(.*?)(?=\n### |\n##|\Z)', content, re.DOTALL)
+    references = references_match.group(1).strip() if references_match else ''
+    
+    # Convert markdown to HTML for description and references
+    md = markdown.Markdown()
+    description_html = md.convert(description) if description else '<p>No description available.</p>'
+    
+    md.reset()
+    references_html = md.convert(references) if references else '<p>No references available.</p>'
+    
+    return {
+        'gifs': gifs,
+        'description_html': description_html,
+        'references_html': references_html
     }
 
 def create_group_page(base_name, category, variants):
@@ -297,6 +341,25 @@ def create_group_page(base_name, category, variants):
     
     # Sort variants by name
     variants = sorted(variants, key=lambda x: x['name'])
+    
+    # Get content from the first variant's markdown file
+    first_variant = variants[0]
+    md_file_path = first_variant.get('md_file_path')
+    
+    group_content = {'gifs': [], 'description_html': '', 'references_html': ''}
+    if md_file_path and Path(md_file_path).exists():
+        group_content = extract_group_content(md_file_path)
+    
+    # Generate GIF HTML
+    gifs_html = ''
+    gif_labels = ['Random Action', 'Initial State Distribution', 'Example Demonstration']
+    for i, gif in enumerate(group_content['gifs'][:3]):  # Only use first 3 GIFs
+        label = gif_labels[i] if i < len(gif_labels) else f'GIF {i+1}'
+        gifs_html += f'''                        <div class="gif-container">
+                            <h3>{label}</h3>
+                            <img src="{gif}" alt="{label}">
+                        </div>
+'''
     
     # Generate HTML for variants list
     variants_html = ''
@@ -319,6 +382,9 @@ def create_group_page(base_name, category, variants):
         category=category,
         group_name=base_name,
         num_variants=len(variants),
+        gifs_html=gifs_html,
+        description_html=group_content['description_html'],
+        references_html=group_content['references_html'],
         variants_html=variants_html
     )
     
