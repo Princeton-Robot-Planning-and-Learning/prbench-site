@@ -37,12 +37,12 @@
 <p><img alt="random action GIF" src="../markdowns/assets/random_action_gifs/ClutteredRetrieval2D-o1.gif" /></p>
 <h3>Description</h3>
 <p>A 2D environment where the goal is to "pick up" (suction) a target block.</p>
-<p>The target block may be initially obstructed. In this environment, there are always 1 obstacle blocks.</p>
+<p>The target block may be initially obstructed. In this environment, there are always 2 obstacle blocks.</p>
 <p>The robot has a movable circular base and a retractable arm with a rectangular vacuum end effector. Objects can be grasped and ungrasped when the end effector makes contact.</p>
 <h3>Initial State Distribution</h3>
 <p><img alt="initial state GIF" src="../markdowns/assets/initial_state_gifs/ClutteredRetrieval2D-o1.gif" /></p>
 <h3>Example Demonstration</h3>
-<p><img alt="demo GIF" src="../markdowns/assets/demo_gifs/ClutteredRetrieval2D-o1/ClutteredRetrieval2D-o1_seed2_1752266113.gif" /></p>
+<p><img alt="demo GIF" src="../markdowns/assets/demo_gifs/ClutteredRetrieval2D-o1/ClutteredRetrieval2D-o1_1758719765.gif" /></p>
 <h3>Observation Space</h3>
 <p>The entries of an array in this Box space correspond to the following object features:</p>
 <table>
@@ -151,51 +151,101 @@
 </tr>
 <tr>
 <td>19</td>
-<td>obstruction0</td>
+<td>target_region</td>
 <td>x</td>
 </tr>
 <tr>
 <td>20</td>
-<td>obstruction0</td>
+<td>target_region</td>
 <td>y</td>
 </tr>
 <tr>
 <td>21</td>
-<td>obstruction0</td>
+<td>target_region</td>
 <td>theta</td>
 </tr>
 <tr>
 <td>22</td>
-<td>obstruction0</td>
+<td>target_region</td>
 <td>static</td>
 </tr>
 <tr>
 <td>23</td>
-<td>obstruction0</td>
+<td>target_region</td>
 <td>color_r</td>
 </tr>
 <tr>
 <td>24</td>
-<td>obstruction0</td>
+<td>target_region</td>
 <td>color_g</td>
 </tr>
 <tr>
 <td>25</td>
-<td>obstruction0</td>
+<td>target_region</td>
 <td>color_b</td>
 </tr>
 <tr>
 <td>26</td>
-<td>obstruction0</td>
+<td>target_region</td>
 <td>z_order</td>
 </tr>
 <tr>
 <td>27</td>
-<td>obstruction0</td>
+<td>target_region</td>
 <td>width</td>
 </tr>
 <tr>
 <td>28</td>
+<td>target_region</td>
+<td>height</td>
+</tr>
+<tr>
+<td>29</td>
+<td>obstruction0</td>
+<td>x</td>
+</tr>
+<tr>
+<td>30</td>
+<td>obstruction0</td>
+<td>y</td>
+</tr>
+<tr>
+<td>31</td>
+<td>obstruction0</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>32</td>
+<td>obstruction0</td>
+<td>static</td>
+</tr>
+<tr>
+<td>33</td>
+<td>obstruction0</td>
+<td>color_r</td>
+</tr>
+<tr>
+<td>34</td>
+<td>obstruction0</td>
+<td>color_g</td>
+</tr>
+<tr>
+<td>35</td>
+<td>obstruction0</td>
+<td>color_b</td>
+</tr>
+<tr>
+<td>36</td>
+<td>obstruction0</td>
+<td>z_order</td>
+</tr>
+<tr>
+<td>37</td>
+<td>obstruction0</td>
+<td>width</td>
+</tr>
+<tr>
+<td>38</td>
 <td>obstruction0</td>
 <td>height</td>
 </tr>

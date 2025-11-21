@@ -217,14 +217,14 @@ def categorize_environment(env_name):
     is_3d = '3d' in name_lower
     
     # For 2D: Only environments starting with "Dyn" are Dynamic 2D
-    # For 3D: TidyBot environments are Dynamic 3D, others are Geometric 3D
+    # For 3D: TidyBot and RBY1A environments are Dynamic 3D, others are Geometric 3D
     if is_2d:
         # Check if the environment name starts with "Dyn" (case insensitive)
         is_dynamic = env_name.lower().startswith('dyn')
         return "Dynamic 2D" if is_dynamic else "Geometric 2D"
     elif is_3d:
-        # For 3D: TidyBot environments are dynamic, others are geometric
-        is_dynamic = 'tidybot' in name_lower
+        # For 3D: TidyBot and RBY1A environments are dynamic, others are geometric
+        is_dynamic = 'tidybot' in name_lower or 'rby1a' in name_lower
         return "Dynamic 3D" if is_dynamic else "Geometric 3D"
     else:
         # Default to Geometric 2D if not specified
@@ -237,21 +237,34 @@ def extract_base_environment_name(env_name):
         ClutteredRetrieval2D-o1-v0 -> ClutteredRetrieval2D
         Motion2D-p3-v0 -> Motion2D
         TidyBot3D-ground-o3-v0 -> TidyBot3D-ground
+        TidyBot3D-base_motion-o1-v0 -> TidyBot3D-base_motion
+        RBY1A3D-cupboard-o8-v0 -> RBY1A3D-cupboard
+        DynPushT-t1-v0 -> DynPushT
     """
     # Remove -v0, -v1, etc. version suffixes
     name = re.sub(r'-v\d+$', '', env_name)
     
-    # For most environments, remove the variant suffix (like -o1, -o10, -p3, etc.)
-    # But keep multi-part names like "TidyBot3D-ground" or "TidyBot3D-table"
-    
     # Special handling for TidyBot environments (keep the scene type)
     if name.startswith('TidyBot3D'):
         # Pattern: TidyBot3D-{scene_type}-{variant}
+        # Handles: ground, table, cupboard, base_motion, etc.
         parts = name.split('-')
         if len(parts) >= 3:
-            return f"{parts[0]}-{parts[1]}"  # TidyBot3D-ground, TidyBot3D-table, etc.
+            # Keep everything except the last part if it's a variant
+            last_part = parts[-1]
+            if re.match(r'^[a-z]\d+$', last_part) or re.match(r'^o\d+$', last_part):
+                return '-'.join(parts[:-1])  # TidyBot3D-ground, TidyBot3D-base_motion, etc.
     
-    # For other environments, remove the last variant part (usually -o1, -p3, -b5, etc.)
+    # Special handling for RBY1A3D environments (keep the scene type)
+    if name.startswith('RBY1A3D'):
+        # Pattern: RBY1A3D-{scene_type}-{variant}
+        parts = name.split('-')
+        if len(parts) >= 3:
+            last_part = parts[-1]
+            if re.match(r'^[a-z]\d+$', last_part) or re.match(r'^o\d+$', last_part):
+                return '-'.join(parts[:-1])  # RBY1A3D-cupboard, etc.
+    
+    # For other environments, remove the last variant part (usually -o1, -p3, -b5, -t1, etc.)
     parts = name.split('-')
     if len(parts) >= 2:
         # Check if the last part is a variant (starts with letter followed by numbers)
