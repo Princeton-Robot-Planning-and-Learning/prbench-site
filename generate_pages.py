@@ -399,7 +399,7 @@ def convert_markdown_to_html(md_file_path):
     
     # Create GIF grid HTML (similar to group pages)
     gifs_html = ''
-    if gifs_info or has_demo_gif is False:
+    if gifs_info:
         gifs_html = '<div class="gifs-grid">\n'
         gif_labels = ['Random Actions', 'Initial State Distribution', 'Example Demonstration']
         
@@ -412,13 +412,7 @@ def convert_markdown_to_html(md_file_path):
                         </div>
 '''
         
-        # If we only have 2 GIFs and no demo GIF, add placeholder for demo
-        if len(gifs_info) == 2 and not has_demo_gif:
-            gifs_html += f'''                        <div class="gif-container">
-                            <h3>Example Demonstration</h3>
-                            <p style="padding: 60px 20px; text-align: center; color: #666;">No demonstration GIFs available</p>
-                        </div>
-'''
+        # Don't add a placeholder if there's no demo GIF - just omit it
         
         gifs_html += '                    </div>\n\n'
     
