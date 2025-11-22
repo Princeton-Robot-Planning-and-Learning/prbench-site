@@ -387,7 +387,7 @@ def convert_markdown_to_html(md_file_path):
     }
 
 def extract_group_content(md_file_path):
-    """Extract description, references, and GIFs from a markdown file."""
+    """Extract description, group description, references, and GIFs from a markdown file."""
     with open(md_file_path, 'r', encoding='utf-8') as f:
         content = f.read()
     
@@ -398,7 +398,11 @@ def extract_group_content(md_file_path):
     # Fix paths for the group page
     gifs = [gif.replace('assets/', '../markdowns/assets/') for gif in gifs]
     
-    # Extract description section
+    # Extract environment group description section (prioritize this for group pages)
+    group_description_match = re.search(r'### Environment Group Description\s*\n(.*?)(?=\n### |\n##|\Z)', content, re.DOTALL)
+    group_description = group_description_match.group(1).strip() if group_description_match else ''
+    
+    # Extract description section (fallback if no group description)
     description_match = re.search(r'### Description\s*\n(.*?)(?=\n### |\n##|\Z)', content, re.DOTALL)
     description = description_match.group(1).strip() if description_match else ''
     
@@ -406,9 +410,16 @@ def extract_group_content(md_file_path):
     references_match = re.search(r'### References\s*\n(.*?)(?=\n### |\n##|\Z)', content, re.DOTALL)
     references = references_match.group(1).strip() if references_match else ''
     
-    # Convert markdown to HTML for description and references
+    # Convert markdown to HTML
     md = markdown.Markdown()
-    description_html = md.convert(description) if description else '<p>No description available.</p>'
+    
+    # Use group description if available, otherwise fall back to description
+    if group_description:
+        description_html = md.convert(group_description)
+    elif description:
+        description_html = md.convert(description)
+    else:
+        description_html = '<p>No description available.</p>'
     
     md.reset()
     references_html = md.convert(references) if references else '<p>No references available.</p>'

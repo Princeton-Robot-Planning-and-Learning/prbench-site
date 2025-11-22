@@ -8,6 +8,9 @@ There are always 1 blocks in this environment.
 
 The robot has a movable circular base and a retractable arm with a rectangular vacuum end effector. Objects can be grasped and ungrasped when the end effector makes contact.
 
+
+### Environment Group Description
+A 2D environment where the goal is to put all blocks inside a shelf. There are always obstructions in this environment. The robot has a movable circular base and a retractable arm with a rectangular vacuum end effector. Objects can be grasped and ungrasped when the end effector makes contact.
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/ClutteredStorage2D-b1.gif)
 

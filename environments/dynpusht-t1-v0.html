@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DynPushT2D-t1-v0 | PRBench</title>
+    <title>DynPushT-t1-v0 | PRBench</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="environment.css">
 </head>
@@ -29,12 +29,12 @@
                 <div class="breadcrumb">
                     <a href="../index.html#benchmark">Benchmark</a> / 
                     <a href="geometric-2d.html">Geometric 2D</a> / 
-                    <a href="dynpusht-group.html">DynPushT2D</a> / 
-                    <span>DynPushT2D-t1-v0</span>
+                    <a href="dynpusht-group.html">DynPushT</a> / 
+                    <span>DynPushT-t1-v0</span>
                 </div>
 
                 <div class="environment-content">
-                    <h1>prbench/DynPushT2D-t1-v0</h1>
+                    <h1>prbench/DynPushT-t1-v0</h1>
 <p><img alt="random action GIF" src="../markdowns/assets/random_action_gifs/DynPushT-t1.gif" /></p>
 <h3>Description</h3>
 <p>A 2D physics-based environment where the goal is to push a T-shaped block to match a goal pose using a simple dot robot (kinematic circle) with PyMunk physics simulation.</p>
@@ -43,6 +43,8 @@
 - <strong>T-Block</strong>: position (x,y), orientation (θ), velocities (vx,vy,ω), dimensions (width, length_horizontal, length_vertical) (dynamic physics object)</p>
 <p>Each object includes physics properties like mass, moment of inertia, and color information for rendering.</p>
 <p><strong>Task</strong>: Push the T-shaped block so that it covers at least 95% of the goal pose (position and orientation).</p>
+<h3>Environment Group Description</h3>
+<p>A 2D physics-based environment where the goal is to push a T-shaped block to match a goal pose using a simple dot robot (kinematic circle) with PyMunk physics simulation. <strong>Observation Space</strong>: The observation is a fixed-size vector containing the state of all objects: - <strong>Robot</strong>: position (x,y), velocities (vx,vy) - <strong>T-Block</strong>: position (x,y), orientation (θ), velocities (vx,vy,ω), dimensions (width, length_horizontal, length_vertical) (dynamic physics object) Each object includes physics properties like mass, moment of inertia, and color information for rendering. <strong>Task</strong>: Push the T-shaped block so that it covers at least 95% of the goal pose (position and orientation).</p>
 <h3>Initial State Distribution</h3>
 <p><img alt="initial state GIF" src="../markdowns/assets/initial_state_gifs/DynPushT-t1.gif" /></p>
 <h3>Example Demonstration</h3>

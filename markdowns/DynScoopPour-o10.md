@@ -20,6 +20,9 @@ The robot has a movable circular base and an extendable arm with gripper fingers
 
 All objects include physics properties like mass, moment of inertia, and color information for rendering.
 
+
+### Environment Group Description
+A 2D physics-based tool-use environment where a robot must use an L-shaped hook to scoop small objects from the left side of a middle wall and pour them onto the right side. The middle wall is half the height of the world, allowing objects to be scooped over it. **Environment Setup**: - **Middle Wall**: A wall at the center of the world that extends from the floor to half the world height - **Small Objects**: 5 circles and 5 squares initially on the left side - **L-shaped Hook**: A tool that can be grasped and manipulated by the robot - **Four Boundary Walls**: Enclose the entire workspace The robot has a movable circular base and an extendable arm with gripper fingers. The hook is a kinematic object that can be grasped and used as a tool to scoop the small objects. Small objects are dynamic and follow realistic PyMunk physics, but they cannot be grasped directly by the robot. **Observation Space**: The observation is a fixed-size vector containing the state of all objects: - **Robot**: position (x,y), orientation (θ), velocities (vx,vy,ω), arm extension, gripper gap - **Hook**: position, orientation, dimensions (L-shaped tool, can be grasped) - **Small Circles** (5): position, radius, velocities (dynamic, non-graspable) - **Small Squares** (5): position, size, orientation, velocities (dynamic, non-graspable) All objects include physics properties like mass, moment of inertia, and color information for rendering.
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/DynScoopPour-o10.gif)
 
