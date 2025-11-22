@@ -1,8 +1,11 @@
 # prbench/DynPushT2D-t1-v0
 ![random action GIF](assets/random_action_gifs/DynPushT2D-t1.gif)
 
-### Description
+### Environment Group Description
 A 2D physics-based environment where the goal is to push a T-shaped block to match a goal pose using a simple dot robot (kinematic circle) with PyMunk physics simulation.
+
+## Variant Description
+There is just one T shape and one goal.
 
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/DynPushT2D-t1.gif)
