@@ -468,6 +468,21 @@ def convert_markdown_to_html(md_file_path):
         'md_file_path': str(md_file_path)
     }
 
+def extract_variant_description(md_file_path):
+    """Extract the variant description from a markdown file."""
+    with open(md_file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Extract variant description section
+    variant_description_match = re.search(r'### Variant Description\s*\n(.*?)(?=\n### |\n##|\Z)', content, re.DOTALL)
+    if variant_description_match:
+        variant_description = variant_description_match.group(1).strip()
+        # Remove markdown formatting and convert to plain text
+        # Remove any leading/trailing whitespace and newlines
+        variant_description = ' '.join(variant_description.split())
+        return variant_description
+    return 'View details →'
+
 def extract_group_content(md_file_path):
     """Extract description, group description, references, and GIFs from a markdown file."""
     with open(md_file_path, 'r', encoding='utf-8') as f:
@@ -547,10 +562,16 @@ def create_group_page(base_name, category, variants):
         if not variant_suffix:
             variant_suffix = variant['name']
         
+        # Extract variant description from the markdown file
+        variant_md_path = variant.get('md_file_path')
+        variant_desc = 'View details →'
+        if variant_md_path and Path(variant_md_path).exists():
+            variant_desc = extract_variant_description(variant_md_path)
+        
         variants_html += f'''                        <div class="variant-card">
                             <a href="{variant['filename']}" class="variant-link">
                                 <h3>{variant['name']}</h3>
-                                <p class="variant-description">View details →</p>
+                                <p class="variant-description">{variant_desc}</p>
                             </a>
                         </div>
 '''
