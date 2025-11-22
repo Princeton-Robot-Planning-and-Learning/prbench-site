@@ -389,6 +389,14 @@ def convert_markdown_to_html(md_file_path):
     md = markdown.Markdown(extensions=['tables', 'fenced_code'])
     html_content = md.convert(md_content)
     
+    # Extract the h1 title from html_content
+    title_match = re.search(r'<h1>(.*?)</h1>', html_content)
+    title_html = ''
+    if title_match:
+        title_html = f'<h1>{title_match.group(1)}</h1>\n'
+        # Remove the h1 from html_content
+        html_content = re.sub(r'<h1>.*?</h1>\n?', '', html_content, count=1)
+    
     # Create GIF grid HTML (similar to group pages)
     gifs_html = ''
     if gifs_info or has_demo_gif is False:
@@ -414,8 +422,8 @@ def convert_markdown_to_html(md_file_path):
         
         gifs_html += '                    </div>\n\n'
     
-    # Combine GIFs grid with the rest of the content
-    final_content = gifs_html + html_content
+    # Combine title, GIFs grid, and the rest of the content
+    final_content = title_html + gifs_html + html_content
     
     # Get base name for breadcrumb
     base_name = extract_base_environment_name(env_name)
