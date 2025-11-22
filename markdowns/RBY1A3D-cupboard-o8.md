@@ -1,21 +1,12 @@
 # prbench/RBY1A3D-cupboard-o8-v0
 ![random action GIF](assets/random_action_gifs/RBY1A3D-cupboard-o8.gif)
 
-### Description
-A 3D mobile manipulation environment using the RBY1A platform.
-
-The robot has a holonomic mobile base with powered casters and a Kinova Gen3 arm.
-Scene type: cupboard with 50 objects.
-
-The robot can control:
-- Base pose (x, y, theta)
-- Arm position (x, y, z)
-- Arm orientation (quaternion)
-- Gripper position (open/close)
-
-
 ### Environment Group Description
 A 3D mobile manipulation environment using the RBY1A platform. The robot has a holonomic mobile base with powered casters and a Kinova Gen3 arm. Scene type: cupboard with obstructions. The robot can control: - Base pose (x, y, theta) - Arm position (x, y, z) - Arm orientation (quaternion) - Gripper position (open/close)
+
+### Variant Description
+This variant has a specific configuration. See the observation space below for details.
+
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/RBY1A3D-cupboard-o8.gif)
 

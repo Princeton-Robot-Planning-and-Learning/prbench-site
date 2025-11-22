@@ -1,24 +1,12 @@
 # prbench/DynObstruction2D-o2-v0
 ![random action GIF](assets/random_action_gifs/DynObstruction2D-o2.gif)
 
-### Description
-A 2D physics-based environment where the goal is to place a target block onto a target surface using a fingered robot with PyMunk physics simulation. The block must be completely on the surface.
-
-The target surface may be initially obstructed. In this environment, there are always 2 obstacle blocks.
-
-The robot has a movable circular base and an extendable arm with gripper fingers. Objects can be grasped and released through gripper actions. All objects follow realistic physics including gravity, friction, and collisions.
-
-**Observation Space**: The observation is a fixed-size vector containing the state of all objects:
-- **Robot**: position (x,y), orientation (θ), velocities (vx,vy,ω), arm extension, gripper gap
-- **Target Block**: position, orientation, velocities, dimensions (dynamic physics object)
-- **Target Surface**: position, orientation, dimensions (kinematic physics object)
-- **Obstruction Blocks** (2): position, orientation, velocities, dimensions (dynamic physics objects)
-
-Each object includes physics properties like mass, moment of inertia (for dynamic objects), and color information for rendering.
-
-
 ### Environment Group Description
 A 2D physics-based environment where the goal is to place a target block onto a target surface using a fingered robot with PyMunk physics simulation. The block must be completely on the surface. The robot has a movable circular base and an extendable arm with gripper fingers. Objects can be grasped and released through gripper actions. All objects follow realistic physics including gravity, friction, and collisions. **Observation Space**: The observation is a fixed-size vector containing the state of all objects: - **Robot**: position (x,y), orientation (θ), velocities (vx,vy,ω), arm extension, gripper gap - **Target Block**: position, orientation, velocities, dimensions (dynamic physics object) - **Target Surface**: position, orientation, dimensions (kinematic physics object) Each object includes physics properties like mass, moment of inertia (for dynamic objects), and color information for rendering.
+
+### Variant Description
+There are always 2 obstacle blocks.
+
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/DynObstruction2D-o2.gif)
 

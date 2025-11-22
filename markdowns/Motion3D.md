@@ -1,21 +1,12 @@
 # prbench/Motion3D-v0
 ![random action GIF](assets/random_action_gifs/Motion3D.gif)
 
-### Description
-A 3D motion planning environment where the goal is to reach a target sphere with the robot's end effector.
-
-The robot is a Kinova Gen-3 with 7 degrees of freedom. The target is a sphere with radius 0.100m positioned randomly within the workspace bounds.
-
-The workspace bounds are:
-- X: [0.0, 0.5]
-- Y: [0.1, 0.8]
-- Z: [0.0, 0.5]
-
-Only targets that are reachable via inverse kinematics are sampled.
-
-
 ### Environment Group Description
 A 3D motion planning environment where the goal is to reach a target sphere with the robot's end effector. The robot is a Kinova Gen-3 with 7 degrees of freedom. The target is a sphere with radius 0.100m positioned randomly within the workspace bounds. The workspace bounds are: - X: [0.0, 0.5] - Y: [0.1, 0.8] - Z: [0.0, 0.5] Only targets that are reachable via inverse kinematics are sampled.
+
+### Variant Description
+This variant has a specific configuration. See the observation space below for details.
+
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/Motion3D.gif)
 

@@ -1,14 +1,12 @@
 # prbench/Motion2D-p0-v0
 ![random action GIF](assets/random_action_gifs/Motion2D-p0.gif)
 
-### Description
-A 2D environment where the goal is to reach a target region while avoiding static obstacles.
-
-The robot has a movable circular base and a retractable arm with a rectangular vacuum end effector. The arm and vacuum do not need to be used in this environment.
-
-
 ### Environment Group Description
 A 2D environment where the goal is to reach a target region while avoiding static obstacles. The robot has a movable circular base and a retractable arm with a rectangular vacuum end effector. The arm and vacuum do not need to be used in this environment.
+
+### Variant Description
+This variant has a specific configuration. See the observation space below for details.
+
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/Motion2D-p0.gif)
 

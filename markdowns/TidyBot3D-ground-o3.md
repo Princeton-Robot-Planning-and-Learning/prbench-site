@@ -1,21 +1,12 @@
 # prbench/TidyBot3D-ground-o3-v0
 ![random action GIF](assets/random_action_gifs/TidyBot3D-ground-o3.gif)
 
-### Description
-A 3D mobile manipulation environment using the TidyBot platform.
-
-The robot has a holonomic mobile base with powered casters and a Kinova Gen3 arm.
-Scene type: ground with 3 objects. In the 'ground' scene, objects are placed randomly on a flat ground plane.
-
-The robot can control:
-- Base pose (x, y, theta)
-- Arm position (x, y, z)
-- Arm orientation (quaternion)
-- Gripper position (open/close)
-
-
 ### Environment Group Description
 A 3D mobile manipulation environment using the TidyBot platform. The robot has a holonomic mobile base with powered casters and a Kinova Gen3 arm. Scene type: ground with obstructions. In the 'ground' scene, objects are placed randomly on a flat ground plane. The robot can control: - Base pose (x, y, theta) - Arm position (x, y, z) - Arm orientation (quaternion) - Gripper position (open/close)
+
+### Variant Description
+This variant has a specific configuration. See the observation space below for details.
+
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/TidyBot3D-ground-o3.gif)
 

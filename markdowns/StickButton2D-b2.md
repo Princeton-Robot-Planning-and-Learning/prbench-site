@@ -1,16 +1,12 @@
 # prbench/StickButton2D-b2-v0
 ![random action GIF](assets/random_action_gifs/StickButton2D-b2.gif)
 
-### Description
-A 2D environment where the goal is to touch all buttons, possibly by using a stick for buttons that are out of the robot's direct reach.
-
-In this environment, there are always 2 buttons.
-
-The robot has a movable circular base and a retractable arm with a rectangular vacuum end effector.
-
-
 ### Environment Group Description
 A 2D environment where the goal is to touch all buttons, possibly by using a stick for buttons that are out of the robot's direct reach. In this environment, there are always obstructions. The robot has a movable circular base and a retractable arm with a rectangular vacuum end effector.
+
+### Variant Description
+There are always 2 buttons.
+
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/StickButton2D-b2.gif)
 

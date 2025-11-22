@@ -1,25 +1,12 @@
 # prbench/DynPushPullHook2D-o5-v0
 ![random action GIF](assets/random_action_gifs/DynPushPullHook2D-o5.gif)
 
-### Description
-A 2D physics-based tool-use environment where a robot must use a Hook to push/pull a target block onto a middle wall (goal surface). The target block is positioned in the upper region of the world, while the middle wall is located at the center. The robot must manipulate the Hook to navigate the target block downward through obstacles.
-
-The target block is initially surrounded by 5 obstacle blocks that form a barrier around it.
-
-The robot has a movable circular base and an extendable arm with gripper fingers. The Hook is a kinematic object that can be grasped and used as a tool to indirectly manipulate the target block. All dynamic objects follow realistic PyMunk physics including gravity, friction, and collisions.
-
-**Observation Space**: The observation is a fixed-size vector containing the state of all objects:
-- **Robot**: position (x,y), orientation (θ), velocities (vx,vy,ω), arm extension, gripper gap
-- **Hook**: position, orientation, dimensions (kinematic tool object, can be grasped)
-- **Target Block**: position, orientation, velocities, dimensions (dynamic physics object)
-- **Middle Wall**: position, orientation, dimensions (kinematic goal surface at world center)
-- **Obstruction Blocks** (5): position, orientation, velocities, dimensions (dynamic objects sampled around target)
-
-Each object includes physics properties like mass, moment of inertia (for dynamic objects), and color information for rendering.
-
-
 ### Environment Group Description
 A 2D physics-based tool-use environment where a robot must use a Hook to push/pull a target block onto a middle wall (goal surface). The target block is positioned in the upper region of the world, while the middle wall is located at the center. The robot must manipulate the Hook to navigate the target block downward through obstacles. The robot has a movable circular base and an extendable arm with gripper fingers. The Hook is a kinematic object that can be grasped and used as a tool to indirectly manipulate the target block. All dynamic objects follow realistic PyMunk physics including gravity, friction, and collisions. **Observation Space**: The observation is a fixed-size vector containing the state of all objects: - **Robot**: position (x,y), orientation (θ), velocities (vx,vy,ω), arm extension, gripper gap - **Hook**: position, orientation, dimensions (kinematic tool object, can be grasped) - **Target Block**: position, orientation, velocities, dimensions (dynamic physics object) - **Middle Wall**: position, orientation, dimensions (kinematic goal surface at world center) Each object includes physics properties like mass, moment of inertia (for dynamic objects), and color information for rendering.
+
+### Variant Description
+This variant has a specific configuration. See the observation space below for details.
+
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/DynPushPullHook2D-o5.gif)
 

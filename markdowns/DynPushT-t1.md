@@ -1,20 +1,12 @@
 # prbench/DynPushT-t1-v0
 ![random action GIF](assets/random_action_gifs/DynPushT-t1.gif)
 
-### Description
-A 2D physics-based environment where the goal is to push a T-shaped block to match a goal pose using a simple dot robot (kinematic circle) with PyMunk physics simulation.
-
-**Observation Space**: The observation is a fixed-size vector containing the state of all objects:
-- **Robot**: position (x,y), velocities (vx,vy)
-- **T-Block**: position (x,y), orientation (θ), velocities (vx,vy,ω), dimensions (width, length_horizontal, length_vertical) (dynamic physics object)
-
-Each object includes physics properties like mass, moment of inertia, and color information for rendering.
-
-**Task**: Push the T-shaped block so that it covers at least 95% of the goal pose (position and orientation).
-
-
 ### Environment Group Description
 A 2D physics-based environment where the goal is to push a T-shaped block to match a goal pose using a simple dot robot (kinematic circle) with PyMunk physics simulation. **Observation Space**: The observation is a fixed-size vector containing the state of all objects: - **Robot**: position (x,y), velocities (vx,vy) - **T-Block**: position (x,y), orientation (θ), velocities (vx,vy,ω), dimensions (width, length_horizontal, length_vertical) (dynamic physics object) Each object includes physics properties like mass, moment of inertia, and color information for rendering. **Task**: Push the T-shaped block so that it covers at least 95% of the goal pose (position and orientation).
+
+### Variant Description
+This variant has a specific configuration. See the observation space below for details.
+
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/DynPushT-t1.gif)
 

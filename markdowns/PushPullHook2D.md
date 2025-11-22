@@ -1,11 +1,12 @@
 # prbench/PushPullHook2D-v0
 ![random action GIF](assets/random_action_gifs/PushPullHook2D.gif)
 
-### Description
-A 2D environment with a robot, a hook (L-shape), a movable button, and a target button.The robot can use the hook to push the movable button towards the target button.The movable button only moves if the hook is in contact and the robot moves in the direction of contact.
-
 ### Environment Group Description
 A 2D environment with a robot, a hook (L-shape), a movable button, and a target button.The robot can use the hook to push the movable button towards the target button.The movable button only moves if the hook is in contact and the robot moves in the direction of contact.
+
+### Variant Description
+This variant has a specific configuration. See the observation space below for details.
+
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/PushPullHook2D.gif)
 
