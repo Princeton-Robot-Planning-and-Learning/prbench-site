@@ -173,9 +173,30 @@
 /* GIF Grid on Group Pages */
 .gifs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
     margin: 2rem 0 3rem;
+}
+
+/* For screens 1024px and wider, force 3 columns max */
+@media (min-width: 1024px) {
+    .gifs-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* For tablets, use 2 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gifs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* For mobile, use 1 column */
+@media (max-width: 767px) {
+    .gifs-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .gif-container {
@@ -183,9 +204,9 @@
 }
 
 .gif-container h3 {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #667eea;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     font-weight: 600;
 }
 
