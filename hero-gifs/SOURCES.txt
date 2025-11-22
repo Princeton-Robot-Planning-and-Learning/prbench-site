@@ -28,7 +28,7 @@ DynPushT2D.gif
   Source: markdowns/assets/demo_gifs/DynPushT2D/DynPushT2D_seed0_1759590231.gif
 
 DynScoopPour2D.gif
-  Source: markdowns/assets/demo_gifs/DynScoopPour-o30/DynScoopPour-o30_1762183067.gif
+  Source: markdowns/assets/demo_gifs/DynScoopPour2D-o30/DynScoopPour2D-o30_1762183067.gif
 
 StickButton2D.gif
   Source: markdowns/assets/demo_gifs/StickButton2D-b10/StickButton2D-b10_seed1_1752262385.gif
