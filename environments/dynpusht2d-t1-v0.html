@@ -28,8 +28,8 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="../index.html#benchmark">Benchmark</a> / 
-                    <a href="geometric-2d.html">Geometric 2D</a> / 
-                    <a href="dynpusht-group.html">DynPushT2D</a> / 
+                    <a href="dynamic-2d.html">Dynamic 2D</a> / 
+                    <a href="dynpusht2d-group.html">DynPushT2D</a> / 
                     <span>DynPushT2D-t1-v0</span>
                 </div>
 
@@ -46,14 +46,17 @@
                         </div>
                         <div class="gif-container">
                             <h3>Example Demonstration</h3>
-                            <p style="padding: 60px 20px; text-align: center; color: #666;">No demonstration GIFs available</p>
+                            <img src="../markdowns/assets/demo_gifs/DynPushT2D-t1/DynPushT2D_seed0_1759590231.gif" alt="Example Demonstration">
                         </div>
                     </div>
 
-<h3>Environment Group Description</h3>
-<p>A 2D physics-based environment where the goal is to push a T-shaped block to match a goal pose using a simple dot robot (kinematic circle) with PyMunk physics simulation. <strong>Observation Space</strong>: The observation is a fixed-size vector containing the state of all objects: - <strong>Robot</strong>: position (x,y), velocities (vx,vy) - <strong>T-Block</strong>: position (x,y), orientation (θ), velocities (vx,vy,ω), dimensions (width, length_horizontal, length_vertical) (dynamic physics object) Each object includes physics properties like mass, moment of inertia, and color information for rendering. <strong>Task</strong>: Push the T-shaped block so that it covers at least 95% of the goal pose (position and orientation).</p>
-<h3>Variant Description</h3>
-<p>This variant has a specific configuration. See the observation space below for details.</p>
+<h3>Description</h3>
+<p>A 2D physics-based environment where the goal is to push a T-shaped block to match a goal pose using a simple dot robot (kinematic circle) with PyMunk physics simulation.</p>
+<p><strong>Observation Space</strong>: The observation is a fixed-size vector containing the state of all objects:
+- <strong>Robot</strong>: position (x,y), velocities (vx,vy)
+- <strong>T-Block</strong>: position (x,y), orientation (θ), velocities (vx,vy,ω), dimensions (width, length_horizontal, length_vertical) (dynamic physics object)</p>
+<p>Each object includes physics properties like mass, moment of inertia, and color information for rendering.</p>
+<p><strong>Task</strong>: Push the T-shaped block so that it covers at least 95% of the goal pose (position and orientation).</p>
 <h3>Observation Space</h3>
 <p>The entries of an array in this Box space correspond to the following object features:</p>
 <table>
