@@ -15,7 +15,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title} | PRBench</title>
+    <title>{title} | PRBench: A Physical Reasoning Benchmark for Robotics</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="environment.css">
 </head>
@@ -23,7 +23,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <header>
         <nav>
             <div class="container">
-                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench: A Physical Reasoning Benchmark for Robotics</a></h1>
                 <ul class="nav-links">
                     <li><a href="../index.html#about">About</a></li>
                     <li><a href="../index.html#usage">Usage</a></li>
@@ -71,7 +71,7 @@ CATEGORY_TEMPLATE = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title} | PRBench</title>
+    <title>{title} | PRBench: A Physical Reasoning Benchmark for Robotics</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="environment.css">
 </head>
@@ -79,7 +79,7 @@ CATEGORY_TEMPLATE = """<!DOCTYPE html>
     <header>
         <nav>
             <div class="container">
-                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench: A Physical Reasoning Benchmark for Robotics</a></h1>
                 <ul class="nav-links">
                     <li><a href="../index.html#about">About</a></li>
                     <li><a href="../index.html#usage">Usage</a></li>
@@ -133,7 +133,7 @@ GROUP_TEMPLATE = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title} | PRBench</title>
+    <title>{title} | PRBench: A Physical Reasoning Benchmark for Robotics</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="environment.css">
 </head>
@@ -141,7 +141,7 @@ GROUP_TEMPLATE = """<!DOCTYPE html>
     <header>
         <nav>
             <div class="container">
-                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench: A Physical Reasoning Benchmark for Robotics</a></h1>
                 <ul class="nav-links">
                     <li><a href="../index.html#about">About</a></li>
                     <li><a href="../index.html#usage">Usage</a></li>
