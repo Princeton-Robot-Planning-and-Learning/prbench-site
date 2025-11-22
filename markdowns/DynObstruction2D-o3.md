@@ -157,28 +157,5 @@ def is_on(
     return True
 ```
 
-**Physics Integration**: Since this environment uses PyMunk physics simulation, objects have realistic dynamics including:
-- Gravity (objects fall if not supported)
-- Friction between surfaces
-- Collision response and momentum transfer
-- Realistic grasping and manipulation dynamics
-
-
 ### References
-This is a physics-based version of manipulation environments commonly used in robotics research. It extends the geometric obstruction environment to include realistic physics simulation using PyMunk.
-
-**Key Features**:
-- **PyMunk Physics Engine**: Provides realistic 2D rigid body dynamics
-- **Dynamic Objects**: Target and obstruction blocks have mass, inertia, and respond to forces
-- **Kinematic Robot**: Multi-DOF robot with base movement, arm extension, and gripper control
-- **Collision Detection**: Physics-based collision handling for grasping and object interactions
-- **Gravity Simulation**: Objects fall and settle naturally under gravitational forces
-
-**Research Applications**:
-- Robot manipulation learning with realistic physics
-- Grasping and placement strategy development  
-- Multi-object interaction scenarios
-- Physics-aware motion planning validation
-- Comparative studies between geometric and physics-based environments
-
-This environment enables more realistic evaluation of manipulation policies compared to purely geometric versions, as agents must account for momentum, friction, and gravitational effects.
+N/A
