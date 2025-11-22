@@ -4,14 +4,6 @@
 ### Description
 A 2D physics-based environment where the goal is to push a T-shaped block to match a goal pose using a simple dot robot (kinematic circle) with PyMunk physics simulation.
 
-**Observation Space**: The observation is a fixed-size vector containing the state of all objects:
-- **Robot**: position (x,y), velocities (vx,vy)
-- **T-Block**: position (x,y), orientation (θ), velocities (vx,vy,ω), dimensions (width, length_horizontal, length_vertical) (dynamic physics object)
-
-Each object includes physics properties like mass, moment of inertia, and color information for rendering.
-
-**Task**: Push the T-shaped block so that it covers at least 95% of the goal pose (position and orientation).
-
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/DynPushT2D-t1.gif)
 
@@ -76,44 +68,8 @@ The entries of an array in this Box space correspond to the following action fea
 | 0 | dx | Delta x position for robot (positive is right) | -0.050 | 0.050 |
 | 1 | dy | Delta y position for robot (positive is up) | -0.050 | 0.050 |
 
-
 ### Rewards
 The reward is based on the coverage of the T-block with respect to the goal pose, computed using Shapely geometric intersection.
 
-**Reward Formula**: reward = clip(coverage / success_threshold, 0, 1)
-
-where coverage = intersection_area / goal_area
-
-**Termination Condition**: The episode terminates when the T-block achieves at least 95% coverage of the goal pose.
-
-**Physics Integration**: Since this environment uses PyMunk physics simulation, objects have realistic dynamics including:
-- No gravity (planar pushing task)
-- Friction between surfaces
-- Collision response and momentum transfer
-- Realistic pushing dynamics
-
-
 ### References
-This is a physics-based version of the PushT environment, commonly used in robot manipulation and imitation learning research.
-
-**Original PushT Environment**:
-- Introduced in the Diffusion Policy paper
-- Features a simple kinematic agent pushing a T-shaped block
-- Goal is to match a target pose with 95% coverage
-- Uses PyMunk 2D physics engine
-
-**Key Features**:
-- **PyMunk Physics Engine**: Provides realistic 2D rigid body dynamics
-- **Dynamic T-shaped Block**: Has mass, inertia, and responds to forces
-- **Kinematic Dot Robot**: Simple circle that moves to target positions via PD control
-- **Coverage-based Reward**: Uses geometric intersection for precise goal checking
-- **No Gravity**: Planar manipulation task without gravitational effects
-
-**Research Applications**:
-- Robot manipulation learning
-- Imitation learning and behavior cloning
-- Diffusion policy training and evaluation
-- Planar pushing strategy development
-- Physics-based motion planning validation
-
-This environment is widely used for evaluating manipulation policies, particularly in the context of diffusion-based and transformer-based imitation learning approaches.
+This is a physics-based version of the PushT environment that was introduced in "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion" (Chi et al., 2024).
