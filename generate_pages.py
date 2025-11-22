@@ -401,7 +401,7 @@ def convert_markdown_to_html(md_file_path):
     gifs_html = ''
     if gifs_info or has_demo_gif is False:
         gifs_html = '<div class="gifs-grid">\n'
-        gif_labels = ['Random Action', 'Initial State Distribution', 'Example Demonstration']
+        gif_labels = ['Random Actions', 'Initial State Distribution', 'Example Demonstration']
         
         # Add the GIFs we found
         for i, (alt_text, gif_path) in enumerate(gifs_info):
@@ -527,6 +527,66 @@ def extract_group_content(md_file_path):
         'references_html': references_html
     }
 
+def extract_object_count(variant_name):
+    """Extract the number of objects from a variant name.
+    
+    Examples:
+        ClutteredRetrieval2D-o1-v0 -> 1
+        ClutteredRetrieval2D-o10-v0 -> 10
+        Motion2D-p3-v0 -> 3
+        ClutteredStorage2D-b15-v0 -> 15
+    """
+    # Look for patterns like -o1, -p3, -b15, -t1, etc.
+    match = re.search(r'-([a-z])(\d+)-v\d+$', variant_name)
+    if match:
+        return int(match.group(2))
+    return 0
+
+def has_demonstration_gif(md_file_path):
+    """Check if a markdown file has a demonstration GIF."""
+    if not md_file_path or not Path(md_file_path).exists():
+        return False
+    
+    with open(md_file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Check if there's a demo GIF (not just the text "No demonstration GIFs available")
+    demo_gif_pattern = r'### Example Demonstration\s*\n!\[.*?\]\(assets/.*?\.gif\)'
+    return bool(re.search(demo_gif_pattern, content))
+
+def select_best_variant_for_gifs(variants):
+    """Select the variant with the most objects that has a demo GIF.
+    
+    If no variant has a demo GIF, select the one with the most objects.
+    """
+    # Separate variants with and without demo GIFs
+    variants_with_demo = []
+    variants_without_demo = []
+    
+    for variant in variants:
+        md_path = variant.get('md_file_path')
+        object_count = extract_object_count(variant['name'])
+        variant_info = (variant, object_count)
+        
+        if has_demonstration_gif(md_path):
+            variants_with_demo.append(variant_info)
+        else:
+            variants_without_demo.append(variant_info)
+    
+    # Prefer variants with demo GIFs, sorted by object count (descending)
+    if variants_with_demo:
+        # Sort by object count descending, return the variant with most objects
+        variants_with_demo.sort(key=lambda x: x[1], reverse=True)
+        return variants_with_demo[0][0]
+    
+    # If no demos available, use the variant with most objects
+    if variants_without_demo:
+        variants_without_demo.sort(key=lambda x: x[1], reverse=True)
+        return variants_without_demo[0][0]
+    
+    # Fallback to first variant
+    return variants[0] if variants else None
+
 def create_group_page(base_name, category, variants):
     """Create an HTML page for an environment group."""
     group_filename = generate_group_filename(base_name)
@@ -536,9 +596,9 @@ def create_group_page(base_name, category, variants):
     # Sort variants by name
     variants = sorted(variants, key=lambda x: x['name'])
     
-    # Get content from the first variant's markdown file
-    first_variant = variants[0]
-    md_file_path = first_variant.get('md_file_path')
+    # Select the best variant for displaying GIFs (most objects with demo, or most objects without)
+    best_variant = select_best_variant_for_gifs(variants)
+    md_file_path = best_variant.get('md_file_path') if best_variant else None
     
     group_content = {'gifs': [], 'description_html': '', 'references_html': ''}
     if md_file_path and Path(md_file_path).exists():
@@ -546,7 +606,7 @@ def create_group_page(base_name, category, variants):
     
     # Generate GIF HTML
     gifs_html = ''
-    gif_labels = ['Random Action', 'Initial State Distribution', 'Example Demonstration']
+    gif_labels = ['Random Actions', 'Initial State Distribution', 'Example Demonstration']
     for i, gif in enumerate(group_content['gifs'][:3]):  # Only use first 3 GIFs
         label = gif_labels[i] if i < len(gif_labels) else f'GIF {i+1}'
         gifs_html += f'''                        <div class="gif-container">
