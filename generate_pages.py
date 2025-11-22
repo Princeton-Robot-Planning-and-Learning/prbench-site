@@ -242,7 +242,7 @@ def extract_base_environment_name(env_name):
         TidyBot3D-ground-o3-v0 -> TidyBot3D-ground
         TidyBot3D-base_motion-o1-v0 -> TidyBot3D-base_motion
         RBY1A3D-cupboard-o8-v0 -> RBY1A3D-cupboard
-        DynPushT-t1-v0 -> DynPushT
+        DynPushT2D-t1-v0 -> DynPushT2D
     """
     # Remove -v0, -v1, etc. version suffixes
     name = re.sub(r'-v\d+$', '', env_name)
