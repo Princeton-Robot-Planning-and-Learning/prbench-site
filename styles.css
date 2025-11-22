@@ -379,6 +379,108 @@ footer {
     margin-top: 2rem;
 }
 
+/* Collapsible Section */
+.collapsible-header {
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.collapsible-header:hover {
+    color: #667eea;
+}
+
+.toggle-icon {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+/* Comparison Table */
+.comparison-table-wrapper {
+    overflow-x: auto;
+    margin: 2rem 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 0.9rem;
+}
+
+.comparison-table thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.comparison-table th {
+    padding: 1rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.comparison-table th:last-child {
+    border-right: none;
+}
+
+.comparison-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.comparison-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+}
+
+.comparison-table td:last-child {
+    border-right: none;
+}
+
+.comparison-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.comparison-table .highlight-row {
+    background-color: #e8eaf6;
+    font-weight: 600;
+}
+
+.comparison-table .highlight-row:hover {
+    background-color: #dce0f5;
+}
+
+/* References Section */
+.references {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.references p {
+    margin: 0.5rem 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     header h1 {

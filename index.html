@@ -105,32 +105,228 @@
                     <p>This benchmark is designed for this kind of physical reasoning with robots. We invite researchers to try their best task and motion planning, reinforcement learning, imitation learning, and foundation models approaches. We hope that PRBench will bridge perspectives and foster shared progress toward physically intelligent robots.</p>
                 </div>
 
-                <h3>What Makes PRBench Challenging?</h3>
+                <h3 class="collapsible-header" onclick="toggleCollapsible('challenges-section')">
+                    What Makes PRBench Challenging? <span class="toggle-icon" id="challenges-toggle">▼</span>
+                </h3>
                 
-                <div class="challenges-grid">
-                    <div class="challenge-card">
-                        <h4>For Reinforcement Learning</h4>
-                        <p>Environments have long horizons and sparse rewards. Users are welcome to engineer dense rewards, but doing so may be nontrivial. Environments also have very diverse task distributions, so learned policies must generalize.</p>
+                <div class="collapsible-content" id="challenges-section">
+                    <div class="challenges-grid">
+                        <div class="challenge-card">
+                            <h4>For Reinforcement Learning</h4>
+                            <p>Environments have long horizons and sparse rewards. Users are welcome to engineer dense rewards, but doing so may be nontrivial. Environments also have very diverse task distributions, so learned policies must generalize.</p>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <h4>For Imitation Learning</h4>
+                            <p>As with RL, generalization across tasks is a major challenge. Furthermore, we supply some demonstrations, but they are typically suboptimal, multimodal, and limited in quantity.</p>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <h4>For Language Models</h4>
+                            <p>The physical reasoning required in PRBench is not easy to represent in natural language. The tasks in PRBench are designed to test "mid-level" physical reasoning, between language and vision.</p>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <h4>For Hierarchical Approaches</h4>
+                            <p>Approaches that first decide "what to do" and then decide "how to do it" will run into difficulties when there are couplings between these high-level and low-level decisions.</p>
+                        </div>
+                        
+                        <div class="challenge-card">
+                            <h4>For Task and Motion Planning</h4>
+                            <p>PRBench does not provide any models for TAMP. Users are welcome to engineer their own, but doing so may be nontrivial. Some environments contain many objects, which may make planning slow.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="collapsible-header" onclick="toggleCollapsible('unique-section')">
+                    What Makes PRBench Unique? <span class="toggle-icon" id="unique-toggle">▼</span>
+                </h3>
+                
+                <div class="collapsible-content" id="unique-section">
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Benchmarks</th>
+                                    <th>Physics?</th>
+                                    <th>Reasoning (Generalize)</th>
+                                    <th>Long-horizon (&gt;500)</th>
+                                    <th>Robotics-Oriented</th>
+                                    <th>Semanticless (non-language constraints)</th>
+                                    <th>Unified 2D & 3D</th>
+                                    <th>Multi-Object Physical Contacts? (&gt;5)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Atari Games [1]</td>
+                                    <td>❌</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>2D</td>
+                                    <td>❌</td>
+                                </tr>
+                                <tr>
+                                    <td>DM-Control [2]</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>3D</td>
+                                    <td>❌</td>
+                                </tr>
+                                <tr>
+                                    <td>MineDojo [3]</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>❌</td>
+                                    <td>3D</td>
+                                    <td>❌</td>
+                                </tr>
+                                <tr>
+                                    <td>CALVIN [4]</td>
+                                    <td>❓</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>3D</td>
+                                    <td>✅</td>
+                                </tr>
+                                <tr>
+                                    <td>LIBERO [5]</td>
+                                    <td>❓</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>3D</td>
+                                    <td>✅</td>
+                                </tr>
+                                <tr>
+                                    <td>LogiCity [6]</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>2D</td>
+                                    <td>❌</td>
+                                </tr>
+                                <tr>
+                                    <td>Embodied Agent Interface [7]</td>
+                                    <td>❓</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>3D</td>
+                                    <td>❌</td>
+                                </tr>
+                                <tr>
+                                    <td>OGBench [8]</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>3D</td>
+                                    <td>❌</td>
+                                </tr>
+                                <tr>
+                                    <td>BEHAVIOR-1k [9]</td>
+                                    <td>❓</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>3D</td>
+                                    <td>❌</td>
+                                </tr>
+                                <tr>
+                                    <td>RoboCasa [10]</td>
+                                    <td>❓</td>
+                                    <td>❌</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>3D</td>
+                                    <td>❓</td>
+                                </tr>
+                                <tr>
+                                    <td>Embodied Bench [11]</td>
+                                    <td>❓</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>3D</td>
+                                    <td>❓</td>
+                                </tr>
+                                <tr>
+                                    <td>ManiSkill-HAB [12]</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>❓</td>
+                                    <td>3D</td>
+                                    <td>✅</td>
+                                </tr>
+                                <tr>
+                                    <td>Furniturebench [13]</td>
+                                    <td>❌(Real)</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>Real</td>
+                                    <td>✅</td>
+                                </tr>
+                                <tr>
+                                    <td>VLABench [14]</td>
+                                    <td>❓</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                    <td>3D</td>
+                                    <td>✅</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td><strong>PRBench (Ours)</strong></td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>✅</td>
+                                    <td>2D&3D</td>
+                                    <td>✅</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     
-                    <div class="challenge-card">
-                        <h4>For Imitation Learning</h4>
-                        <p>As with RL, generalization across tasks is a major challenge. Furthermore, we supply some demonstrations, but they are typically suboptimal, multimodal, and limited in quantity.</p>
-                    </div>
-                    
-                    <div class="challenge-card">
-                        <h4>For Language Models</h4>
-                        <p>The physical reasoning required in PRBench is not easy to represent in natural language. The tasks in PRBench are designed to test "mid-level" physical reasoning, between language and vision.</p>
-                    </div>
-                    
-                    <div class="challenge-card">
-                        <h4>For Hierarchical Approaches</h4>
-                        <p>Approaches that first decide "what to do" and then decide "how to do it" will run into difficulties when there are couplings between these high-level and low-level decisions.</p>
-                    </div>
-                    
-                    <div class="challenge-card">
-                        <h4>For Task and Motion Planning</h4>
-                        <p>PRBench does not provide any models for TAMP. Users are welcome to engineer their own, but doing so may be nontrivial. Some environments contain many objects, which may make planning slow.</p>
+                    <div class="references">
+                        <p><small>[1] Machado et al. "Revisiting the arcade learning environment." <em>JAIR</em> 61 (2018).</small></p>
+                        <p><small>[2] Tassa et al. "Deepmind control suite." <em>arXiv:1801.00690</em> (2018).</small></p>
+                        <p><small>[3] Fan et al. "Minedojo: Building open-ended embodied agents with internet-scale knowledge." <em>NeurIPS</em> 35 (2022).</small></p>
+                        <p><small>[4] Mees et al. "Calvin: A benchmark for language-conditioned policy learning." <em>IEEE RA-L</em> 7.3 (2022).</small></p>
+                        <p><small>[5] Liu et al. "Libero: Benchmarking knowledge transfer for lifelong robot learning." <em>NeurIPS</em> 36 (2023).</small></p>
+                        <p><small>[6] Li et al. "LogiCity: Advancing neuro-symbolic ai with abstract urban simulation." <em>NeurIPS</em> 37 (2024).</small></p>
+                        <p><small>[7] Li et al. "Embodied agent interface: Benchmarking llms for embodied decision making." <em>NeurIPS</em> 37 (2024).</small></p>
+                        <p><small>[8] Park et al. "OGBench: Benchmarking Offline Goal-Conditioned RL." <em>ICLR</em> (2025).</small></p>
+                        <p><small>[9] Li et al. "Behavior-1k: A benchmark for embodied ai with 1,000 everyday activities." <em>CoRL</em> (2023).</small></p>
+                        <p><small>[10] Nasiriany et al. "RoboCasa: Large-Scale Simulation of Everyday Tasks." <em>RSS 2024 Workshop</em>.</small></p>
+                        <p><small>[11] Yang et al. "EmbodiedBench: Comprehensive Benchmarking Multi-modal LLMs." <em>ICML</em> (2024).</small></p>
+                        <p><small>[12] Shukla et al. "ManiSkill-HAB: A Benchmark for Low-Level Manipulation." <em>ICLR</em> (2025).</small></p>
+                        <p><small>[13] Heo et al. "Furniturebench: Reproducible real-world benchmark." <em>IJRR</em> 44.10-11 (2025).</small></p>
+                        <p><small>[14] Zhang et al. "Vlabench: A large-scale benchmark for language-conditioned robotics." <em>ICCV</em> (2025).</small></p>
                     </div>
                 </div>
             </div>
@@ -640,6 +836,21 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
             <p>&copy; 2025 PRBench. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        function toggleCollapsible(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id.replace('-section', '-toggle'));
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.textContent = '▼';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.textContent = '▲';
+            }
+        }
+    </script>
 </body>
 </html>
 
