@@ -173,7 +173,7 @@ GROUP_TEMPLATE = """<!DOCTYPE html>
                     {description_html}
 
                     <h2>Variants</h2>
-                    <p>This environment has {num_variants} variant(s) with different configurations:</p>
+                    <p>This environment has {num_variants} standard variant(s). Each variant has a constant number of objects. See the variant pages for detailed descriptions of observation spaces, action spaces, and rewards.</p>
                     
                     <div class="variant-list">
 {variants_html}
