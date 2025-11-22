@@ -47,9 +47,9 @@
                     </div>
 
 <h3>Environment Group Description</h3>
-<p>A 3D obstruction clearance environment where the goal is to place a target block on a designated target region by first clearing obstructions. The robot is a Kinova Gen-3 with 7 degrees of freedom that can grasp and manipulate objects. The environment consists of: - A <strong>table</strong> with dimensions 0.400m × 0.800m × 0.500m - A <strong>target region</strong> (purple block) with random dimensions between (0.02, 0.02, 0.005) and (0.05, 0.05, 0.005) half-extents - A <strong>target block</strong> that must be placed on the target region, sized at 0.8× the target region's x,y dimensions - <strong>Obstruction(s)</strong> (red blocks) that may be placed on or near the target region, blocking access Obstructions have random dimensions between (0.01, 0.01, 0.01) and (0.02, 0.02, 0.03) half-extents. During initialization, there's a 0.9 probability that each obstruction will be placed on the target region, requiring clearance. The task requires planning to grasp and move obstructions out of the way, then place the target block on the target region.</p>
+<p>A 3D environment where the goal is to place a target block onto a target surface. The block must be completely contained within the surface boundaries. The target may be obstructed by one or more obstacles. An object can be grasped and ungrasped when the sphere between the end effector fingers makes contact with it.</p>
 <h3>Variant Description</h3>
-<p>This variant has a specific configuration. See the observation space below for details.</p>
+<p>There are always 4 obstacles.</p>
 <h3>Observation Space</h3>
 <p>The entries of an array in this Box space correspond to the following object features:</p>
 <table>
