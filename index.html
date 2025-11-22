@@ -367,20 +367,24 @@ next_obs, reward, terminated, truncated, info = env.step(action)
 img = env.render()</code></pre>
                 </div>
 
-                <h3>Object-Centric States</h3>
-                <p>All environments in PRBench use object-centric states:</p>
+                <h3 class="collapsible-header" onclick="toggleCollapsible('object-centric-section')">
+                    Object-Centric States <span class="toggle-icon" id="object-centric-toggle">▼</span>
+                </h3>
                 
-                <div class="code-block">
-                    <pre><code class="language-python">from prbench.envs.geom2d.obstruction2d import ObjectCentricObstruction2DEnv
+                <div class="collapsible-content" id="object-centric-section">
+                    <p>All environments in PRBench use object-centric states:</p>
+                    
+                    <div class="code-block">
+                        <pre><code class="language-python">from prbench.envs.geom2d.obstruction2d import ObjectCentricObstruction2DEnv
 env = ObjectCentricObstruction2DEnv(num_obstructions=3)
 obs, _ = env.reset(seed=123)
 print(obs.pretty_str())</code></pre>
-                </div>
+                    </div>
 
-                <p>Here, <code>obs</code> is an <a href="https://github.com/tomsilver/relational-structs/blob/main/src/relational_structs/object_centric_state.py#L25" target="_blank">ObjectCentricState</a>, and the printout is:</p>
-                
-                <div class="code-block">
-                    <pre><code>############################################################### STATE ###############################################################
+                    <p>Here, <code>obs</code> is an <a href="https://github.com/tomsilver/relational-structs/blob/main/src/relational_structs/object_centric_state.py#L25" target="_blank">ObjectCentricState</a>, and the printout is:</p>
+                    
+                    <div class="code-block">
+                        <pre><code>############################################################### STATE ###############################################################
 type: crv_robot           x         y    theta    base_radius    arm_joint    arm_length    vacuum    gripper_height    gripper_width
 -----------------  --------  --------  -------  -------------  -----------  ------------  --------  ----------------  ---------------
 robot              0.885039  0.803795  -1.5708            0.1          0.1           0.2         0              0.07             0.01
@@ -399,17 +403,18 @@ type: target_surface           x    y    theta    static    color_r    color_g  
 ----------------------  --------  ---  -------  --------  ---------  ---------  ---------  ---------  --------  --------
 target_surface          0.499675    0        0         1   0.501961          0   0.501961        101  0.180286       0.1
 #####################################################################################################################################</code></pre>
-                </div>
+                    </div>
 
-                <p>For compatibility with baselines, observations are provided as vectors. Convert between vectors and object-centric states:</p>
-                
-                <div class="code-block">
-                    <pre><code class="language-python">import prbench
+                    <p>For compatibility with baselines, observations are provided as vectors. Convert between vectors and object-centric states:</p>
+                    
+                    <div class="code-block">
+                        <pre><code class="language-python">import prbench
 prbench.register_all_environments()
 env = prbench.make("prbench/Obstruction2D-o3-v0")
 vec_obs, _ = env.reset(seed=123)
 object_centric_obs = env.observation_space.devectorize(vec_obs)
 recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></pre>
+                    </div>
                 </div>
             </div>
         </section>
