@@ -81,25 +81,6 @@ The entries of an array in this Box space correspond to the following action fea
 | 3 | darm | Change in robot arm length (positive is out) | -0.100 | 0.100 |
 | 4 | dgripper | Change in gripper gap (positive is open) | -0.020 | 0.020 |
 
-
-### Rewards
-A penalty of -1.0 is given at every time step until termination, which occurs when the target block reaches the middle wall (goal surface).
-
-**Termination Condition**: The episode terminates when the target block geometrically intersects with the middle wall. This is detected using collision checking between the target block and middle wall.
-
-**Goal Achievement Strategy**: The robot must:
-1. Grasp the Hook tool with its gripper
-2. Use the Hook to push or pull the target block downward
-3. Navigate around or through the obstruction blocks
-4. Successfully move the target block until it contacts the middle wall
-
-**Physics Integration**: Since this environment uses PyMunk physics simulation, objects have realistic dynamics including:
-- Friction between surfaces
-- Collision response and momentum transfer
-- Realistic grasping and tool manipulation dynamics
-- Indirect manipulation through tool-object interactions
-- NOTE: all objects are on a 2D plane with no gravity, but damping is applied to simulate frictional losses
-
 ### Rewards
 A penalty of -1.0 is given at every time step until termination, which occurs when the target block reaches the middle wall (goal surface).
 
