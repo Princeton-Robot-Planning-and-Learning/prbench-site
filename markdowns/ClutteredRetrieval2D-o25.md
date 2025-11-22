@@ -5,7 +5,7 @@
 A 2D environment where the goal is to "pick up" (suction) a target block. The target block may be initially obstructed. The robot has a movable circular base and a retractable arm with a rectangular vacuum end effector. Objects can be grasped and ungrasped when the end effector makes contact.
 
 ### Variant Description
-There are always 26 obstacle blocks.
+There are always 25 obstacle blocks.
 
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/ClutteredRetrieval2D-o25.gif)
