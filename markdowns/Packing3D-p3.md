@@ -2,10 +2,10 @@
 ![random action GIF](assets/random_action_gifs/Packing3D-p3.gif)
 
 ### Environment Group Description
-A 3D packing environment where the goal is to place a set of parts into a rack without collisions. The robot is a Kinova Gen-3 with 7 degrees of freedom that can grasp and manipulate objects. The environment consists of: - A **table** with dimensions 0.400m × 0.800m × 0.500m - A **rack** (purple) with half-extents (0.1, 0.15, 0.02) - **Parts** (green) that must be packed into the rack. Parts are sampled with half-extents in (0.05, 0.05, 0.01, 0) to (0.05, 0.05, 0.01, 0) and a probability 0.5 of being triangle-shaped (triangles are represented as triangular prisms with depth 0.020m when used). The task requires planning to grasp and place each part into the rack while avoiding collisions and ensuring parts are supported by the rack (on the rack and not grasped) at the end.
+A 3D packing environment where the goal is to place a set of parts into a rack without collisions. The robot is a Kinova Gen-3 with 7 degrees of freedom that can grasp and manipulate objects. The environment consists of: a table with dimensions 0.400m × 0.800m × 0.500m; a rack (purple) with half-extents (0.1, 0.15, 0.02); parts (green) that must be packed into the rack. Parts are sampled with half-extents in (0.05, 0.05, 0.01, 0) to (0.05, 0.05, 0.01, 0) and a probability 0.5 of being triangle-shaped (triangles are represented as triangular prisms with depth 0.020m when used). The task requires planning to grasp and place each part into the rack while avoiding collisions and ensuring parts are supported by the rack (on the rack and not grasped) at the end.
 
 ### Variant Description
-This variant has a specific configuration. See the observation space below for details.
+There are always 3 parts to pack.
 
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/Packing3D-p3.gif)
@@ -86,24 +86,8 @@ The entries of an array in this Box space correspond to the following object fea
 ### Action Space
 An action space for a 7 DOF robot that can open and close its gripper.
 
-    Actions are bounded relative joint positions and open / close.
-
-    The open / close logic is: <-0.5 is close, >0.5 is open, and otherwise no change.
-
-
 ### Rewards
-The reward structure is simple:
-- **-1.0** penalty at every timestep until the goal is reached
-- **Termination** occurs when all parts are placed in the rack and none are grasped
-
-The goal is considered reached when:
-1. The robot is not currently grasping any part
-2. Every part is resting on (supported by) the rack surface
-
-Support is determined based on contact between a part and the rack within a small distance threshold (configured by the environment).
-
-This encourages the robot to efficiently pack the parts into the rack while avoiding infinite episodes.
-
+A penalty of -1.0 is given at every time step until termination, which occurs when all parts are packed.
 
 ### References
-Packing tasks are common in robotics and automated warehousing literature. This environment is inspired by standard manipulation benchmarks and simple bin-packing problems; it’s intended as a deterministic, physics-based testbed for pick-and-place planning and task-and-motion planning approaches.
+N/A

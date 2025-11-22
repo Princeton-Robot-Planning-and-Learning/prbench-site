@@ -48,7 +48,7 @@
                     </div>
 
                     <h2>Description</h2>
-                    <p>A 3D packing environment where the goal is to place a set of parts into a rack without collisions. The robot is a Kinova Gen-3 with 7 degrees of freedom that can grasp and manipulate objects. The environment consists of: - A <strong>table</strong> with dimensions 0.400m × 0.800m × 0.500m - A <strong>rack</strong> (purple) with half-extents (0.1, 0.15, 0.02) - <strong>Parts</strong> (green) that must be packed into the rack. Parts are sampled with half-extents in (0.05, 0.05, 0.01, 0) to (0.05, 0.05, 0.01, 0) and a probability 0.5 of being triangle-shaped (triangles are represented as triangular prisms with depth 0.020m when used). The task requires planning to grasp and place each part into the rack while avoiding collisions and ensuring parts are supported by the rack (on the rack and not grasped) at the end.</p>
+                    <p>A 3D packing environment where the goal is to place a set of parts into a rack without collisions. The robot is a Kinova Gen-3 with 7 degrees of freedom that can grasp and manipulate objects. The environment consists of: a table with dimensions 0.400m × 0.800m × 0.500m; a rack (purple) with half-extents (0.1, 0.15, 0.02); parts (green) that must be packed into the rack. Parts are sampled with half-extents in (0.05, 0.05, 0.01, 0) to (0.05, 0.05, 0.01, 0) and a probability 0.5 of being triangle-shaped (triangles are represented as triangular prisms with depth 0.020m when used). The task requires planning to grasp and place each part into the rack while avoiding collisions and ensuring parts are supported by the rack (on the rack and not grasped) at the end.</p>
 
                     <h2>Variants</h2>
                     <p>This environment has 3 standard variant(s). Each variant has a constant number of objects. See the variant pages for detailed descriptions of observation spaces, action spaces, and rewards.</p>
@@ -57,26 +57,26 @@
                         <div class="variant-card">
                             <a href="packing3d-p1-v0.html" class="variant-link">
                                 <h3>Packing3D-p1-v0</h3>
-                                <p class="variant-description">This variant has a specific configuration. See the observation space below for details.</p>
+                                <p class="variant-description">There is always 1 part to pack.</p>
                             </a>
                         </div>
                         <div class="variant-card">
                             <a href="packing3d-p2-v0.html" class="variant-link">
                                 <h3>Packing3D-p2-v0</h3>
-                                <p class="variant-description">This variant has a specific configuration. See the observation space below for details.</p>
+                                <p class="variant-description">There are always 2 parts to pack.</p>
                             </a>
                         </div>
                         <div class="variant-card">
                             <a href="packing3d-p3-v0.html" class="variant-link">
                                 <h3>Packing3D-p3-v0</h3>
-                                <p class="variant-description">This variant has a specific configuration. See the observation space below for details.</p>
+                                <p class="variant-description">There are always 3 parts to pack.</p>
                             </a>
                         </div>
 
                     </div>
 
                     <h2>References</h2>
-                    <p>Packing tasks are common in robotics and automated warehousing literature. This environment is inspired by standard manipulation benchmarks and simple bin-packing problems; it’s intended as a deterministic, physics-based testbed for pick-and-place planning and task-and-motion planning approaches.</p>
+                    <p>N/A</p>
                 </div>
 
                 <div class="back-link">
