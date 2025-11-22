@@ -2,10 +2,10 @@
 ![random action GIF](assets/random_action_gifs/TidyBot3D-base_motion-o1.gif)
 
 ### Environment Group Description
-A 3D mobile manipulation environment using the TidyBot platform. The robot has a holonomic mobile base with powered casters and a Kinova Gen3 arm. Scene type: base_motion with obstructions. The robot can control: - Base pose (x, y, theta) - Arm position (x, y, z) - Arm orientation (quaternion) - Gripper position (open/close)
+A 3D mobile manipulation environment using the TidyBot platform. The robot has a holonomic mobile base and a Kinova Gen3 arm. The base must reach a target pose.
 
 ### Variant Description
-This variant has a specific configuration. See the observation space below for details.
+There is always one target position.
 
 ### Initial State Distribution
 ![initial state GIF](assets/initial_state_gifs/TidyBot3D-base_motion-o1.gif)
@@ -61,12 +61,7 @@ The entries of an array in this Box space correspond to the following object fea
 Actions: base_pose (3), arm_pos (3), arm_quat (4), gripper_pos (1)
 
 ### Rewards
-Reward function depends on the specific task:
-- Object stacking: Reward for successfully stacking objects
-- Drawer/cabinet tasks: Reward for opening/closing and placing objects
-- General manipulation: Reward for successful pick-and-place operations
-
-Currently returns a small negative reward (-0.01) per timestep to encourage exploration.
+Currently returns a small negative reward (-0.01) until the goal is reached.
 
 
 ### References
