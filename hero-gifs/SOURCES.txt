@@ -27,6 +27,9 @@ DynPushPullHook2D.gif
 DynPushT.gif
   Source: markdowns/assets/demo_gifs/DynPushT/DynPushT_seed0_1759590231.gif
 
+DynScoopPour.gif
+  Source: markdowns/assets/demo_gifs/DynScoopPour-o30/DynScoopPour-o30_1762183067.gif
+
 StickButton2D.gif
   Source: markdowns/assets/demo_gifs/StickButton2D-b10/StickButton2D-b10_seed1_1752262385.gif
 
