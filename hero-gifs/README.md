@@ -4,7 +4,7 @@ This directory contains the GIFs displayed in the hero grid on the homepage (`in
 
 ## Current GIFs
 
-These 18 GIFs are currently being used, in order:
+These 14 GIFs are currently being used, in order:
 
 1. `ClutteredRetrieval2D.gif` - Displayed for ClutteredRetrieval2D
 2. `Motion2D.gif` - Displayed for Motion2D
@@ -19,11 +19,7 @@ These 18 GIFs are currently being used, in order:
 11. `Motion3D.gif` - Displayed for Motion3D
 12. `Obstruction3D.gif` - Displayed for Obstruction3D
 13. `Packing3D.gif` - Displayed for Packing3D
-14. `TidyBot3D-ground.gif` - Displayed for TidyBot3D-ground
-15. `TidyBot3D-table.gif` - Displayed for TidyBot3D-table
-16. `TidyBot3D-cupboard.gif` - Displayed for TidyBot3D-cupboard
-17. `TidyBot3D-base_motion.gif` - Displayed for TidyBot3D-base_motion
-18. `RBY1A3D-cupboard.gif` - Displayed for RBY1A3D-cupboard
+14. `TidyBot3D-base_motion.gif` - Displayed for TidyBot3D-base_motion
 
 ## How to Update
 

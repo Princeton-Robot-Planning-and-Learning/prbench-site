@@ -42,18 +42,6 @@ Obstruction3D.gif
 Packing3D.gif
   Source: markdowns/assets/random_action_gifs/Packing3D-p2.gif
 
-TidyBot3D-ground.gif
-  Source: markdowns/assets/random_action_gifs/TidyBot3D-ground-o5.gif
-
-TidyBot3D-table.gif
-  Source: markdowns/assets/random_action_gifs/TidyBot3D-table-o7.gif
-
-TidyBot3D-cupboard.gif
-  Source: markdowns/assets/random_action_gifs/TidyBot3D-cupboard-o8.gif
-
 TidyBot3D-base_motion.gif
   Source: markdowns/assets/random_action_gifs/TidyBot3D-base_motion-o1.gif
-
-RBY1A3D-cupboard.gif
-  Source: markdowns/assets/random_action_gifs/RBY1A3D-cupboard-o8.gif
 
