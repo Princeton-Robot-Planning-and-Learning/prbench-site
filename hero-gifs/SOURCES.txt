@@ -25,7 +25,7 @@ DynPushPullHook2D.gif
   Source: markdowns/assets/demo_gifs/DynPushPullHook2D-o5/DynPushPullHook2D-o5_1762182922.gif
 
 DynPushT2D.gif
-  Source: markdowns/assets/demo_gifs/DynPushT/DynPushT_seed0_1759590231.gif
+  Source: markdowns/assets/demo_gifs/DynPushT2D/DynPushT2D_seed0_1759590231.gif
 
 DynScoopPour2D.gif
   Source: markdowns/assets/demo_gifs/DynScoopPour-o30/DynScoopPour-o30_1762183067.gif
