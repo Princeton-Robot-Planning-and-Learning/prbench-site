@@ -93,24 +93,8 @@ The entries of an array in this Box space correspond to the following object fea
 ### Action Space
 An action space for a 7 DOF robot that can open and close its gripper.
 
-    Actions are bounded relative joint positions and open / close.
-
-    The open / close logic is: <-0.5 is close, >0.5 is open, and otherwise no change.
-
-
 ### Rewards
-The reward structure is simple:
-- **-1.0** penalty at every timestep until the goal is reached
-- **Termination** occurs when the target block is placed on the target region (while not being grasped)
-
-The goal is considered reached when:
-1. The robot is not currently grasping the target block
-2. The target block is resting on (supported by) the target region
-
-Support is determined based on contact between the target block and target region, within a small distance threshold (1e-4).
-
-This encourages the robot to efficiently clear obstructions and place the target block while avoiding infinite episodes.
-
+A penalty of -1.0 is given at every time step until termination, which occurs when the target block is "on" the target surface. 
 
 ### References
 Similar environments have been used many times, especially in the task and motion planning literature. We took inspiration especially from the "1D Continuous TAMP" environment in [PDDLStream](https://github.com/caelan/pddlstream).
