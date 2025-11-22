@@ -308,6 +308,52 @@ def convert_markdown_to_html(md_file_path):
     # Determine category
     category = categorize_environment(env_name)
     
+    # Extract the three GIFs before processing
+    gif_pattern = r'!\[(.*?)\]\((assets/.*?\.gif)\)'
+    gif_matches = re.findall(gif_pattern, md_content)
+    
+    # Store GIF info: [(alt_text, path), ...]
+    gifs_info = []
+    for alt_text, gif_path in gif_matches[:3]:  # Only take first 3 GIFs
+        fixed_path = gif_path.replace('assets/', '../markdowns/assets/')
+        gifs_info.append((alt_text, fixed_path))
+    
+    # Check if Example Demonstration is available
+    has_demo_gif = False
+    demo_gif_pattern = r'### Example Demonstration\s*\n!\[.*?\]\(assets/.*?\.gif\)'
+    if re.search(demo_gif_pattern, md_content):
+        has_demo_gif = True
+    
+    # Remove the GIF sections from markdown to avoid duplication
+    # Remove the random action GIF line and Initial State Distribution/Example Demonstration sections
+    md_content_lines = md_content.split('\n')
+    filtered_lines = []
+    skip_until_next_section = False
+    
+    for i, line in enumerate(md_content_lines):
+        # Skip the first GIF (random action GIF) right after title
+        if i > 0 and line.strip().startswith('![') and 'random_action_gifs' in line:
+            continue
+        # Skip Initial State Distribution section header and GIF
+        elif line.strip() == '### Initial State Distribution':
+            skip_until_next_section = True
+            continue
+        # Skip Example Demonstration section header and GIF (or text)
+        elif line.strip() == '### Example Demonstration':
+            skip_until_next_section = True
+            continue
+        # Stop skipping when we hit the next section
+        elif skip_until_next_section and line.strip().startswith('###') and 'Initial State Distribution' not in line and 'Example Demonstration' not in line:
+            skip_until_next_section = False
+            filtered_lines.append(line)
+        # Skip lines while in skip mode
+        elif skip_until_next_section:
+            continue
+        else:
+            filtered_lines.append(line)
+    
+    md_content = '\n'.join(filtered_lines)
+    
     # Fix asset paths: change 'assets/' to '../markdowns/assets/'
     md_content = md_content.replace('](assets/', '](../markdowns/assets/')
     md_content = md_content.replace('="assets/', '="../markdowns/assets/')
@@ -343,6 +389,34 @@ def convert_markdown_to_html(md_file_path):
     md = markdown.Markdown(extensions=['tables', 'fenced_code'])
     html_content = md.convert(md_content)
     
+    # Create GIF grid HTML (similar to group pages)
+    gifs_html = ''
+    if gifs_info or has_demo_gif is False:
+        gifs_html = '<div class="gifs-grid">\n'
+        gif_labels = ['Random Action', 'Initial State Distribution', 'Example Demonstration']
+        
+        # Add the GIFs we found
+        for i, (alt_text, gif_path) in enumerate(gifs_info):
+            label = gif_labels[i] if i < len(gif_labels) else alt_text or f'GIF {i+1}'
+            gifs_html += f'''                        <div class="gif-container">
+                            <h3>{label}</h3>
+                            <img src="{gif_path}" alt="{label}">
+                        </div>
+'''
+        
+        # If we only have 2 GIFs and no demo GIF, add placeholder for demo
+        if len(gifs_info) == 2 and not has_demo_gif:
+            gifs_html += f'''                        <div class="gif-container">
+                            <h3>Example Demonstration</h3>
+                            <p style="padding: 60px 20px; text-align: center; color: #666;">No demonstration GIFs available</p>
+                        </div>
+'''
+        
+        gifs_html += '                    </div>\n\n'
+    
+    # Combine GIFs grid with the rest of the content
+    final_content = gifs_html + html_content
+    
     # Get base name for breadcrumb
     base_name = extract_base_environment_name(env_name)
     group_filename = generate_group_filename(base_name)
@@ -362,7 +436,7 @@ def convert_markdown_to_html(md_file_path):
         category_link=category_filename,
         env_name=env_name,
         group_breadcrumb=group_breadcrumb,
-        content=html_content
+        content=final_content
     )
     
     # Generate output filename
