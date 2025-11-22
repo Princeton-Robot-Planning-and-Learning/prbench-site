@@ -39,6 +39,9 @@ Motion3D.gif
 Obstruction3D.gif
   Source: markdowns/assets/random_action_gifs/Obstruction3D-o4.gif
 
+Packing3D.gif
+  Source: markdowns/assets/random_action_gifs/Packing3D-p2.gif
+
 TidyBot3D-ground.gif
   Source: markdowns/assets/random_action_gifs/TidyBot3D-ground-o5.gif
 
