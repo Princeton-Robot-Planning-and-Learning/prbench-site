@@ -24,16 +24,16 @@ ClutteredStorage2D.gif
 DynPushPullHook2D.gif
   Source: markdowns/assets/demo_gifs/DynPushPullHook2D-o5/DynPushPullHook2D-o5_1762182922.gif
 
-DynPushT.gif
+DynPushT2D.gif
   Source: markdowns/assets/demo_gifs/DynPushT/DynPushT_seed0_1759590231.gif
 
-DynScoopPour.gif
+DynScoopPour2D.gif
   Source: markdowns/assets/demo_gifs/DynScoopPour-o30/DynScoopPour-o30_1762183067.gif
 
 StickButton2D.gif
   Source: markdowns/assets/demo_gifs/StickButton2D-b10/StickButton2D-b10_seed1_1752262385.gif
 
-Motion3D.gif
+ArmMotion3D.gif
   Source: markdowns/assets/random_action_gifs/Motion3D.gif
 
 Obstruction3D.gif
@@ -42,6 +42,6 @@ Obstruction3D.gif
 Packing3D.gif
   Source: markdowns/assets/random_action_gifs/Packing3D-p2.gif
 
-TidyBot3D-base_motion.gif
+BaseMotion3D.gif
   Source: markdowns/assets/random_action_gifs/TidyBot3D-base_motion-o1.gif
 

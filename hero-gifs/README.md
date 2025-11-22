@@ -13,13 +13,13 @@ These 14 GIFs are currently being used, in order:
 5. `DynObstruction2D.gif` - Displayed for DynObstruction2D
 6. `ClutteredStorage2D.gif` - Displayed for ClutteredStorage2D
 7. `DynPushPullHook2D.gif` - Displayed for DynPushPullHook2D
-8. `DynPushT.gif` - Displayed for DynPushT
-9. `DynScoopPour.gif` - Displayed for DynScoopPour
+8. `DynPushT2D.gif` - Displayed for DynPushT2D
+9. `DynScoopPour2D.gif` - Displayed for DynScoopPour2D
 10. `StickButton2D.gif` - Displayed for StickButton2D
-11. `Motion3D.gif` - Displayed for Motion3D
+11. `ArmMotion3D.gif` - Displayed for ArmMotion3D
 12. `Obstruction3D.gif` - Displayed for Obstruction3D
 13. `Packing3D.gif` - Displayed for Packing3D
-14. `TidyBot3D-base_motion.gif` - Displayed for TidyBot3D-base_motion
+14. `BaseMotion3D.gif` - Displayed for BaseMotion3D
 
 ## How to Update
 
