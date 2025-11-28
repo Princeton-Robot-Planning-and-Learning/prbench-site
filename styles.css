@@ -671,3 +671,50 @@ footer {
     background-color: #f8f9fa;
 }
 
+/* Method Details */
+.method-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.method-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.method-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.method-card h4 {
+    color: #667eea;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.method-card p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.method-card a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.method-card a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
