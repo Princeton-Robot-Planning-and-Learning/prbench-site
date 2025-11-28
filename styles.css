@@ -732,3 +732,45 @@ footer {
     text-decoration: underline;
 }
 
+/* Real Robots Section */
+.real-robots-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.real-robot-demo {
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.real-robot-demo:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+}
+
+.real-robots-content p {
+    text-align: center;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 800px;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .real-robot-demo {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+    
+    .real-robots-content p {
+        font-size: 1rem;
+    }
+}
+
