@@ -243,6 +243,7 @@ section p {
 .about-content p {
     margin-bottom: 1.5rem;
     line-height: 1.8;
+    text-align: justify;
 }
 
 .about-content ul {
@@ -255,6 +256,7 @@ section p {
     line-height: 1.8;
     font-size: 1.1rem;
     color: #555;
+    text-align: justify;
 }
 
 /* Challenges Grid */
