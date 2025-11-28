@@ -1,0 +1,93 @@
+
+# Reinforcement Learning (PPO)
+
+## Motion2D-p0-v0
+total_episodes,num_seeds,success_rate_mean,success_rate_std,successful_steps_mean,successful_steps_std,successful_steps_mean_per_seed,successful_steps_std_per_seed
+250,5,0.9480000000000001,0.06572670690061995,39.527426160337555,0.5003038481754637,39.5273829787234,0.057650721625479295
+
+## Motion2D-p2-v0
+total_episodes,num_seeds,success_rate_mean,success_rate_std,successful_steps_mean,successful_steps_std,successful_steps_mean_per_seed,successful_steps_std_per_seed
+250,5,0.0,0.0,,,,
+
+## StickButton2D-b1-v0
+total_episodes,num_seeds,success_rate_mean,success_rate_std,successful_steps_mean,successful_steps_std,successful_steps_mean_per_seed,successful_steps_std_per_seed
+250,5,0.07200000000000001,0.02683281572999748,15.944444444444445,15.210183207398076,15.180000000000001,9.450796556669472
+
+## StickButton2D-b3-v0
+total_episodes,num_seeds,success_rate_mean,success_rate_std,successful_steps_mean,successful_steps_std,successful_steps_mean_per_seed,successful_steps_std_per_seed
+250,5,0.0,0.0,,,,
+
+# Reinforcement Learning (SAC)
+
+## Motion2D-p0-v0
+total_episodes,num_seeds,success_rate_mean,success_rate_std,successful_steps_mean,successful_steps_std,successful_steps_mean_per_seed,successful_steps_std_per_seed
+250,5,0.0,0.0,,,,
+
+## Motion2D-p2-v0
+total_episodes,num_seeds,success_rate_mean,success_rate_std,successful_steps_mean,successful_steps_std,successful_steps_mean_per_seed,successful_steps_std_per_seed
+250,5,0.0,0.0,,,,
+
+## StickButton2D-b1-v0
+total_episodes,num_seeds,success_rate_mean,success_rate_std,successful_steps_mean,successful_steps_std,successful_steps_mean_per_seed,successful_steps_std_per_seed
+250,5,0.012,0.010954451150103323,246.33333333333334,29.36551265231604,246.33333333333334,29.36551265231604
+
+## StickButton2D-b3-v0
+total_episodes,num_seeds,success_rate_mean,success_rate_std,successful_steps_mean,successful_steps_std,successful_steps_mean_per_seed,successful_steps_std_per_seed
+250,5,0.0,0.0,,,,
+
+
+# Imitation Learning (Diffusion Policy)
+
+## Motion2D-p0-v0
+Load from imitation-learning-results/Motion2D-p0-v0/organized_results.json
+
+## Motion2D-p2-v0
+Load from imitation-learning-results/Motion2D-p2-v0/organized_results.json
+
+## StickButton2D-b1-v0
+Load from imitation-learning-results/StickButton2D-b1-v0/organized_results.json
+
+## StickButton2D-b3-v0
+Load from imitation-learning-results/StickButton2D-b3-v0/organized_results.json
+
+# LLM Planning (Parameterized Skills)
+
+env,rgb_observation,solve_rate,solve_rate_std,num_runs,avg_planning_time,planning_time_std,avg_steps
+Motion2D-p0-v0,False,1.0,0.0,150,0.018237653496131875,0.002290933944205877,38.946666666666665
+Motion2D-p2-v0,False,0.0,0.0,150,0.020959761950264943,0.11317583619627522,1.5666666666666667
+StickButton2D-b1-v0,False,0.2866666666666667,0.45371940397028426,150,0.002204902558199392,0.0007328213266600316,34.24
+StickButton2D-b3-v0,False,0.006666666666666667,0.0816496580927726,150,0.003260342950622194,0.0004894372532075369,46.74
+
+# VLM Planning (Parameterized Skills)
+
+env,rgb_observation,solve_rate,solve_rate_std,num_runs,avg_planning_time,planning_time_std,avg_steps
+Motion2D-p0-v0,True,1.0,0.0,150,0.03900383878072409,0.015370281628307192,38.946666666666665
+Motion2D-p2-v0,True,0.0,0.0,150,0.04130736612171551,0.11203331649227279,1.8066666666666666
+StickButton2D-b1-v0,True,0.22666666666666666,0.4200777599264063,150,0.022797280834444437,0.0017594814394632041,42.25333333333333
+StickButton2D-b3-v0,True,0.006666666666666667,0.0816496580927726,150,0.024209492040099534,0.0018779363156885796,49.36
+
+# Bilevel Planning
+
+## Motion2D-p0-v0
+metric,mean,std
+success,1.0,0.0
+steps,39.024,0.6268939176094651
+planning_time,0.109754337914288,0.003591827877831851
+
+## Motion2D-p2-v0
+metric,mean,std
+success,0.996,0.0632455532033676
+steps,67.04016064257029,16.03645021374621
+planning_time,4.43451453818113,5.459052395649674
+
+## StickButton2D-b1-v0
+metric,mean,std
+success,0.992,0.08926293455821274
+steps,51.608870967741936,36.80427829403013
+planning_time,0.6817509261102626,2.4092129684643617
+
+## StickButton2D-b3-v0
+metric,mean,std
+success,0.3,0.4591768433773374
+steps,101.04,42.05673131198677
+planning_time,7.224738878334562,7.639496784843736

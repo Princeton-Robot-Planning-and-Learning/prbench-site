@@ -1,0 +1,201 @@
+method,env,metric,value
+RL-PPO,Motion2D-p0-v0,total_episodes,250
+RL-PPO,Motion2D-p0-v0,num_seeds,5
+RL-PPO,Motion2D-p0-v0,success_rate_mean,0.9480000000000001
+RL-PPO,Motion2D-p0-v0,success_rate_std,0.06572670690061995
+RL-PPO,Motion2D-p0-v0,successful_steps_mean,39.527426160337555
+RL-PPO,Motion2D-p0-v0,successful_steps_std,0.5003038481754637
+RL-PPO,Motion2D-p0-v0,successful_steps_mean_per_seed,39.5273829787234
+RL-PPO,Motion2D-p0-v0,successful_steps_std_per_seed,0.057650721625479295
+RL-PPO,Motion2D-p2-v0,total_episodes,250
+RL-PPO,Motion2D-p2-v0,num_seeds,5
+RL-PPO,Motion2D-p2-v0,success_rate_mean,0.0
+RL-PPO,Motion2D-p2-v0,success_rate_std,0.0
+RL-PPO,Motion2D-p2-v0,successful_steps_mean,
+RL-PPO,Motion2D-p2-v0,successful_steps_std,
+RL-PPO,Motion2D-p2-v0,successful_steps_mean_per_seed,
+RL-PPO,Motion2D-p2-v0,successful_steps_std_per_seed,
+RL-PPO,StickButton2D-b1-v0,total_episodes,250
+RL-PPO,StickButton2D-b1-v0,num_seeds,5
+RL-PPO,StickButton2D-b1-v0,success_rate_mean,0.07200000000000001
+RL-PPO,StickButton2D-b1-v0,success_rate_std,0.02683281572999748
+RL-PPO,StickButton2D-b1-v0,successful_steps_mean,15.944444444444445
+RL-PPO,StickButton2D-b1-v0,successful_steps_std,15.210183207398076
+RL-PPO,StickButton2D-b1-v0,successful_steps_mean_per_seed,15.180000000000001
+RL-PPO,StickButton2D-b1-v0,successful_steps_std_per_seed,9.450796556669472
+RL-PPO,StickButton2D-b3-v0,total_episodes,250
+RL-PPO,StickButton2D-b3-v0,num_seeds,5
+RL-PPO,StickButton2D-b3-v0,success_rate_mean,0.0
+RL-PPO,StickButton2D-b3-v0,success_rate_std,0.0
+RL-PPO,StickButton2D-b3-v0,successful_steps_mean,
+RL-PPO,StickButton2D-b3-v0,successful_steps_std,
+RL-PPO,StickButton2D-b3-v0,successful_steps_mean_per_seed,
+RL-PPO,StickButton2D-b3-v0,successful_steps_std_per_seed,
+RL-SAC,Motion2D-p0-v0,total_episodes,250
+RL-SAC,Motion2D-p0-v0,num_seeds,5
+RL-SAC,Motion2D-p0-v0,success_rate_mean,0.0
+RL-SAC,Motion2D-p0-v0,success_rate_std,0.0
+RL-SAC,Motion2D-p0-v0,successful_steps_mean,
+RL-SAC,Motion2D-p0-v0,successful_steps_std,
+RL-SAC,Motion2D-p0-v0,successful_steps_mean_per_seed,
+RL-SAC,Motion2D-p0-v0,successful_steps_std_per_seed,
+RL-SAC,Motion2D-p2-v0,total_episodes,250
+RL-SAC,Motion2D-p2-v0,num_seeds,5
+RL-SAC,Motion2D-p2-v0,success_rate_mean,0.0
+RL-SAC,Motion2D-p2-v0,success_rate_std,0.0
+RL-SAC,Motion2D-p2-v0,successful_steps_mean,
+RL-SAC,Motion2D-p2-v0,successful_steps_std,
+RL-SAC,Motion2D-p2-v0,successful_steps_mean_per_seed,
+RL-SAC,Motion2D-p2-v0,successful_steps_std_per_seed,
+RL-SAC,StickButton2D-b1-v0,total_episodes,250
+RL-SAC,StickButton2D-b1-v0,num_seeds,5
+RL-SAC,StickButton2D-b1-v0,success_rate_mean,0.012
+RL-SAC,StickButton2D-b1-v0,success_rate_std,0.010954451150103323
+RL-SAC,StickButton2D-b1-v0,successful_steps_mean,246.33333333333334
+RL-SAC,StickButton2D-b1-v0,successful_steps_std,29.36551265231604
+RL-SAC,StickButton2D-b1-v0,successful_steps_mean_per_seed,246.33333333333334
+RL-SAC,StickButton2D-b1-v0,successful_steps_std_per_seed,29.36551265231604
+RL-SAC,StickButton2D-b3-v0,total_episodes,250
+RL-SAC,StickButton2D-b3-v0,num_seeds,5
+RL-SAC,StickButton2D-b3-v0,success_rate_mean,0.0
+RL-SAC,StickButton2D-b3-v0,success_rate_std,0.0
+RL-SAC,StickButton2D-b3-v0,successful_steps_mean,
+RL-SAC,StickButton2D-b3-v0,successful_steps_std,
+RL-SAC,StickButton2D-b3-v0,successful_steps_mean_per_seed,
+RL-SAC,StickButton2D-b3-v0,successful_steps_std_per_seed,
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,train_demonstrations,111
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,train_environment steps,4634
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,success rate_mean,0.9640000000000001
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,success rate_std,0.008000000000000007
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,success rate_min,0.96
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,success rate_max,0.98
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,wall clock time per episode_mean,5.489934822082519
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,wall clock time per episode_std,1.19754354547676
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,wall clock time per episode_min,3.098237648010254
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,wall clock time per episode_max,6.179814763069153
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,steps per success episode_mean,42.940136054421764
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,steps per success episode_std,1.2355727005345583
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,steps per success episode_min,41.541666666666664
+ImitationLearning-DiffusionPolicy,Motion2D-p0-v0,steps per success episode_max,44.875
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,train_demonstrations,112
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,train_environment steps,9045
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,success rate_mean,0.932
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,success rate_std,0.027129319932501058
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,success rate_min,0.88
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,success rate_max,0.96
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,wall clock time per episode_mean,7.930412739753723
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,wall clock time per episode_std,0.5637770976498372
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,wall clock time per episode_min,7.226211371421814
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,wall clock time per episode_max,8.82243103981018
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,steps per success episode_mean,104.72503223726628
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,steps per success episode_std,8.35010274281145
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,steps per success episode_min,97.44680851063829
+ImitationLearning-DiffusionPolicy,Motion2D-p2-v0,steps per success episode_max,120.59574468085107
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,train_demonstrations,114
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,train_environment steps,8141
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,success rate_mean,0.6519999999999999
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,success rate_std,0.039191835884530825
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,success rate_min,0.62
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,success rate_max,0.7
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,wall clock time per episode_mean,8.668627438545226
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,wall clock time per episode_std,0.016884585650684243
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,wall clock time per episode_min,8.638026719093324
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,wall clock time per episode_max,8.68339937210083
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,steps per success episode_mean,111.49511520737329
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,steps per success episode_std,12.9466049413308
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,steps per success episode_min,100.61290322580645
+ImitationLearning-DiffusionPolicy,StickButton2D-b1-v0,steps per success episode_max,133.88571428571427
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,train_demonstrations,113
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,train_environment steps,12948
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,success rate_mean,0.316
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,success rate_std,0.06118823416311342
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,success rate_min,0.22
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,success rate_max,0.4
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,wall clock time per episode_mean,10.82145309638977
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,wall clock time per episode_std,0.7905680960584034
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,wall clock time per episode_min,10.191344690322875
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,wall clock time per episode_max,12.195622668266296
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,steps per success episode_mean,236.97215431627197
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,steps per success episode_std,31.250792911928123
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,steps per success episode_min,202.75
+ImitationLearning-DiffusionPolicy,StickButton2D-b3-v0,steps per success episode_max,278.11764705882354
+LLMPlanning,Motion2D-p0-v0,rgb_observation,False
+LLMPlanning,Motion2D-p0-v0,solve_rate,1.0
+LLMPlanning,Motion2D-p0-v0,solve_rate_std,0.0
+LLMPlanning,Motion2D-p0-v0,num_runs,150
+LLMPlanning,Motion2D-p0-v0,avg_planning_time,0.018237653496131875
+LLMPlanning,Motion2D-p0-v0,planning_time_std,0.002290933944205877
+LLMPlanning,Motion2D-p0-v0,avg_steps,38.946666666666665
+LLMPlanning,Motion2D-p2-v0,rgb_observation,False
+LLMPlanning,Motion2D-p2-v0,solve_rate,0.0
+LLMPlanning,Motion2D-p2-v0,solve_rate_std,0.0
+LLMPlanning,Motion2D-p2-v0,num_runs,150
+LLMPlanning,Motion2D-p2-v0,avg_planning_time,0.020959761950264943
+LLMPlanning,Motion2D-p2-v0,planning_time_std,0.11317583619627522
+LLMPlanning,Motion2D-p2-v0,avg_steps,1.5666666666666667
+LLMPlanning,StickButton2D-b1-v0,rgb_observation,False
+LLMPlanning,StickButton2D-b1-v0,solve_rate,0.2866666666666667
+LLMPlanning,StickButton2D-b1-v0,solve_rate_std,0.45371940397028426
+LLMPlanning,StickButton2D-b1-v0,num_runs,150
+LLMPlanning,StickButton2D-b1-v0,avg_planning_time,0.002204902558199392
+LLMPlanning,StickButton2D-b1-v0,planning_time_std,0.0007328213266600316
+LLMPlanning,StickButton2D-b1-v0,avg_steps,34.24
+LLMPlanning,StickButton2D-b3-v0,rgb_observation,False
+LLMPlanning,StickButton2D-b3-v0,solve_rate,0.006666666666666667
+LLMPlanning,StickButton2D-b3-v0,solve_rate_std,0.0816496580927726
+LLMPlanning,StickButton2D-b3-v0,num_runs,150
+LLMPlanning,StickButton2D-b3-v0,avg_planning_time,0.003260342950622194
+LLMPlanning,StickButton2D-b3-v0,planning_time_std,0.0004894372532075369
+LLMPlanning,StickButton2D-b3-v0,avg_steps,46.74
+VLMPlanning,Motion2D-p0-v0,rgb_observation,True
+VLMPlanning,Motion2D-p0-v0,solve_rate,1.0
+VLMPlanning,Motion2D-p0-v0,solve_rate_std,0.0
+VLMPlanning,Motion2D-p0-v0,num_runs,150
+VLMPlanning,Motion2D-p0-v0,avg_planning_time,0.03900383878072409
+VLMPlanning,Motion2D-p0-v0,planning_time_std,0.015370281628307192
+VLMPlanning,Motion2D-p0-v0,avg_steps,38.946666666666665
+VLMPlanning,Motion2D-p2-v0,rgb_observation,True
+VLMPlanning,Motion2D-p2-v0,solve_rate,0.0
+VLMPlanning,Motion2D-p2-v0,solve_rate_std,0.0
+VLMPlanning,Motion2D-p2-v0,num_runs,150
+VLMPlanning,Motion2D-p2-v0,avg_planning_time,0.04130736612171551
+VLMPlanning,Motion2D-p2-v0,planning_time_std,0.11203331649227279
+VLMPlanning,Motion2D-p2-v0,avg_steps,1.8066666666666666
+VLMPlanning,StickButton2D-b1-v0,rgb_observation,True
+VLMPlanning,StickButton2D-b1-v0,solve_rate,0.22666666666666666
+VLMPlanning,StickButton2D-b1-v0,solve_rate_std,0.4200777599264063
+VLMPlanning,StickButton2D-b1-v0,num_runs,150
+VLMPlanning,StickButton2D-b1-v0,avg_planning_time,0.022797280834444437
+VLMPlanning,StickButton2D-b1-v0,planning_time_std,0.0017594814394632041
+VLMPlanning,StickButton2D-b1-v0,avg_steps,42.25333333333333
+VLMPlanning,StickButton2D-b3-v0,rgb_observation,True
+VLMPlanning,StickButton2D-b3-v0,solve_rate,0.006666666666666667
+VLMPlanning,StickButton2D-b3-v0,solve_rate_std,0.0816496580927726
+VLMPlanning,StickButton2D-b3-v0,num_runs,150
+VLMPlanning,StickButton2D-b3-v0,avg_planning_time,0.024209492040099534
+VLMPlanning,StickButton2D-b3-v0,planning_time_std,0.0018779363156885796
+VLMPlanning,StickButton2D-b3-v0,avg_steps,49.36
+BilevelPlanning,Motion2D-p0-v0,success_mean,1.0
+BilevelPlanning,Motion2D-p0-v0,success_std,0.0
+BilevelPlanning,Motion2D-p0-v0,steps_mean,39.024
+BilevelPlanning,Motion2D-p0-v0,steps_std,0.6268939176094651
+BilevelPlanning,Motion2D-p0-v0,planning_time_mean,0.109754337914288
+BilevelPlanning,Motion2D-p0-v0,planning_time_std,0.003591827877831851
+BilevelPlanning,Motion2D-p2-v0,success_mean,0.996
+BilevelPlanning,Motion2D-p2-v0,success_std,0.0632455532033676
+BilevelPlanning,Motion2D-p2-v0,steps_mean,67.04016064257029
+BilevelPlanning,Motion2D-p2-v0,steps_std,16.03645021374621
+BilevelPlanning,Motion2D-p2-v0,planning_time_mean,4.43451453818113
+BilevelPlanning,Motion2D-p2-v0,planning_time_std,5.459052395649674
+BilevelPlanning,StickButton2D-b1-v0,success_mean,0.992
+BilevelPlanning,StickButton2D-b1-v0,success_std,0.08926293455821274
+BilevelPlanning,StickButton2D-b1-v0,steps_mean,51.608870967741936
+BilevelPlanning,StickButton2D-b1-v0,steps_std,36.80427829403013
+BilevelPlanning,StickButton2D-b1-v0,planning_time_mean,0.6817509261102626
+BilevelPlanning,StickButton2D-b1-v0,planning_time_std,2.4092129684643617
+BilevelPlanning,StickButton2D-b3-v0,success_mean,0.3
+BilevelPlanning,StickButton2D-b3-v0,success_std,0.4591768433773374
+BilevelPlanning,StickButton2D-b3-v0,steps_mean,101.04
+BilevelPlanning,StickButton2D-b3-v0,steps_std,42.05673131198677
+BilevelPlanning,StickButton2D-b3-v0,planning_time_mean,7.224738878334562
+BilevelPlanning,StickButton2D-b3-v0,planning_time_std,7.639496784843736

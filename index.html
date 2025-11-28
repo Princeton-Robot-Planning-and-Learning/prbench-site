@@ -526,7 +526,61 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
         <section id="results">
             <div class="container">
                 <h2>Results</h2>
-                <p>Results from various robotic systems will be displayed here.</p>
+                <p>Success rates across different methods and environments. Values shown are mean ± standard deviation across multiple evaluation runs.</p>
+                
+                <div class="results-table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Environment</th>
+                                <th>RL-PPO</th>
+                                <th>RL-SAC</th>
+                                <th>Diffusion Policy</th>
+                                <th>LLM Planning</th>
+                                <th>VLM Planning</th>
+                                <th>Bilevel Planning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="environments/motion2d-p0-v0.html">Motion2D-p0-v0</a></td>
+                                <td>0.948 ± 0.066</td>
+                                <td>0.000 ± 0.000</td>
+                                <td>0.964 ± 0.008</td>
+                                <td>1.000 ± 0.000</td>
+                                <td>1.000 ± 0.000</td>
+                                <td>1.000 ± 0.000</td>
+                            </tr>
+                            <tr>
+                                <td><a href="environments/motion2d-p2-v0.html">Motion2D-p2-v0</a></td>
+                                <td>0.000 ± 0.000</td>
+                                <td>0.000 ± 0.000</td>
+                                <td>0.932 ± 0.027</td>
+                                <td>0.000 ± 0.000</td>
+                                <td>0.000 ± 0.000</td>
+                                <td>0.996 ± 0.063</td>
+                            </tr>
+                            <tr>
+                                <td><a href="environments/stickbutton2d-b1-v0.html">StickButton2D-b1-v0</a></td>
+                                <td>0.072 ± 0.027</td>
+                                <td>0.012 ± 0.011</td>
+                                <td>0.652 ± 0.039</td>
+                                <td>0.287 ± 0.454</td>
+                                <td>0.227 ± 0.420</td>
+                                <td>0.992 ± 0.089</td>
+                            </tr>
+                            <tr>
+                                <td><a href="environments/stickbutton2d-b3-v0.html">StickButton2D-b3-v0</a></td>
+                                <td>0.000 ± 0.000</td>
+                                <td>0.000 ± 0.000</td>
+                                <td>0.316 ± 0.061</td>
+                                <td>0.007 ± 0.082</td>
+                                <td>0.007 ± 0.082</td>
+                                <td>0.300 ± 0.459</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
