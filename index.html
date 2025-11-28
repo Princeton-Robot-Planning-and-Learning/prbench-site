@@ -151,9 +151,20 @@
                 <p class="intro-text">A <strong>p</strong>hysical <strong>r</strong>easoning <strong>bench</strong>mark for robotics.</p>
                 
                 <div class="about-content">
-                    <p>There's growing excitement around large language models and their ability to "reason"—but reasoning isn't just about tokens and text. <strong>Robots must reason too</strong>: over long horizons, under uncertainty, and with sparse feedback. And unlike purely symbolic systems, <strong>robotic reasoning is physical</strong>: it's grounded in low-level, continuous state and action spaces. It requires understanding kinematics, geometry, dynamics, contact, force, tool use, and more.</p>
-                    
-                    <p>This benchmark is designed for this kind of physical reasoning with robots. We invite researchers to try their best task and motion planning, reinforcement learning, imitation learning, and foundation models approaches. We hope that PRBench will bridge perspectives and foster shared progress toward physically intelligent robots.</p>
+                    <p>This is a work in progress! We are sharing it with you to get feedback so that we can determine how to focus our next efforts. Thanks for your help!</p>
+
+                    <p>PRBench is designed to test "mid-level" physical reasoning. Existing benchmarks focus on either high-level semantic understanding and task planning ("put the apple on a plate"), or low-level perception and manipulation (pixels to torques). PRBench instead considers the challenges that arise when these two levels meet: to put the apple on a plate, the robot may need to first retrieve a plate from a cupboard ("oh wait, the cupboard is closed -- let me open it first; I need to find a reachable grasp of the cupboard doorknob such that I can then swing open the door without colliding my arm into the adjacent shelf; the plates are blocked by cups, perhaps I can gently push them out of the way..."). In general, these are tasks that feature:</p>
+                    <ul>
+                        <li>Tight constraints (kinematic, dynamic, collision, etc.)</li>
+                        <li>Varying numbers of objects</li>
+                        <li>Long time horizons</li>
+                        <li>Sparse rewards</li>
+                        <li>Diverse task distributions, requiring generalization</li>
+                        <li>Challenges inspired by the task-and-motion-planning (TAMP) literature</li>
+                    </ul>
+
+                    <p>PRBench is designed as a collection of Gymnasium environments. Performance is evaluated based on not only evaluate task performance (rewards), but also training time and sample complexity (for data-driven approaches) and evaluation time (especially for planning-based approaches). Our goal is to facilitate direct comparisons between many different approaches, evaluating and supporting progress in the state of the art for robot physical reasoning.</p>
+
                 </div>
 
                 <h3 class="collapsible-header" onclick="toggleCollapsible('challenges-section')">
