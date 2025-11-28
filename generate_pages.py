@@ -20,6 +20,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <link rel="stylesheet" href="environment.css">
 </head>
 <body>
+    <div class="draft-banner">
+        EARLY DRAFT: DO NOT DISTRIBUTE
+    </div>
     <header>
         <nav>
             <div class="container">
@@ -76,6 +79,9 @@ CATEGORY_TEMPLATE = """<!DOCTYPE html>
     <link rel="stylesheet" href="environment.css">
 </head>
 <body>
+    <div class="draft-banner">
+        EARLY DRAFT: DO NOT DISTRIBUTE
+    </div>
     <header>
         <nav>
             <div class="container">
@@ -138,6 +144,9 @@ GROUP_TEMPLATE = """<!DOCTYPE html>
     <link rel="stylesheet" href="environment.css">
 </head>
 <body>
+    <div class="draft-banner">
+        EARLY DRAFT: DO NOT DISTRIBUTE
+    </div>
     <header>
         <nav>
             <div class="container">
