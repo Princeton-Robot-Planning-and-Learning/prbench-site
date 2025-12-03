@@ -159,9 +159,9 @@
                 <div class="about-content">
                     <p>This is a work in progress! We are sharing it with you to get feedback so that we can determine how to focus our next efforts. Thanks for your help!</p>
 
-                    <p>PRBench is designed to test "mid-level" robot reasoning. Existing benchmarks focus on either high-level semantic understanding and task planning ("put the apple on a plate"), or low-level perception and manipulation (pixels to torques). PRBench instead considers the challenges that arise when these two levels meet: to put the apple on a plate, the robot may need to first retrieve a plate from a cupboard ("oh wait, the cupboard is closed -- let me open it first; I need to find a reachable grasp of the cupboard doorknob such that I can then swing open the door without colliding my arm into the adjacent shelf; the plates are blocked by cups, perhaps I can gently push them out of the way..."). In general, these are tasks that feature:</p>
+                    <p>PRBench is designed to test "mid-level" robot reasoning. Existing benchmarks focus on either long-horizon high-level semantic understanding ("create a meal from existing ingredients"), or short-horizon low-level perception and control (pixels to torques). PRBench instead considers the challenges that arise when these two levels, and when they cannot be easily disentangled: the messy chain of intermediate constraints required to actually realize a high-level goal ("create a "meal"), e.g., retrieving tools from cluttered drawers, opening stuck cabinets, reaching around obstacles, manipulating ingredients in tight spaces, and sequencing these motions so nothing falls, spills, or blocks future actions. In general, these are tasks that feature:</p>
                     <ul>
-                        <li>Tight constraints (kinematic, dynamic, collision, etc.)</li>
+                        <li>Tight constraints (spatial, kinematic, dynamic, collision, force, among others)</li>
                         <li>Varying numbers of objects</li>
                         <li>Long time horizons</li>
                         <li>Sparse rewards</li>
