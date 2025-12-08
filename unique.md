@@ -3,17 +3,17 @@
 | Atari Games [1]              | ❌        | ❌                       | ✅                   | ❌                 | ✅                                       | 2D              | ❌                                    |
 | DM-Control [2]               | ✅        | ❌                       | ❌                   | ✅                 | ✅                                       | 3D              | ❌                                    |
 | MineDojo [3]                 | ❌        | ✅                       | ✅                   | ❌                 | ❌                                       | 3D              | ❌                                    |
-| CALVIN [4]                   | ❓        | ❌                       | ✅                   | ✅                 | ❌                                       | 3D              | ✅                                    |
-| LIBERO [5]                   | ❓        | ❌                       | ✅                   | ✅                 | ❌                                       | 3D              | ✅                                    |
+| CALVIN [4]                   | ✅        | ✅                       | ✅                   | ✅                 | ❌                                       | 3D              | ✅                                    |
+| LIBERO [5]                   | ✅        | ✅                       | ✅                   | ✅                 | ❌                                       | 3D              | ✅                                    |
 | LogiCity [6]                 | ❌        | ✅                       | ✅                   | ❌                 | ✅                                       | 2D              | ❌                                    |
-| Embodied Agent Interface [7] | ❓        | ✅                       | ✅                   | ✅                 | ❌                                       | 3D              | ❌                                    |
-| OGBench [8]                  | ✅        | ✅                       | ✅                   | ✅                 | ❌                                       | 3D              | ❌                                    |
-| BEHAVIOR-1k [9]              | ❓        | ✅                       | ✅                   | ✅                 | ❌                                       | 3D              | ❌                                    |
-| RoboCasa [10]                | ❓        | ❌                       | ❌                   | ✅                 | ❌                                       | 3D              | ❓                                    |
-| Emboidied Bench [11]         | ❓        | ✅                       | ✅                   | ✅                 | ❌                                       | 3D              | ❓                                    |
+| Embodied Agent Interface [7] | ✅        | ✅                       | ✅                   | ✅                 | ❌                                       | 3D              | ✅                                    |
+| OGBench [8]                  | ✅        | ✅                       | ✅                   | ✅                 | ❌                                       | 3D              | ✅                                    |
+| BEHAVIOR-1k [9]              | ✅        | ✅                       | ✅                   | ✅                 | ❓                                       | 3D              | ✅                                    |
+| RoboCasa [10]                | ✅        | ✅                       | ✅                   | ✅                 | ❓                                       | 3D              | ✅                                    |
+| Emboidied Bench [11]         | ✅        | ✅                       | ✅                   | ✅                 | ❓                                       | 3D              | ✅                                    |
 | ManiSkill-HAB [12]           | ✅        | ❌                       | ✅                   | ✅                 | ❓                                       | 3D              | ✅                                    |
-| Furniturebench [13]          | ❌(Real)  | ✅                       | ✅                   | ✅                 | ✅                                       | Real            | ✅                                    |
-| VLABench [14]                | ❓        | ✅                       | ✅                   | ✅                 | ❌                                       | 3D              | ✅                                    |
+| Furniturebench [13]          | ❌        | ✅                       | ✅                   | ✅                 | ✅                                       | Real            | ✅                                    |
+| VLABench [14]                | ✅        | ✅                       | ✅                   | ✅                 | ❓                                       | 3D              | ✅                                    |
 | PRBench (Ours)               | ✅        | ✅                       | ✅                   | ✅                 | ✅                                       | 2D&3D           | ✅                                    |
 
   
