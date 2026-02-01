@@ -751,52 +751,27 @@ def generate_category_html(category_name, environments):
     category_filename = generate_category_filename(category_name)
     
     html = f'''
-                <div class="category">
-                    <h3><a href="environments/{category_filename}" class="category-title-link">{category_name}</a></h3>
-                    <p class="category-description">{category_descriptions.get(category_name, '')}</p>
+                    <div class="env-category-card">
+                        <h3><a href="environments/{category_filename}">{category_name}</a></h3>
+                        <p class="category-desc">{category_descriptions.get(category_name, '')}</p>
+                        <ul class="env-list">
 '''
-    
+
     # Generate HTML for each environment group
     for base_name, group in sorted_groups:
         if len(group) == 1:
-            # Single environment - display as a card linking directly to it
+            # Single environment - link directly to it
             env = group[0]
-            html += f'''                    <div class="env-group">
-                        <h4 class="env-group-title">{base_name}</h4>
-                        <div class="environment-grid">
-                            <a href="environments/{env['filename']}" class="environment-card">
-                                <h5>{env['name']}</h5>
-                                <p>Click to view details</p>
-                            </a>
-                        </div>
-                    </div>
+            html += f'''                            <li><a href="environments/{env['filename']}">{base_name}</a> <span class="env-count">1 variant</span></li>
 '''
         else:
-            # Multiple variants - display group title linking to group page, then show variants
+            # Multiple variants - link to group page
             group_filename = generate_group_filename(base_name)
-            html += f'''                    <div class="env-group">
-                        <h4 class="env-group-title">
-                            <a href="environments/{group_filename}" class="group-title-link">{base_name}</a>
-                            <span class="variant-count">({len(group)} variants)</span>
-                        </h4>
-                        <div class="environment-grid">
+            html += f'''                            <li><a href="environments/{group_filename}">{base_name}</a> <span class="env-count">{len(group)} variants</span></li>
 '''
-            for env in group:
-                # Extract the variant part for display
-                variant = env['name'].replace(base_name, '').lstrip('-') if base_name in env['name'] else env['name']
-                if not variant:
-                    variant = env['name']
-                
-                html += f'''                            <a href="environments/{env['filename']}" class="environment-card">
-                                <h5>{variant}</h5>
-                                <p>Click to view details</p>
-                            </a>
-'''
-            html += '''                        </div>
+
+    html += '''                        </ul>
                     </div>
-'''
-    
-    html += '''                </div>
 '''
     
     return html
@@ -911,16 +886,19 @@ def update_index_html(environments):
     # Generate new benchmark section content
     benchmark_html = '''        <section id="benchmark">
             <div class="container">
-                <h2>Benchmark</h2>
-                <p>Our benchmark is organized into four categories of physical reasoning environments:</p>
+                <h2>Environments</h2>
+                <p>PRBench environments are organized into four categories. Click on any environment family to explore variants and details.</p>
+
+                <div class="env-categories-grid">
 '''
-    
+
     # Add each category
     for category_name in ['Geometric 2D', 'Geometric 3D', 'Dynamic 2D', 'Dynamic 3D']:
         if categories[category_name]:
             benchmark_html += generate_category_html(category_name, categories[category_name])
-    
-    benchmark_html += '''            </div>
+
+    benchmark_html += '''                </div>
+            </div>
         </section>'''
     
     # Replace the benchmark section

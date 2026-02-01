@@ -214,204 +214,10 @@
                         </div>
                     </div>
                 </div>
-
-<!-- TEMPORARILY COMMENTED OUT: What Makes PRBench Unique section
-                <h3 class="collapsible-header" onclick="toggleCollapsible('unique-section')">
-                    What Makes PRBench Unique? <span class="toggle-icon" id="unique-toggle">▼</span>
-                </h3>
-                
-                <div class="collapsible-content" id="unique-section">
-                    <div class="comparison-table-wrapper">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Benchmarks</th>
-                                    <th>Physics?</th>
-                                    <th>Reasoning (Generalize)</th>
-                                    <th>Long-horizon (&gt;500)</th>
-                                    <th>Robotics-Oriented</th>
-                                    <th>Semanticless (non-language constraints)</th>
-                                    <th>Unified 2D & 3D</th>
-                                    <th>Multi-Object Physical Contacts? (&gt;5)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Atari Games [1]</td>
-                                    <td>❌</td>
-                                    <td>❌</td>
-                                    <td>✅</td>
-                                    <td>❌</td>
-                                    <td>✅</td>
-                                    <td>2D</td>
-                                    <td>❌</td>
-                                </tr>
-                                <tr>
-                                    <td>DM-Control [2]</td>
-                                    <td>✅</td>
-                                    <td>❌</td>
-                                    <td>❌</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>3D</td>
-                                    <td>❌</td>
-                                </tr>
-                                <tr>
-                                    <td>MineDojo [3]</td>
-                                    <td>❌</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>❌</td>
-                                    <td>❌</td>
-                                    <td>3D</td>
-                                    <td>❌</td>
-                                </tr>
-                                <tr>
-                                    <td>CALVIN [4]</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>❌</td>
-                                    <td>3D</td>
-                                    <td>✅</td>
-                                </tr>
-                                <tr>
-                                    <td>LIBERO [5]</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>❌</td>
-                                    <td>3D</td>
-                                    <td>✅</td>
-                                </tr>
-                                <tr>
-                                    <td>LogiCity [6]</td>
-                                    <td>❌</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>❌</td>
-                                    <td>✅</td>
-                                    <td>2D</td>
-                                    <td>❌</td>
-                                </tr>
-                                <tr>
-                                    <td>Embodied Agent Interface [7]</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>❌</td>
-                                    <td>3D</td>
-                                    <td>✅</td>
-                                </tr>
-                                <tr>
-                                    <td>OGBench [8]</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>❌</td>
-                                    <td>3D</td>
-                                    <td>✅</td>
-                                </tr>
-                                <tr>
-                                    <td>BEHAVIOR-1k [9]</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>❓</td>
-                                    <td>3D</td>
-                                    <td>✅</td>
-                                </tr>
-                                <tr>
-                                    <td>RoboCasa [10]</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>❓</td>
-                                    <td>3D</td>
-                                    <td>✅</td>
-                                </tr>
-                                <tr>
-                                    <td>Emboidied Bench [11]</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>❓</td>
-                                    <td>3D</td>
-                                    <td>✅</td>
-                                </tr>
-                                <tr>
-                                    <td>ManiSkill-HAB [12]</td>
-                                    <td>✅</td>
-                                    <td>❌</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>❓</td>
-                                    <td>3D</td>
-                                    <td>✅</td>
-                                </tr>
-                                <tr>
-                                    <td>Furniturebench [13]</td>
-                                    <td>❌(Real)</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>Real</td>
-                                    <td>✅</td>
-                                </tr>
-                                <tr>
-                                    <td>VLABench [14]</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>❓</td>
-                                    <td>3D</td>
-                                    <td>✅</td>
-                                </tr>
-                                <tr class="highlight-row">
-                                    <td><strong>PRBench (Ours)</strong></td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>✅</td>
-                                    <td>2D&3D</td>
-                                    <td>✅</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="references">
-                        <p><small>[1] Machado et al. "Revisiting the arcade learning environment." <em>JAIR</em> 61 (2018).</small></p>
-                        <p><small>[2] Tassa et al. "Deepmind control suite." <em>arXiv:1801.00690</em> (2018).</small></p>
-                        <p><small>[3] Fan et al. "Minedojo: Building open-ended embodied agents with internet-scale knowledge." <em>NeurIPS</em> 35 (2022).</small></p>
-                        <p><small>[4] Mees et al. "Calvin: A benchmark for language-conditioned policy learning." <em>IEEE RA-L</em> 7.3 (2022).</small></p>
-                        <p><small>[5] Liu et al. "Libero: Benchmarking knowledge transfer for lifelong robot learning." <em>NeurIPS</em> 36 (2023).</small></p>
-                        <p><small>[6] Li et al. "LogiCity: Advancing neuro-symbolic ai with abstract urban simulation." <em>NeurIPS</em> 37 (2024).</small></p>
-                        <p><small>[7] Li et al. "Embodied agent interface: Benchmarking llms for embodied decision making." <em>NeurIPS</em> 37 (2024).</small></p>
-                        <p><small>[8] Park et al. "OGBench: Benchmarking Offline Goal-Conditioned RL." <em>ICLR</em> (2025).</small></p>
-                        <p><small>[9] Li et al. "Behavior-1k: A benchmark for embodied ai with 1,000 everyday activities." <em>CoRL</em> (2023).</small></p>
-                        <p><small>[10] Nasiriany et al. "RoboCasa: Large-Scale Simulation of Everyday Tasks." <em>RSS 2024 Workshop</em>.</small></p>
-                        <p><small>[11] Yang et al. "EmbodiedBench: Comprehensive Benchmarking Multi-modal LLMs." <em>ICML</em> (2024).</small></p>
-                        <p><small>[12] Shukla et al. "ManiSkill-HAB: A Benchmark for Low-Level Manipulation." <em>ICLR</em> (2025).</small></p>
-                        <p><small>[13] Heo et al. "Furniturebench: Reproducible real-world benchmark." <em>IJRR</em> 44.10-11 (2025).</small></p>
-                        <p><small>[14] Zhang et al. "Vlabench: A large-scale benchmark for language-conditioned robotics." <em>ICCV</em> (2025).</small></p>
-                    </div>
-                </div>
-END TEMPORARILY COMMENTED OUT -->
             </div>
         </section>
 
-                                                                                                                        <section id="usage">
+        <section id="usage">
             <div class="container">
                 <h2>Usage</h2>
 
@@ -507,24 +313,25 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
                 <p>PRBench environments are organized into four categories. Click on any environment family to explore variants and details.</p>
 
                 <div class="env-categories-grid">
+
                     <div class="env-category-card">
                         <h3><a href="environments/geometric-2d.html">Geometric 2D</a></h3>
-                        <p class="category-desc">2D environments focused on geometric reasoning and spatial relationships</p>
+                        <p class="category-desc">2D environments focused on geometric reasoning and spatial relationships.</p>
                         <ul class="env-list">
                             <li><a href="environments/clutteredretrieval2d-group.html">ClutteredRetrieval2D</a> <span class="env-count">3 variants</span></li>
+                            <li><a href="environments/clutteredstorage2d-group.html">ClutteredStorage2D</a> <span class="env-count">4 variants</span></li>
                             <li><a href="environments/motion2d-group.html">Motion2D</a> <span class="env-count">6 variants</span></li>
                             <li><a href="environments/obstruction2d-group.html">Obstruction2D</a> <span class="env-count">5 variants</span></li>
-                            <li><a href="environments/pushpullhook2d-group.html">PushPullHook2D</a> <span class="env-count">1 variant</span></li>
-                            <li><a href="environments/clutteredstorage2d-group.html">ClutteredStorage2D</a> <span class="env-count">4 variants</span></li>
+                            <li><a href="environments/pushpullhook2d-v0.html">PushPullHook2D</a> <span class="env-count">1 variant</span></li>
                             <li><a href="environments/stickbutton2d-group.html">StickButton2D</a> <span class="env-count">5 variants</span></li>
                         </ul>
                     </div>
 
                     <div class="env-category-card">
                         <h3><a href="environments/geometric-3d.html">Geometric 3D</a></h3>
-                        <p class="category-desc">3D environments for testing spatial reasoning in three dimensions</p>
+                        <p class="category-desc">3D environments for testing spatial reasoning in three dimensions.</p>
                         <ul class="env-list">
-                            <li><a href="environments/motion3d-group.html">Motion3D</a> <span class="env-count">1 variant</span></li>
+                            <li><a href="environments/motion3d-v0.html">Motion3D</a> <span class="env-count">1 variant</span></li>
                             <li><a href="environments/obstruction3d-group.html">Obstruction3D</a> <span class="env-count">5 variants</span></li>
                             <li><a href="environments/packing3d-group.html">Packing3D</a> <span class="env-count">3 variants</span></li>
                         </ul>
@@ -532,22 +339,22 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
 
                     <div class="env-category-card">
                         <h3><a href="environments/dynamic-2d.html">Dynamic 2D</a></h3>
-                        <p class="category-desc">2D environments involving dynamic physical interactions and motion</p>
+                        <p class="category-desc">2D environments involving dynamic physical interactions and motion.</p>
                         <ul class="env-list">
                             <li><a href="environments/dynobstruction2d-group.html">DynObstruction2D</a> <span class="env-count">5 variants</span></li>
                             <li><a href="environments/dynpushpullhook2d-group.html">DynPushPullHook2D</a> <span class="env-count">3 variants</span></li>
-                            <li><a href="environments/dynpusht2d-group.html">DynPushT2D</a> <span class="env-count">1 variant</span></li>
-                            <li><a href="environments/dynscooppour2d-group.html">DynScoopPour2D</a> <span class="env-count">4 variants</span></li>
+                            <li><a href="environments/dynpusht2d-t1-v0.html">DynPushT2D</a> <span class="env-count">1 variant</span></li>
+                            <li><a href="environments/dynscooppour2d-group.html">DynScoopPour2D</a> <span class="env-count">8 variants</span></li>
                         </ul>
                     </div>
 
                     <div class="env-category-card">
                         <h3><a href="environments/dynamic-3d.html">Dynamic 3D</a></h3>
-                        <p class="category-desc">3D environments with complex dynamics and physical interactions</p>
+                        <p class="category-desc">3D environments with complex dynamics and physical interactions.</p>
                         <ul class="env-list">
-                            <li><a href="environments/basemotion3d-group.html">BaseMotion3D</a> <span class="env-count">1 variant</span></li>
-                            <li><a href="environments/constrainedcupboard3d-group.html">ConstrainedCupboard3D</a> <span class="env-count">1 variant</span></li>
-                            <li><a href="environments/sortclutteredblocks3d-group.html">SortClutteredBlocks3D</a> <span class="env-count">1 variant</span></li>
+                            <li><a href="environments/tidybot3d-base_motion-o1-v0.html">TidyBot3D-base_motion</a> <span class="env-count">1 variant</span></li>
+                            <li><a href="environments/tidybot3d-cupboard-o12-constrainedfitting-v0.html">TidyBot3D-cupboard-o12-ConstrainedFitting</a> <span class="env-count">1 variant</span></li>
+                            <li><a href="environments/tidybot3d-table-o20-sortclutteredblocks-v0.html">TidyBot3D-table-o20-SortClutteredBlocks</a> <span class="env-count">1 variant</span></li>
                         </ul>
                     </div>
                 </div>

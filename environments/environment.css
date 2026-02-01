@@ -1,19 +1,5 @@
 /* Environment Detail Page Styles */
 
-/* Early Draft Banner */
-.draft-banner {
-    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-    color: white;
-    text-align: center;
-    padding: 0.75rem 1rem;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-    position: relative;
-    z-index: 200;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
 .environment-detail {
     padding: 2rem 0 4rem;
 }
