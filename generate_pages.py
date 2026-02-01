@@ -44,7 +44,8 @@ def base_template(title, breadcrumb_html, content_html, depth=1):
                     <li><a href="{prefix}index.html#usage">Usage</a></li>
                     <li><a href="{prefix}index.html#benchmark">Environments</a></li>
                     <li><a href="{prefix}index.html#results">Results</a></li>
-                    <li><a href="{prefix}index.html#contact">Contact</a></li>
+                    <li><a href="{prefix}index.html#real-robots">Real Robots</a></li>
+                    <li><a href="{prefix}index.html#acknowledgements">Acknowledgements</a></li>
                 </ul>
             </div>
         </nav>
@@ -462,11 +463,12 @@ def main():
             (out_dir / f"{slugify(cat_name)}.html").write_text(html, encoding='utf-8')
     print(f"  Generated {len(categories)} category pages")
 
-    # Update index.html
-    print("\nUpdating index.html...")
+    # Generate index.html from template
+    print("\nGenerating index.html from template...")
+    template_path = Path('index_template.html')
     index_path = Path('index.html')
-    if index_path.exists():
-        content = index_path.read_text(encoding='utf-8')
+    if template_path.exists():
+        content = template_path.read_text(encoding='utf-8')
 
         benchmark_html = '''        <section id="benchmark">
             <div class="container">
@@ -482,14 +484,16 @@ def main():
             </div>
         </section>'''
 
-        content = re.sub(r'[ \t]*<section id="benchmark">.*?</section>', benchmark_html, content, flags=re.DOTALL)
+        content = content.replace('{{BENCHMARK_SECTION}}', benchmark_html)
 
         results_html = generate_results_table_html(groups)
         if results_html:
-            content = re.sub(r'[ \t]*<section id="results">.*?</section>', results_html, content, flags=re.DOTALL)
+            content = content.replace('{{RESULTS_SECTION}}', results_html)
 
         index_path.write_text(content, encoding='utf-8')
-        print("  Updated index.html")
+        print("  Generated index.html")
+    else:
+        print("  Warning: index_template.html not found!")
 
     print("\n" + "=" * 60)
     print("Summary:")
