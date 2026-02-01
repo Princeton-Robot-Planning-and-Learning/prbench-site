@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StickButton2D-b2-v0 | PRBench</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../environments/environment.css">
+</head>
+<body>
+    <div class="draft-banner">EARLY DRAFT: DO NOT DISTRIBUTE</div>
+    <header>
+        <nav>
+            <div class="container">
+                <h1><a href="../../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <ul class="nav-links">
+                    <li><a href="../../index.html#about">About</a></li>
+                    <li><a href="../../index.html#usage">Usage</a></li>
+                    <li><a href="../../index.html#benchmark">Environments</a></li>
+                    <li><a href="../../index.html#results">Results</a></li>
+                    <li><a href="../../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="environment-detail">
+            <div class="container">
+                <div class="breadcrumb"><a href="../../index.html#benchmark">Benchmark</a> / <a href="../../environments/geometric-2d.html">Geometric 2D</a> / <a href="../../environments/stickbutton2d/index.html">StickButton2D</a> / <span>StickButton2D-b2-v0</span></div>
+
+                <div class="environment-content">
+                    <h1>prbench/StickButton2D-b2-v0</h1>
+                    <div class="gifs-grid">
+                        <div class="gif-container">
+                            <h3>Random Actions</h3>
+                            <img src="../../markdowns/assets/random_action_gifs/StickButton2D-b2.gif" alt="Random Actions">
+                        </div>
+                        <div class="gif-container">
+                            <h3>Initial State Distribution</h3>
+                            <img src="../../markdowns/assets/initial_state_gifs/StickButton2D-b2.gif" alt="Initial State Distribution">
+                        </div>
+                    </div>
+
+<h3>Environment Group Description</h3>
+<p>A 2D environment where the goal is to touch all buttons, possibly by using a stick for buttons that are out of the robot's direct reach. In this environment, there are always obstructions. The robot has a movable circular base and a retractable arm with a rectangular vacuum end effector.</p>
+<h3>Variant Description</h3>
+<p>There are always 2 buttons.</p>
+<h3>Observation Space</h3>
+<p>The entries of an array in this Box space correspond to the following object features:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Index</strong></th>
+<th><strong>Object</strong></th>
+<th><strong>Feature</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>robot</td>
+<td>x</td>
+</tr>
+<tr>
+<td>1</td>
+<td>robot</td>
+<td>y</td>
+</tr>
+<tr>
+<td>2</td>
+<td>robot</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>3</td>
+<td>robot</td>
+<td>base_radius</td>
+</tr>
+<tr>
+<td>4</td>
+<td>robot</td>
+<td>arm_joint</td>
+</tr>
+<tr>
+<td>5</td>
+<td>robot</td>
+<td>arm_length</td>
+</tr>
+<tr>
+<td>6</td>
+<td>robot</td>
+<td>vacuum</td>
+</tr>
+<tr>
+<td>7</td>
+<td>robot</td>
+<td>gripper_height</td>
+</tr>
+<tr>
+<td>8</td>
+<td>robot</td>
+<td>gripper_width</td>
+</tr>
+<tr>
+<td>9</td>
+<td>stick</td>
+<td>x</td>
+</tr>
+<tr>
+<td>10</td>
+<td>stick</td>
+<td>y</td>
+</tr>
+<tr>
+<td>11</td>
+<td>stick</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>12</td>
+<td>stick</td>
+<td>static</td>
+</tr>
+<tr>
+<td>13</td>
+<td>stick</td>
+<td>color_r</td>
+</tr>
+<tr>
+<td>14</td>
+<td>stick</td>
+<td>color_g</td>
+</tr>
+<tr>
+<td>15</td>
+<td>stick</td>
+<td>color_b</td>
+</tr>
+<tr>
+<td>16</td>
+<td>stick</td>
+<td>z_order</td>
+</tr>
+<tr>
+<td>17</td>
+<td>stick</td>
+<td>width</td>
+</tr>
+<tr>
+<td>18</td>
+<td>stick</td>
+<td>height</td>
+</tr>
+<tr>
+<td>19</td>
+<td>button0</td>
+<td>x</td>
+</tr>
+<tr>
+<td>20</td>
+<td>button0</td>
+<td>y</td>
+</tr>
+<tr>
+<td>21</td>
+<td>button0</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>22</td>
+<td>button0</td>
+<td>static</td>
+</tr>
+<tr>
+<td>23</td>
+<td>button0</td>
+<td>color_r</td>
+</tr>
+<tr>
+<td>24</td>
+<td>button0</td>
+<td>color_g</td>
+</tr>
+<tr>
+<td>25</td>
+<td>button0</td>
+<td>color_b</td>
+</tr>
+<tr>
+<td>26</td>
+<td>button0</td>
+<td>z_order</td>
+</tr>
+<tr>
+<td>27</td>
+<td>button0</td>
+<td>radius</td>
+</tr>
+<tr>
+<td>28</td>
+<td>button1</td>
+<td>x</td>
+</tr>
+<tr>
+<td>29</td>
+<td>button1</td>
+<td>y</td>
+</tr>
+<tr>
+<td>30</td>
+<td>button1</td>
+<td>theta</td>
+</tr>
+<tr>
+<td>31</td>
+<td>button1</td>
+<td>static</td>
+</tr>
+<tr>
+<td>32</td>
+<td>button1</td>
+<td>color_r</td>
+</tr>
+<tr>
+<td>33</td>
+<td>button1</td>
+<td>color_g</td>
+</tr>
+<tr>
+<td>34</td>
+<td>button1</td>
+<td>color_b</td>
+</tr>
+<tr>
+<td>35</td>
+<td>button1</td>
+<td>z_order</td>
+</tr>
+<tr>
+<td>36</td>
+<td>button1</td>
+<td>radius</td>
+</tr>
+</tbody>
+</table>
+<h3>Action Space</h3>
+<p>The entries of an array in this Box space correspond to the following action features:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Index</strong></th>
+<th><strong>Feature</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Min</strong></th>
+<th><strong>Max</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>dx</td>
+<td>Change in robot x position (positive is right)</td>
+<td>-0.050</td>
+<td>0.050</td>
+</tr>
+<tr>
+<td>1</td>
+<td>dy</td>
+<td>Change in robot y position (positive is up)</td>
+<td>-0.050</td>
+<td>0.050</td>
+</tr>
+<tr>
+<td>2</td>
+<td>dtheta</td>
+<td>Change in robot angle in radians (positive is ccw)</td>
+<td>-0.196</td>
+<td>0.196</td>
+</tr>
+<tr>
+<td>3</td>
+<td>darm</td>
+<td>Change in robot arm length (positive is out)</td>
+<td>-0.100</td>
+<td>0.100</td>
+</tr>
+<tr>
+<td>4</td>
+<td>vac</td>
+<td>Directly sets the vacuum (0.0 is off, 1.0 is on)</td>
+<td>0.000</td>
+<td>1.000</td>
+</tr>
+</tbody>
+</table>
+<h3>Rewards</h3>
+<p>A penalty of -1.0 is given at every time step until termination, which occurs when all buttons have been pressed.</p>
+<h3>References</h3>
+<p>This environment is based on the Stick Button environment that was originally introduced in "Learning Neuro-Symbolic Skills for Bilevel Planning" (Silver et al., CoRL 2022). This version is simplified in that the robot or stick need only make contact with a button to press it, rather than explicitly pressing. Also, the full stick works for pressing, not just the tip.</p>
+                </div>
+
+                <div class="back-link">
+                    <a href="../../index.html#benchmark">← Back to Benchmark</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PRBench. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

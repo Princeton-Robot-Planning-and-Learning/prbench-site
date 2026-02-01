@@ -3,6 +3,7 @@
 
 import csv
 import re
+import shutil
 from collections import defaultdict
 from pathlib import Path
 
@@ -15,29 +16,35 @@ CATEGORY_DESCRIPTIONS = {
     'Dynamic 3D': '3D environments with complex dynamics and physical interactions.'
 }
 
-def base_template(title, breadcrumb_html, content_html):
-    """Generate a complete HTML page with consistent header/footer."""
+
+def base_template(title, breadcrumb_html, content_html, depth=1):
+    """Generate a complete HTML page with consistent header/footer.
+
+    depth=1: environments/*.html (category pages)
+    depth=2: environments/<group>/*.html (group and variant pages)
+    """
+    prefix = '../' * depth
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} | PRBench</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="environment.css">
+    <link rel="stylesheet" href="{prefix}styles.css">
+    <link rel="stylesheet" href="{prefix}environments/environment.css">
 </head>
 <body>
     <div class="draft-banner">EARLY DRAFT: DO NOT DISTRIBUTE</div>
     <header>
         <nav>
             <div class="container">
-                <h1><a href="../index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
+                <h1><a href="{prefix}index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
                 <ul class="nav-links">
-                    <li><a href="../index.html#about">About</a></li>
-                    <li><a href="../index.html#usage">Usage</a></li>
-                    <li><a href="../index.html#benchmark">Environments</a></li>
-                    <li><a href="../index.html#results">Results</a></li>
-                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li><a href="{prefix}index.html#about">About</a></li>
+                    <li><a href="{prefix}index.html#usage">Usage</a></li>
+                    <li><a href="{prefix}index.html#benchmark">Environments</a></li>
+                    <li><a href="{prefix}index.html#results">Results</a></li>
+                    <li><a href="{prefix}index.html#contact">Contact</a></li>
                 </ul>
             </div>
         </nav>
@@ -48,7 +55,7 @@ def base_template(title, breadcrumb_html, content_html):
                 <div class="breadcrumb">{breadcrumb_html}</div>
 {content_html}
                 <div class="back-link">
-                    <a href="../index.html#benchmark">← Back to Benchmark</a>
+                    <a href="{prefix}index.html#benchmark">← Back to Benchmark</a>
                 </div>
             </div>
         </section>
@@ -72,7 +79,6 @@ def extract_base_name(env_name):
     """Extract base environment name without variant suffixes."""
     name = re.sub(r'-v\d+$', '', env_name)
 
-    # Special handling for TidyBot3D and RBY1A3D (keep scene type)
     for prefix in ('TidyBot3D', 'RBY1A3D'):
         if name.startswith(prefix):
             parts = name.split('-')
@@ -113,9 +119,10 @@ def generate_gif_grid_html(gifs, labels=None):
     return f'                    <div class="gifs-grid">\n{items}\n                    </div>\n\n'
 
 
-def extract_gifs_from_markdown(content):
+def extract_gifs_from_markdown(content, depth=2):
     """Extract GIF paths from markdown content."""
-    return [m.replace('assets/', '../markdowns/assets/')
+    prefix = '../' * depth
+    return [m.replace('assets/', f'{prefix}markdowns/assets/')
             for m in re.findall(r'!\[.*?\]\((assets/.*?\.gif)\)', content)][:3]
 
 
@@ -133,15 +140,13 @@ def has_demo_gif(content):
 def parse_markdown_file(md_path):
     """Parse a markdown file and return structured data."""
     content = md_path.read_text(encoding='utf-8')
-
-    # Extract environment name from first heading
     name_match = re.search(r'^# (?:prbench/)?(.+)$', content, re.MULTILINE)
     env_name = name_match.group(1).strip() if name_match else "Unknown"
 
     return {
         'name': env_name,
         'content': content,
-        'gifs': extract_gifs_from_markdown(content),
+        'gifs': extract_gifs_from_markdown(content, depth=2),
         'description': extract_section(content, 'Description'),
         'group_description': extract_section(content, 'Environment Group Description'),
         'variant_description': extract_section(content, 'Variant Description'),
@@ -151,7 +156,7 @@ def parse_markdown_file(md_path):
     }
 
 
-def filter_markdown_for_html(content):
+def filter_markdown_for_html(content, depth=2):
     """Remove GIF sections, fix paths, and ensure tables have blank lines."""
     lines = content.split('\n')
     filtered = []
@@ -169,12 +174,10 @@ def filter_markdown_for_html(content):
             continue
         filtered.append(line)
 
-    # Ensure tables have blank lines before/after (required by markdown library)
     processed = []
     in_table = False
-    for i, line in enumerate(filtered):
+    for line in filtered:
         is_table_line = line.strip().startswith('|') and line.strip().endswith('|')
-
         if is_table_line and not in_table:
             if processed and processed[-1].strip():
                 processed.append('')
@@ -183,12 +186,12 @@ def filter_markdown_for_html(content):
             in_table = False
             if line.strip():
                 processed.append('')
-
         processed.append(line)
 
+    prefix = '../' * depth
     result = '\n'.join(processed)
-    result = result.replace('](assets/', '](../markdowns/assets/')
-    result = result.replace('="assets/', '="../markdowns/assets/')
+    result = result.replace('](assets/', f']({prefix}markdowns/assets/')
+    result = result.replace('="assets/', f'="{prefix}markdowns/assets/')
     return result
 
 
@@ -198,23 +201,20 @@ def convert_markdown_to_html(md_content):
     return md.convert(md_content)
 
 
-def create_environment_page(env_data, category):
-    """Create an HTML page for a single environment."""
-    base_name = extract_base_name(env_data['name'])
-    cat_file = f"{slugify(category)}.html"
-    group_file = f"{slugify(base_name)}-group.html"
+def create_environment_page(env_data, category, base_name):
+    """Create an HTML page for a single environment variant."""
+    prefix = '../../'
+    cat_slug = slugify(category)
+    group_slug = slugify(base_name)
 
-    # Build breadcrumb
-    breadcrumb = f'<a href="../index.html#benchmark">Benchmark</a> / <a href="{cat_file}">{category}</a> / '
-    if base_name != env_data['name']:
-        breadcrumb += f'<a href="{group_file}">{base_name}</a> / '
-    breadcrumb += f'<span>{env_data["name"]}</span>'
+    breadcrumb = (f'<a href="{prefix}index.html#benchmark">Benchmark</a> / '
+                  f'<a href="{prefix}environments/{cat_slug}.html">{category}</a> / '
+                  f'<a href="{prefix}environments/{group_slug}/index.html">{base_name}</a> / '
+                  f'<span>{env_data["name"]}</span>')
 
-    # Process content
-    filtered = filter_markdown_for_html(env_data['content'])
+    filtered = filter_markdown_for_html(env_data['content'], depth=2)
     html_content = convert_markdown_to_html(filtered)
 
-    # Extract and remove h1
     title_match = re.search(r'<h1>(.*?)</h1>', html_content)
     title_html = f'<h1>{title_match.group(1)}</h1>\n' if title_match else ''
     html_content = re.sub(r'<h1>.*?</h1>\n?', '', html_content, count=1)
@@ -224,36 +224,32 @@ def create_environment_page(env_data, category):
                     {title_html}{generate_gif_grid_html(env_data['gifs'])}{html_content}
                 </div>
 '''
-
-    return base_template(env_data['name'], breadcrumb, content)
+    return base_template(env_data['name'], breadcrumb, content, depth=2)
 
 
 def create_group_page(base_name, category, variants):
-    """Create an HTML page for an environment group."""
-    cat_file = f"{slugify(category)}.html"
+    """Create an HTML page for an environment group (index.html in group folder)."""
+    prefix = '../../'
+    cat_slug = slugify(category)
 
-    breadcrumb = (f'<a href="../index.html#benchmark">Benchmark</a> / '
-                  f'<a href="{cat_file}">{category}</a> / <span>{base_name}</span>')
+    breadcrumb = (f'<a href="{prefix}index.html#benchmark">Benchmark</a> / '
+                  f'<a href="{prefix}environments/{cat_slug}.html">{category}</a> / '
+                  f'<span>{base_name}</span>')
 
-    # Select best variant for GIFs (most objects with demo, or most objects)
     def get_object_count(v):
         match = re.search(r'-([a-z])(\d+)-v\d+$', v['name'])
         return int(match.group(2)) if match else 0
 
     variants_with_demo = [(v, get_object_count(v)) for v in variants if v.get('has_demo')]
     variants_without = [(v, get_object_count(v)) for v in variants if not v.get('has_demo')]
-
     best = (sorted(variants_with_demo, key=lambda x: -x[1]) or
             sorted(variants_without, key=lambda x: -x[1]) or [(variants[0], 0)])[0][0]
 
-    # Get description (prefer group description)
     desc = best.get('group_description') or best.get('description') or ''
     desc_html = convert_markdown_to_html(desc) if desc else '<p>No description available.</p>'
-
     refs = best.get('references', '')
     refs_html = convert_markdown_to_html(refs) if refs else '<p>No references available.</p>'
 
-    # Generate variants list
     variants_html = '\n'.join(
         f'''                        <div class="variant-card">
                             <a href="{slugify(v['name'])}.html" class="variant-link">
@@ -283,17 +279,17 @@ def create_group_page(base_name, category, variants):
                     {refs_html}
                 </div>
 '''
-
-    return base_template(base_name, breadcrumb, content)
+    return base_template(base_name, breadcrumb, content, depth=2)
 
 
 def create_category_page(category_name, families):
     """Create an HTML page for a category."""
-    breadcrumb = f'<a href="../index.html#benchmark">Benchmark</a> / <span>{category_name}</span>'
+    prefix = '../'
+    breadcrumb = f'<a href="{prefix}index.html#benchmark">Benchmark</a> / <span>{category_name}</span>'
 
     families_html = '\n'.join(
         f'''                        <div class="family-card">
-                            <a href="{slugify(f['base_name'])}-group.html" class="family-link">
+                            <a href="{slugify(f['base_name'])}/index.html" class="family-link">
                                 <h3>{f['base_name']}</h3>
                                 <p class="family-meta">{f['count']} variant{"s" if f['count'] != 1 else ""}</p>
                             </a>
@@ -314,11 +310,10 @@ def create_category_page(category_name, families):
                     </div>
                 </div>
 '''
+    return base_template(category_name, breadcrumb, content, depth=1)
 
-    return base_template(category_name, breadcrumb, content)
 
-
-def generate_results_table_html():
+def generate_results_table_html(groups):
     """Generate the results table HTML from CSV."""
     csv_path = Path('data/unified_table.csv')
     if not csv_path.exists():
@@ -340,12 +335,20 @@ def generate_results_table_html():
     ]
 
     envs = sorted(set(env for m, *_ in methods for env in data[m]))
-
     header = ''.join(f'                                <th>{m[3]}</th>\n' for m in methods)
+
+    # Build a map from env name to its group
+    env_to_group = {}
+    for base_name, variants in groups.items():
+        for v in variants:
+            env_to_group[v['name']] = base_name
 
     rows = []
     for env in envs:
-        cells = [f'                                <td><a href="environments/{slugify(env)}.html">{env}</a></td>']
+        group_slug = slugify(env_to_group.get(env, extract_base_name(env)))
+        env_slug = slugify(env)
+        link = f'environments/{group_slug}/{env_slug}.html'
+        cells = [f'                                <td><a href="{link}">{env}</a></td>']
         for method, mean_key, std_key, _ in methods:
             env_data = data[method].get(env, {})
             try:
@@ -381,10 +384,7 @@ def generate_index_category_html(category_name, groups):
     items = []
     for base_name, variants in sorted(groups.items()):
         count = len(variants)
-        if count == 1:
-            link = f"environments/{slugify(variants[0]['name'])}.html"
-        else:
-            link = f"environments/{slugify(base_name)}-group.html"
+        link = f"environments/{slugify(base_name)}/index.html"
         items.append(f'                            <li><a href="{link}">{base_name}</a> '
                      f'<span class="env-count">{count} variant{"s" if count != 1 else ""}</span></li>')
 
@@ -411,16 +411,13 @@ def main():
     md_files = [f for f in md_dir.glob('*.md') if f.name.lower() != 'readme.md']
     print(f"Found {len(md_files)} markdown files")
 
-    # Parse all markdown files
     environments = []
     for md_file in md_files:
         env_data = parse_markdown_file(md_file)
         env_data['category'] = categorize_environment(env_data['name'])
         env_data['base_name'] = extract_base_name(env_data['name'])
         environments.append(env_data)
-        print(f"  Parsed: {env_data['name']}")
 
-    # Group by base name and category
     groups = defaultdict(list)
     for env in environments:
         groups[env['base_name']].append(env)
@@ -429,23 +426,32 @@ def main():
     for env in environments:
         categories[env['category']][env['base_name']].append(env)
 
-    # Create output directory
     out_dir = Path('environments')
-    out_dir.mkdir(exist_ok=True)
 
-    # Generate environment pages
+    # Clean up old flat HTML files (but keep environment.css and subdirectories we'll create)
+    print("\nCleaning up old files...")
+    for old_file in out_dir.glob('*.html'):
+        old_file.unlink()
+    for old_dir in out_dir.iterdir():
+        if old_dir.is_dir():
+            shutil.rmtree(old_dir)
+
+    # Generate group directories with variant pages and index.html
     print("\nGenerating environment pages...")
-    for env in environments:
-        html = create_environment_page(env, env['category'])
-        (out_dir / f"{slugify(env['name'])}.html").write_text(html, encoding='utf-8')
-    print(f"  Generated {len(environments)} environment pages")
-
-    # Generate group pages
-    print("\nGenerating group pages...")
     for base_name, variants in groups.items():
+        group_dir = out_dir / slugify(base_name)
+        group_dir.mkdir(parents=True, exist_ok=True)
+
+        # Generate variant pages
+        for env in variants:
+            html = create_environment_page(env, env['category'], base_name)
+            (group_dir / f"{slugify(env['name'])}.html").write_text(html, encoding='utf-8')
+
+        # Generate group index page
         html = create_group_page(base_name, variants[0]['category'], variants)
-        (out_dir / f"{slugify(base_name)}-group.html").write_text(html, encoding='utf-8')
-    print(f"  Generated {len(groups)} group pages")
+        (group_dir / 'index.html').write_text(html, encoding='utf-8')
+
+    print(f"  Generated {len(environments)} variant pages in {len(groups)} group directories")
 
     # Generate category pages
     print("\nGenerating category pages...")
@@ -462,7 +468,6 @@ def main():
     if index_path.exists():
         content = index_path.read_text(encoding='utf-8')
 
-        # Generate benchmark section
         benchmark_html = '''        <section id="benchmark">
             <div class="container">
                 <h2>Environments</h2>
@@ -479,19 +484,17 @@ def main():
 
         content = re.sub(r'[ \t]*<section id="benchmark">.*?</section>', benchmark_html, content, flags=re.DOTALL)
 
-        # Generate results section
-        results_html = generate_results_table_html()
+        results_html = generate_results_table_html(groups)
         if results_html:
             content = re.sub(r'[ \t]*<section id="results">.*?</section>', results_html, content, flags=re.DOTALL)
 
         index_path.write_text(content, encoding='utf-8')
         print("  Updated index.html")
 
-    # Print summary
     print("\n" + "=" * 60)
     print("Summary:")
-    for cat, groups in categories.items():
-        print(f"  {cat}: {sum(len(v) for v in groups.values())} environments in {len(groups)} families")
+    for cat, cat_groups in categories.items():
+        print(f"  {cat}: {sum(len(v) for v in cat_groups.values())} environments in {len(cat_groups)} families")
     print("=" * 60)
     print(f"\n✓ Generated {len(environments)} pages successfully!")
 
