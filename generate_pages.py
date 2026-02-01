@@ -858,9 +858,9 @@ def create_category_pages(groups):
 
 def generate_results_table_html():
     """Generate the results table HTML from unified_table.csv."""
-    csv_path = Path('unified_table.csv')
+    csv_path = Path('data/unified_table.csv')
     if not csv_path.exists():
-        print("\nWarning: unified_table.csv not found!")
+        print("\nWarning: data/unified_table.csv not found!")
         return None
 
     # Parse CSV into a nested dict: {method: {env: {metric: value}}}
@@ -993,16 +993,16 @@ def update_index_html(environments):
             </div>
         </section>'''
     
-    # Replace the benchmark section
-    pattern = r'<section id="benchmark">.*?</section>'
+    # Replace the benchmark section (include leading whitespace to fix indentation)
+    pattern = r'[ \t]*<section id="benchmark">.*?</section>'
     new_content = re.sub(pattern, benchmark_html, index_content, flags=re.DOTALL)
 
     # Generate and replace the results section
     results_html = generate_results_table_html()
     if results_html:
-        pattern = r'<section id="results">.*?</section>'
+        pattern = r'[ \t]*<section id="results">.*?</section>'
         new_content = re.sub(pattern, results_html, new_content, flags=re.DOTALL)
-        print("\n✓ Updated results table from unified_table.csv!")
+        print("\n✓ Updated results table from data/unified_table.csv!")
 
     # Write back to index.html
     with open(index_path, 'w', encoding='utf-8') as f:
