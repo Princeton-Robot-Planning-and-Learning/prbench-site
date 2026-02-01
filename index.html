@@ -307,7 +307,7 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
             </div>
         </section>
 
-        <section id="benchmark">
+                <section id="benchmark">
             <div class="container">
                 <h2>Environments</h2>
                 <p>PRBench environments are organized into four categories. Click on any environment family to explore variants and details.</p>
@@ -365,7 +365,7 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
             <div class="container">
                 <h2>Very Preliminary Results</h2>
                 <p>Success rates on evaluation tasks: mean ± standard deviation across 5 random seeds and 50 evaluation episodes per seed.</p>
-                
+
                 <div class="results-table-wrapper">
                     <table class="results-table">
                         <thead>
@@ -418,42 +418,6 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
                             </tr>
                         </tbody>
                     </table>
-                </div>
-
-                <p>We will later add more baselines, run on all environments, and report more metrics. We look forward to feedback about which of these to prioritize.</p>
-
-                <h3>Method Details</h3>
-                
-                <div class="method-details">
-                    <div class="method-card">
-                        <h4>RL-PPO</h4>
-                        <p>Proximal Policy Optimization implementation based on <a href="https://docs.cleanrl.dev/" target="_blank">CleanRL</a>. Trained for 1M environment steps. Policy takes state vectors as input.</p>
-                    </div>
-
-                    <div class="method-card">
-                        <h4>RL-SAC</h4>
-                        <p>Soft Actor-Critic implementation based on <a href="https://docs.cleanrl.dev/" target="_blank">CleanRL</a>. Trained for 1M environment steps. Policy takes state vectors as input.</p>
-                    </div>
-
-                    <div class="method-card">
-                        <h4>Diffusion Policy</h4>
-                        <p>Diffusion Policy implementation based on <a href="https://github.com/huggingface/lerobot" target="_blank">LeRobot</a>. Trained with 110-115 demonstrations per environment. Policy takes both state vectors and images as input.</p>
-                    </div>
-
-                    <div class="method-card">
-                        <h4>LLM Planning</h4>
-                        <p>LLM planning with given parameterized skills. We use GPT-5. States are given as dictionaries mapping objects to features to values.</p>
-                    </div>
-
-                    <div class="method-card">
-                        <h4>VLM Planning</h4>
-                        <p>VLM planning with given parameterized skills. We use GPT-5. States are given as maps from objects to features to values. Images are also included in the prompt.</p>
-                    </div>
-
-                    <div class="method-card">
-                        <h4>Bilevel Planning</h4>
-                        <p>Search-then-sample bilevel planning with given parameterized skills, operators, predicates, and samplers. States are represented as maps from objects to features to values.</p>
-                    </div>
                 </div>
             </div>
         </section>

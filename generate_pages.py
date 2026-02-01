@@ -6,7 +6,9 @@ Usage: python generate_pages.py
 
 import os
 import re
+import csv
 from pathlib import Path
+from collections import defaultdict
 import markdown
 
 # HTML template for environment pages
@@ -854,8 +856,98 @@ def create_category_pages(groups):
     
     return category_pages
 
+def generate_results_table_html():
+    """Generate the results table HTML from unified_table.csv."""
+    csv_path = Path('unified_table.csv')
+    if not csv_path.exists():
+        print("\nWarning: unified_table.csv not found!")
+        return None
+
+    # Parse CSV into a nested dict: {method: {env: {metric: value}}}
+    data = defaultdict(lambda: defaultdict(dict))
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            method = row['method']
+            env = row['env']
+            metric = row['metric']
+            value = row['value']
+            data[method][env][metric] = value
+
+    # Define method columns and their success rate metric names
+    methods = [
+        ('RL-PPO', 'success_rate_mean', 'success_rate_std'),
+        ('RL-SAC', 'success_rate_mean', 'success_rate_std'),
+        ('ImitationLearning-DiffusionPolicy', 'success rate_mean', 'success rate_std'),
+        ('LLMPlanning', 'solve_rate', 'solve_rate_std'),
+        ('VLMPlanning', 'solve_rate', 'solve_rate_std'),
+        ('BilevelPlanning', 'success_mean', 'success_std'),
+    ]
+
+    method_display_names = [
+        'RL-PPO', 'RL-SAC', 'Diffusion Policy',
+        'LLM Planning', 'VLM Planning', 'Bilevel Planning'
+    ]
+
+    # Get all environments from the data
+    all_envs = set()
+    for method, _, _ in methods:
+        all_envs.update(data[method].keys())
+    envs = sorted(all_envs)
+
+    # Generate HTML
+    html = '''        <section id="results">
+            <div class="container">
+                <h2>Very Preliminary Results</h2>
+                <p>Success rates on evaluation tasks: mean ± standard deviation across 5 random seeds and 50 evaluation episodes per seed.</p>
+
+                <div class="results-table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Environment</th>
+'''
+    for name in method_display_names:
+        html += f'                                <th>{name}</th>\n'
+    html += '''                            </tr>
+                        </thead>
+                        <tbody>
+'''
+
+    for env in envs:
+        # Generate environment link
+        env_filename = env.lower().replace('-', '-').replace('_', '-') + '.html'
+        html += f'                            <tr>\n'
+        html += f'                                <td><a href="environments/{env_filename}">{env}</a></td>\n'
+
+        for method, mean_key, std_key in methods:
+            env_data = data[method].get(env, {})
+            mean_val = env_data.get(mean_key, '')
+            std_val = env_data.get(std_key, '')
+
+            if mean_val and std_val:
+                try:
+                    mean_f = float(mean_val)
+                    std_f = float(std_val)
+                    html += f'                                <td>{mean_f:.3f} ± {std_f:.3f}</td>\n'
+                except ValueError:
+                    html += f'                                <td>-</td>\n'
+            else:
+                html += f'                                <td>-</td>\n'
+
+        html += f'                            </tr>\n'
+
+    html += '''                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>'''
+
+    return html
+
+
 def update_index_html(environments):
-    """Update index.html with the discovered environments."""
+    """Update index.html with the discovered environments and results table."""
     # Group environments by category
     categories = {
         'Geometric 2D': [],
@@ -902,15 +994,21 @@ def update_index_html(environments):
         </section>'''
     
     # Replace the benchmark section
-    import re
     pattern = r'<section id="benchmark">.*?</section>'
     new_content = re.sub(pattern, benchmark_html, index_content, flags=re.DOTALL)
-    
+
+    # Generate and replace the results section
+    results_html = generate_results_table_html()
+    if results_html:
+        pattern = r'<section id="results">.*?</section>'
+        new_content = re.sub(pattern, results_html, new_content, flags=re.DOTALL)
+        print("\n✓ Updated results table from unified_table.csv!")
+
     # Write back to index.html
     with open(index_path, 'w', encoding='utf-8') as f:
         f.write(new_content)
-    
-    print("\n✓ Updated index.html with all environments!")
+
+    print("✓ Updated index.html with all environments!")
 
 if __name__ == '__main__':
     print("PRBench Environment Page Generator")
