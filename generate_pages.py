@@ -16,6 +16,59 @@ CATEGORY_DESCRIPTIONS = {
     'Dynamic 3D': '3D environments with complex dynamics and physical interactions.'
 }
 
+NAV_ITEMS = [
+    ('about', 'About'),
+    ('usage', 'Usage'),
+    ('benchmark', 'Environments'),
+    ('results', 'Results'),
+    ('real-robots', 'Real Robots'),
+    ('acknowledgements', 'Acknowledgements'),
+]
+
+FOOTER_TEXT = '&copy; 2025 PRBench. All rights reserved.'
+DRAFT_BANNER_TEXT = 'EARLY DRAFT: DO NOT DISTRIBUTE'
+
+
+def generate_header(prefix='', title='PRBench'):
+    """Generate the site header HTML.
+
+    prefix: path prefix for links ('' for index.html, '../' for depth=1, etc.)
+    title: the h1 title text
+    """
+    if prefix:
+        nav_links = '\n'.join(
+            f'                    <li><a href="{prefix}index.html#{id}">{label}</a></li>'
+            for id, label in NAV_ITEMS
+        )
+        title_html = f'<a href="{prefix}index.html" style="color: white; text-decoration: none;">{title}</a>'
+    else:
+        nav_links = '\n'.join(
+            f'                    <li><a href="#{id}">{label}</a></li>'
+            for id, label in NAV_ITEMS
+        )
+        title_html = title
+
+    return f'''    <div class="draft-banner">{DRAFT_BANNER_TEXT}</div>
+    <header>
+        <nav>
+            <div class="container">
+                <h1>{title_html}</h1>
+                <ul class="nav-links">
+{nav_links}
+                </ul>
+            </div>
+        </nav>
+    </header>'''
+
+
+def generate_footer():
+    """Generate the site footer HTML."""
+    return f'''    <footer>
+        <div class="container">
+            <p>{FOOTER_TEXT}</p>
+        </div>
+    </footer>'''
+
 
 def base_template(title, breadcrumb_html, content_html, depth=1):
     """Generate a complete HTML page with consistent header/footer.
@@ -34,22 +87,7 @@ def base_template(title, breadcrumb_html, content_html, depth=1):
     <link rel="stylesheet" href="{prefix}environments/environment.css">
 </head>
 <body>
-    <div class="draft-banner">EARLY DRAFT: DO NOT DISTRIBUTE</div>
-    <header>
-        <nav>
-            <div class="container">
-                <h1><a href="{prefix}index.html" style="color: white; text-decoration: none;">PRBench</a></h1>
-                <ul class="nav-links">
-                    <li><a href="{prefix}index.html#about">About</a></li>
-                    <li><a href="{prefix}index.html#usage">Usage</a></li>
-                    <li><a href="{prefix}index.html#benchmark">Environments</a></li>
-                    <li><a href="{prefix}index.html#results">Results</a></li>
-                    <li><a href="{prefix}index.html#real-robots">Real Robots</a></li>
-                    <li><a href="{prefix}index.html#acknowledgements">Acknowledgements</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+{generate_header(prefix, 'PRBench')}
     <main>
         <section class="environment-detail">
             <div class="container">
@@ -61,11 +99,7 @@ def base_template(title, breadcrumb_html, content_html, depth=1):
             </div>
         </section>
     </main>
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 PRBench. All rights reserved.</p>
-        </div>
-    </footer>
+{generate_footer()}
 </body>
 </html>
 """
@@ -469,6 +503,13 @@ def main():
     index_path = Path('index.html')
     if template_path.exists():
         content = template_path.read_text(encoding='utf-8')
+
+        # Replace header and footer
+        content = content.replace('{{HEADER}}', generate_header(
+            prefix='',
+            title='PRBench: A Physical Reasoning Benchmark for Robotics'
+        ))
+        content = content.replace('{{FOOTER}}', generate_footer())
 
         benchmark_html = '''        <section id="benchmark">
             <div class="container">
