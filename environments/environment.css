@@ -217,6 +217,20 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Hero GIF on Group Pages */
+.hero-gif {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.hero-gif img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Variant List on Group Pages */
 .variant-list {
     display: grid;
