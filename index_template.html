@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PRBench: A Physical Reasoning Benchmark for Robotics">
-    <title>PRBench: A Physical Reasoning Benchmark for Robotics</title>
+    <meta name="description" content="KinDER: A Physical Reasoning Benchmark for Robot Learning and Planning">
+    <title>KinDER: A Physical Reasoning Benchmark for Robot Learning and Planning</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
@@ -18,49 +18,9 @@
     <main>
         <section class="title-authors-section">
             <div class="container">
-                <h1>PRBench: A Physical Reasoning Benchmark for Robotics</h1>
+                <h1>KinDER: A Physical Reasoning Benchmark<br class="title-break"> for Robot Learning and Planning</h1>
 
-                <div class="authors-list">
-                    <div class="author">
-                        <span class="author-name">Yixuan Huang*</span>
-                        <span class="author-affiliation">Princeton</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Bowen Li*</span>
-                        <span class="author-affiliation">CMU</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Vaibhav Saxena*</span>
-                        <span class="author-affiliation">Georgia Tech</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Utkarsh Mishra</span>
-                        <span class="author-affiliation">Georgia Tech</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Yichao Liang</span>
-                        <span class="author-affiliation">Cambridge</span>
-                    </div>
-                    <div class="author-break"></div>
-                    <div class="author">
-                        <span class="author-name">Nishanth Kumar</span>
-                        <span class="author-affiliation">MIT</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Sebastian Scherer</span>
-                        <span class="author-affiliation">CMU</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Danfei Xu</span>
-                        <span class="author-affiliation">Georgia Tech</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Tom Silver</span>
-                        <span class="author-affiliation">Princeton</span>
-                    </div>
-                </div>
-
-                <p class="equal-contribution">*Equal contribution</p>
+                <p class="submission-info">Anonymous Submission. Under Review @ RSS 2026</p>
             </div>
         </section>
 
@@ -68,28 +28,16 @@
 
         <section id="about">
             <div class="container">
-                <h2>About PRBench</h2>
-                <p class="intro-text">A <strong>p</strong>hysical <strong>r</strong>easoning <strong>bench</strong>mark for robotics.</p>
+                <h2>About KinDER</h2>
+                <p class="intro-text">A physical reasoning benchmark for robot learning and planning.</p>
 
                 <div class="about-content">
-                    <p>This is a work in progress! We are sharing it with you to get feedback so that we can determine how to focus our next efforts. Thanks for your help!</p>
-
-                    <p>PRBench is designed to test "mid-level" robot reasoning. Existing benchmarks focus on either long-horizon high-level semantic understanding ("create a meal from existing ingredients"), or short-horizon low-level perception and control (pixels to torques). PRBench instead considers the challenges that arise when these two levels meet, and when they cannot be easily disentangled: the messy chain of intermediate constraints required to actually realize a high-level goal ("create a "meal"), e.g., retrieving tools from cluttered drawers, opening stuck cabinets, reaching around obstacles, manipulating ingredients in tight spaces, and sequencing these motions so nothing falls, spills, or blocks future actions. In general, these are tasks that feature:</p>
-                    <ul>
-                        <li>Tight constraints (spatial, kinematic, dynamic, collision, force, among others)</li>
-                        <li>Varying numbers of objects</li>
-                        <li>Long time horizons</li>
-                        <li>Sparse rewards</li>
-                        <li>Diverse task distributions, requiring generalization</li>
-                        <li>Challenges inspired by the task-and-motion-planning (TAMP) literature</li>
-                    </ul>
-
-                    <p>PRBench is implemented as a collection of Gymnasium environments. Performance is evaluated based on not only task performance (rewards), but also training time and sample complexity (for data-driven approaches) and evaluation time (especially for planning-based approaches). Our goal is to facilitate direct comparisons between many different approaches, evaluating and supporting progress in the state of the art for robot physical reasoning.</p>
+                    <p>Robotic systems that interact with the physical world must reason about kinematic and dynamic constraints imposed by their own embodiment, their environment, and the task at hand. We introduce KinDER, a benchmark for Kinematic and Dynamic Embodied Reasoning that targets physical reasoning challenges arising in robot learning and planning. KinDER comprises 25 procedurally generated environments, a Gymnasium-compatible Python library with parameterized skills and demonstrations, and a standardized evaluation suite with 8 implemented baselines spanning task and motion planning, imitation learning, reinforcement learning, and foundation-model-based approaches. The environments are designed to isolate five core physical reasoning challenges: basic spatial relations, nonprehensile multi-object manipulation, tool use, combinatorial geometric constraints, and dynamic constraints, disentangled from perception, language understanding, and application-specific complexity. Empirical evaluation shows that existing methods struggle to solve many of the environments, indicating substantial gaps in current approaches to physical reasoning. We additionally include real-to-sim-to-real experiments on a mobile manipulator to assess the correspondence between simulation and real-world physical interaction. KinDER is fully open-sourced and intended to enable systematic comparison across diverse paradigms for advancing physical reasoning in robotics.</p>
 
                 </div>
 
                 <h3 class="collapsible-header" onclick="toggleCollapsible('challenges-section')">
-                    What Makes PRBench Challenging? <span class="toggle-icon" id="challenges-toggle">▼</span>
+                    What Makes KinDER Challenging? <span class="toggle-icon" id="challenges-toggle">▼</span>
                 </h3>
 
                 <div class="collapsible-content" id="challenges-section">
@@ -106,7 +54,7 @@
 
                         <div class="challenge-card">
                             <h4>For Vision-Language Models</h4>
-                            <p>The physical reasoning required in PRBench is not easy to represent in natural language. Spatial reasonining, a subset of physical reasoning, is a known challenge for vision-language models.</p>
+                            <p>The physical reasoning required in KinDER is not easy to represent in natural language. Spatial reasonining, a subset of physical reasoning, is a known challenge for vision-language models.</p>
                         </div>
 
                         <div class="challenge-card">
@@ -116,12 +64,12 @@
 
                         <div class="challenge-card">
                             <h4>For Task and Motion Planning</h4>
-                            <p>PRBench does not provide any models for TAMP. Users are welcome to engineer their own, but doing so may be nontrivial. Some environments contain many objects, which may make planning slow.</p>
+                            <p>KinDER does not provide any models for TAMP. Users are welcome to engineer their own, but doing so may be nontrivial. Some environments contain many objects, which may make planning slow.</p>
                         </div>
 
                         <div class="challenge-card">
                             <h4>For Human Engineers</h4>
-                            <p>PRBench features diverse task distributions and long time horizons, making it challenging for engineers to hand-design even very environment-specific solutions. A single task may be straightforward, but designing generalized solutions is nontrivial.</p>
+                            <p>KinDER features diverse task distributions and long time horizons, making it challenging for engineers to hand-design even very environment-specific solutions. A single task may be straightforward, but designing generalized solutions is nontrivial.</p>
                         </div>
                     </div>
                 </div>
@@ -131,12 +79,11 @@
         <section id="usage">
             <div class="container">
                 <h2>Usage</h2>
-
-                <p>PRBench is not ready for public use yet (it is under development <a href="https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono/tree/main/prbench" target="_blank">here</a>). These instructions show how it will work when it is ready.</p>
-
                 <h3>Installation</h3>
 
-                <p>PRBench will be available on PyPI when it is ready. At that time, you will be able to install it with <code>pip install prbench</code>. Until then, you can install it from source as follows. First, we strongly recommend <a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank">uv</a>. Then choose one of the following based on your needs:</p>
+                <p>THIS WILL CHANGE SOON!!!</p>
+
+                <p>KinDER will be available on PyPI when it is ready. At that time, you will be able to install it with <code>pip install prbench</code>. Until then, you can install it from source as follows. First, we strongly recommend <a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank">uv</a>. Then choose one of the following based on your needs:</p>
 
                 <div class="code-block">
                     <pre><code class="language-bash"># Core dependencies only
@@ -171,7 +118,7 @@ img = env.render()</code></pre>
                 </h3>
 
                 <div class="collapsible-content" id="object-centric-section">
-                    <p>All environments in PRBench use object-centric states:</p>
+                    <p>All environments in KinDER use object-centric states:</p>
 
                     <div class="code-block">
                         <pre><code class="language-python">from prbench.envs.geom2d.obstruction2d import ObjectCentricObstruction2DEnv
@@ -228,17 +175,11 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
                 <div class="real-robots-content">
                     <img src="assets/real-sim-example.gif" alt="Real robot demonstration" class="real-robot-demo">
                     <img src="assets/real-sim-example-2.gif" alt="Real robot demonstration 2" class="real-robot-demo">
-                    <p>We are also working on setting up real robot versions of PRBench tasks and real-to-sim-to-real pipelines to facilitate rapid experimentation.</p>
+                    <p>We are also working on setting up real robot versions of KinDER tasks and real-to-sim-to-real pipelines to facilitate rapid experimentation.</p>
                 </div>
             </div>
         </section>
 
-        <section id="acknowledgements">
-            <div class="container">
-                <h2>Acknowledgements</h2>
-                <p>We are grateful to Caelan Garrett for early discussions, and to you, for reviewing this early draft and giving feedback!</p>
-            </div>
-        </section>
     </main>
 
 {{FOOTER}}

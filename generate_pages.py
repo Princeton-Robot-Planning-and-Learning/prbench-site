@@ -23,14 +23,12 @@ NAV_ITEMS = [
     ('benchmark', 'Environments'),
     ('results', 'Results'),
     ('real-robots', 'Real Robots'),
-    ('acknowledgements', 'Acknowledgements'),
 ]
 
-FOOTER_TEXT = '&copy; 2025 PRBench. All rights reserved.'
-DRAFT_BANNER_TEXT = 'EARLY DRAFT: DO NOT DISTRIBUTE'
+FOOTER_TEXT = '&copy; 2026 KinDER. All rights reserved.'
 
 
-def generate_header(prefix='', title='PRBench'):
+def generate_header(prefix='', title='KinDER'):
     """Generate the site header HTML.
 
     prefix: path prefix for links ('' for index.html, '../' for depth=1, etc.)
@@ -49,8 +47,7 @@ def generate_header(prefix='', title='PRBench'):
         )
         title_html = title
 
-    return f'''    <div class="draft-banner">{DRAFT_BANNER_TEXT}</div>
-    <header>
+    return f'''    <header>
         <nav>
             <div class="container">
                 <h1>{title_html}</h1>
@@ -83,12 +80,12 @@ def base_template(title, breadcrumb_html, content_html, depth=1):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title} | PRBench</title>
+    <title>{title} | KinDER</title>
     <link rel="stylesheet" href="{prefix}styles.css">
     <link rel="stylesheet" href="{prefix}environments/environment.css">
 </head>
 <body>
-{generate_header(prefix, 'PRBench')}
+{generate_header(prefix, 'KinDER')}
     <main>
         <section class="environment-detail">
             <div class="container">
@@ -528,7 +525,7 @@ def load_whitelist(path):
 
 
 def main():
-    print("PRBench Environment Page Generator")
+    print("KinDER Environment Page Generator")
     print("=" * 60)
 
     md_dir = Path('prpl-mono/prbench/docs/envs')
@@ -653,7 +650,7 @@ def main():
         # Replace header and footer
         content = content.replace('{{HEADER}}', generate_header(
             prefix='',
-            title='PRBench: A Physical Reasoning Benchmark for Robotics'
+            title='KinDER: A Physical Reasoning Benchmark for Robot Learning and Planning'
         ))
         content = content.replace('{{FOOTER}}', generate_footer())
 
@@ -664,7 +661,7 @@ def main():
         benchmark_html = '''        <section id="benchmark">
             <div class="container">
                 <h2>Environments</h2>
-                <p>PRBench environments are organized into four categories.</p>
+                <p>KinDER environments are organized into four categories.</p>
 
                 <div class="env-categories-grid">
 '''
