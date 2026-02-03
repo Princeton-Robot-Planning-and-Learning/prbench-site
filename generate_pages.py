@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Generate environment HTML pages from markdown files."""
 
-import csv
 import re
 import shutil
 from collections import defaultdict
@@ -417,68 +416,13 @@ def create_category_page(category_name, families):
     return base_template(category_name, breadcrumb, content, depth=1)
 
 
-def generate_results_table_html(groups):
-    """Generate the results table HTML from CSV."""
-    csv_path = Path('data/unified_table.csv')
-    if not csv_path.exists():
-        print("Warning: data/unified_table.csv not found!")
-        return None
-
-    data = defaultdict(lambda: defaultdict(dict))
-    with open(csv_path, 'r', encoding='utf-8') as f:
-        for row in csv.DictReader(f):
-            data[row['method']][row['env']][row['metric']] = row['value']
-
-    methods = [
-        ('RL-PPO', 'success_rate_mean', 'success_rate_std', 'RL-PPO'),
-        ('RL-SAC', 'success_rate_mean', 'success_rate_std', 'RL-SAC'),
-        ('ImitationLearning-DiffusionPolicy', 'success rate_mean', 'success rate_std', 'Diffusion Policy'),
-        ('LLMPlanning', 'solve_rate', 'solve_rate_std', 'LLM Planning'),
-        ('VLMPlanning', 'solve_rate', 'solve_rate_std', 'VLM Planning'),
-        ('BilevelPlanning', 'success_mean', 'success_std', 'Bilevel Planning'),
-    ]
-
-    envs = sorted(set(env for m, *_ in methods for env in data[m]))
-    header = ''.join(f'                                <th>{m[3]}</th>\n' for m in methods)
-
-    # Build a map from env name to its group
-    env_to_group = {}
-    for group_name, group_info in groups.items():
-        for v in group_info['variants']:
-            env_to_group[v['name']] = group_name
-
-    rows = []
-    for env in envs:
-        group_slug = slugify(env_to_group.get(env, extract_base_name(env)))
-        env_slug = slugify(env)
-        link = f'environments/{group_slug}/{env_slug}.html'
-        cells = [f'                                <td><a href="{link}">{env}</a></td>']
-        for method, mean_key, std_key, _ in methods:
-            env_data = data[method].get(env, {})
-            try:
-                mean, std = float(env_data.get(mean_key, '')), float(env_data.get(std_key, ''))
-                cells.append(f'                                <td>{mean:.3f} ± {std:.3f}</td>')
-            except (ValueError, TypeError):
-                cells.append('                                <td>-</td>')
-        rows.append('                            <tr>\n' + '\n'.join(cells) + '\n                            </tr>')
-
-    return f'''        <section id="results">
+def generate_results_section_html():
+    """Generate the results section HTML with figure."""
+    return '''        <section id="results">
             <div class="container">
                 <h2>KinderBench: Benchmark and Results</h2>
                 <p>See the plot below for a summary of our main empirical results. See paper for details and additional results with additional metrics.</p>
-
-                <div class="results-table-wrapper">
-                    <table class="results-table">
-                        <thead>
-                            <tr>
-                                <th>Environment</th>
-{header}                            </tr>
-                        </thead>
-                        <tbody>
-{chr(10).join(rows)}
-                        </tbody>
-                    </table>
-                </div>
+                <img src="assets/figure1_bar_v1.png" alt="Benchmark results" class="results-figure">
                 <p>Success rates: mean ± std across 5 seeds and 50 episodes per seed.</p>
             </div>
         </section>'''
@@ -530,7 +474,6 @@ def generate_index_category_html(category_name, groups):
     return f'''
                     <div class="env-category-card">
                         <h3><a href="environments/{slugify(category_name)}.html">{category_name}</a></h3>
-                        <p class="category-desc">{CATEGORY_DESCRIPTIONS.get(category_name, '')}</p>
                         <ul class="env-list">
 {chr(10).join(items)}
                         </ul>
@@ -682,7 +625,7 @@ def main():
 
         benchmark_html = '''        <section id="benchmark">
             <div class="container">
-                <h2>Environments</h2>
+                <h2>KinDERGarden: Environments</h2>
                 <p>KinDER environments are organized into four categories.</p>
 
                 <div class="env-categories-grid">
@@ -696,9 +639,8 @@ def main():
 
         content = content.replace('{{BENCHMARK_SECTION}}', benchmark_html)
 
-        results_html = generate_results_table_html(groups)
-        if results_html:
-            content = content.replace('{{RESULTS_SECTION}}', results_html)
+        results_html = generate_results_section_html()
+        content = content.replace('{{RESULTS_SECTION}}', results_html)
 
         index_path.write_text(content, encoding='utf-8')
         print("  Generated index.html")
