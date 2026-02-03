@@ -32,39 +32,28 @@
                 <h1>DynPushT2D</h1>
 
                 <div class="environment-content">
-                    <div class="gifs-grid">
-                        <div class="gif-container">
-                            <h3>Random Actions</h3>
-                            <img src="../../markdowns/assets/random_action_gifs/DynPushT2D-t1.gif" alt="Random Actions">
-                        </div>
-                        <div class="gif-container">
-                            <h3>Initial State Distribution</h3>
-                            <img src="../../markdowns/assets/initial_state_gifs/DynPushT2D-t1.gif" alt="Initial State Distribution">
-                        </div>
-                        <div class="gif-container">
-                            <h3>Example Demonstration</h3>
-                            <img src="../../markdowns/assets/demo_gifs/DynPushT2D-t1/DynPushT2D_seed0_1759590231.gif" alt="Example Demonstration">
-                        </div>
+                    <div class="hero-gif">
+                        <img src="../../prpl-mono/prbench/docs/envs/assets/group_gifs/DynPushT2D.gif" alt="Environment demonstration">
                     </div>
-
 
                     <h2>Description</h2>
                     <p>A 2D physics-based environment where the goal is to push a T-shaped block to match a goal pose using a simple dot robot (kinematic circle) with PyMunk physics simulation.</p>
+<p>The T-shaped block must be positioned within small position and orientation thresholds of the goal.</p>
 
                     <h2>Variants</h2>
                     <p>This environment has 1 variant(s).</p>
 
                     <div class="variant-list">
                         <div class="variant-card">
-                            <a href="dynpusht2d-t1-v0.html" class="variant-link">
-                                <h3>DynPushT2D-t1-v0</h3>
-                                <p class="variant-description"></p>
+                            <a href="dynpusht2d-t1.html" class="variant-link">
+                                <h3>DynPushT2D-t1</h3>
+                                <p class="variant-description">This variant has a T-shaped block to push to a goal pose.</p>
                             </a>
                         </div>
                     </div>
 
                     <h2>References</h2>
-                    <p>This is a physics-based version of the PushT environment that was introduced in "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion" (Chi et al., 2024).</p>
+                    <p>This implementation is based on the Push-T environment introduced in the Diffusion Policy paper (Chi et al., 2023).</p>
                 </div>
 
                 <div class="back-link">
