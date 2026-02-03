@@ -149,19 +149,33 @@ def extract_first_frame_as_png(gif_path, png_path):
         return False
 
 
-def generate_gif_grid_html(gifs, labels=None):
-    """Generate HTML for a grid of GIFs."""
+def generate_gif_grid_html(gifs):
+    """Generate HTML for a grid of GIFs.
+
+    gifs: dict with keys 'initial', 'random', 'demo' mapping to GIF paths
+    """
     if not gifs:
         return ''
-    labels = labels or ['Random Actions', 'Initial State Distribution', 'Example Demonstration']
-    items = '\n'.join(
-        f'                        <div class="gif-container">\n'
-        f'                            <h3>{labels[i] if i < len(labels) else f"GIF {i+1}"}</h3>\n'
-        f'                            <img src="{gif}" alt="{labels[i] if i < len(labels) else ""}">\n'
-        f'                        </div>'
-        for i, gif in enumerate(gifs[:3])
-    )
-    return f'                    <div class="gifs-grid">\n{items}\n                    </div>\n\n'
+
+    gif_config = [
+        ('initial', 'Initial State Distribution'),
+        ('random', 'Random Action Behavior'),
+        ('demo', 'Example Demonstration'),
+    ]
+
+    items = []
+    for key, label in gif_config:
+        if key in gifs:
+            items.append(
+                f'                        <div class="gif-container">\n'
+                f'                            <h3>{label}</h3>\n'
+                f'                            <img src="{gifs[key]}" alt="{label}">\n'
+                f'                        </div>'
+            )
+
+    if not items:
+        return ''
+    return f'                    <div class="gifs-grid">\n' + '\n'.join(items) + '\n                    </div>\n\n'
 
 
 def get_hero_gif_path(group_name, assets_dir):
@@ -173,12 +187,26 @@ def get_hero_gif_path(group_name, assets_dir):
 
 
 def extract_gifs_from_markdown(content, depth=2):
-    """Extract GIF paths from markdown content."""
+    """Extract GIF paths from markdown content for Initial State, Random Action, and Demo."""
     prefix = '../' * depth
-    gifs = []
-    for match in re.findall(r'!\[.*?\]\((assets/.*?\.gif)\)', content):
-        gifs.append(match.replace('assets/', f'{prefix}prpl-mono/prbench/docs/envs/assets/'))
-    return gifs[:3]
+    gifs = {}
+
+    # Extract Initial State Distribution GIF
+    init_match = re.search(r'## Initial State Distribution\s*\n!\[.*?\]\((\.\.\/\.\.\/assets/[^\)]+\.gif)\)', content)
+    if init_match:
+        gifs['initial'] = init_match.group(1).replace('../../assets/', f'{prefix}prpl-mono/prbench/docs/envs/assets/')
+
+    # Extract Random Action Behavior GIF
+    random_match = re.search(r'## Random Action Behavior\s*\n!\[.*?\]\((\.\.\/\.\.\/assets/[^\)]+\.gif)\)', content)
+    if random_match:
+        gifs['random'] = random_match.group(1).replace('../../assets/', f'{prefix}prpl-mono/prbench/docs/envs/assets/')
+
+    # Extract Example Demonstration GIF
+    demo_match = re.search(r'## Example Demonstration\s*\n!\[.*?\]\((\.\.\/\.\.\/assets/[^\)]+\.gif)\)', content)
+    if demo_match:
+        gifs['demo'] = demo_match.group(1).replace('../../assets/', f'{prefix}prpl-mono/prbench/docs/envs/assets/')
+
+    return gifs
 
 
 def extract_section(content, section_name):
@@ -238,10 +266,17 @@ def filter_markdown_for_html(content, depth=2):
     filtered = []
     skip = False
 
+    # Sections to skip (they're displayed in the GIF grid instead)
+    skip_sections = (
+        '## Initial State Distribution',
+        '## Random Action Behavior',
+        '## Example Demonstration',
+    )
+
     for line in lines:
         if 'random_action_gifs' in line:
             continue
-        if line.strip() in ('## Initial State Distribution', '## Example Demonstration'):
+        if line.strip() in skip_sections:
             skip = True
             continue
         if skip and line.strip().startswith('## '):
@@ -266,7 +301,10 @@ def filter_markdown_for_html(content, depth=2):
 
     prefix = '../' * depth
     result = '\n'.join(processed)
+    # Handle both direct assets/ paths and relative ../../assets/ paths from variant files
+    result = result.replace('](../../assets/', f']({prefix}prpl-mono/prbench/docs/envs/assets/')
     result = result.replace('](assets/', f']({prefix}prpl-mono/prbench/docs/envs/assets/')
+    result = result.replace('="../../assets/', f'="{prefix}prpl-mono/prbench/docs/envs/assets/')
     result = result.replace('="assets/', f'="{prefix}prpl-mono/prbench/docs/envs/assets/')
     return result
 
