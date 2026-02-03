@@ -9,13 +9,6 @@ from pathlib import Path
 import markdown
 from PIL import Image
 
-CATEGORY_DESCRIPTIONS = {
-    'Kinematic 2D': '2D environments focused on geometric reasoning and spatial relationships.',
-    'Kinematic 3D': '3D environments for testing spatial reasoning in three dimensions.',
-    'Dynamic 2D': '2D environments involving dynamic physical interactions and motion.',
-    'Dynamic 3D': '3D environments with complex dynamics and physical interactions.'
-}
-
 NAV_ITEMS = [
     ('about', 'About'),
     ('usage', 'Usage'),
@@ -442,8 +435,6 @@ def create_category_page(category_name, families):
                 <h1>{category_name}</h1>
 
                 <div class="environment-content">
-                    <p class="category-page-description">{CATEGORY_DESCRIPTIONS.get(category_name, '')}</p>
-
                     <h2>Environment Families</h2>
 
                     <div class="env-families-list">
