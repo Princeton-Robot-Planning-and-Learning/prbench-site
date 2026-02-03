@@ -10,8 +10,8 @@ import markdown
 from PIL import Image
 
 CATEGORY_DESCRIPTIONS = {
-    'Geometric 2D': '2D environments focused on geometric reasoning and spatial relationships.',
-    'Geometric 3D': '3D environments for testing spatial reasoning in three dimensions.',
+    'Kinematic 2D': '2D environments focused on geometric reasoning and spatial relationships.',
+    'Kinematic 3D': '3D environments for testing spatial reasoning in three dimensions.',
     'Dynamic 2D': '2D environments involving dynamic physical interactions and motion.',
     'Dynamic 3D': '3D environments with complex dynamics and physical interactions.'
 }
@@ -130,10 +130,10 @@ def categorize_environment(env_name):
 
     if is_3d:
         is_dynamic = 'tidybot' in name_lower or 'rby1a' in name_lower
-        return "Dynamic 3D" if is_dynamic else "Geometric 3D"
+        return "Dynamic 3D" if is_dynamic else "Kinematic 3D"
     else:
         is_dynamic = name_lower.startswith('dyn')
-        return "Dynamic 2D" if is_dynamic else "Geometric 2D"
+        return "Dynamic 2D" if is_dynamic else "Kinematic 2D"
 
 
 def extract_first_frame_as_png(gif_path, png_path):
@@ -598,7 +598,7 @@ def main():
 
     # Generate category pages
     print("\nGenerating category pages...")
-    for cat_name in ['Geometric 2D', 'Geometric 3D', 'Dynamic 2D', 'Dynamic 3D']:
+    for cat_name in ['Kinematic 2D', 'Kinematic 3D', 'Dynamic 2D', 'Dynamic 3D']:
         if cat_name in categories:
             families = [{'base_name': bn, 'count': len(vs)} for bn, vs in categories[cat_name].items()]
             html = create_category_page(cat_name, families)
@@ -630,7 +630,7 @@ def main():
 
                 <div class="env-categories-grid">
 '''
-        for cat_name in ['Geometric 2D', 'Geometric 3D', 'Dynamic 2D', 'Dynamic 3D']:
+        for cat_name in ['Kinematic 2D', 'Kinematic 3D', 'Dynamic 2D', 'Dynamic 3D']:
             if cat_name in categories:
                 benchmark_html += generate_index_category_html(cat_name, categories[cat_name])
         benchmark_html += '''                </div>

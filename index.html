@@ -170,9 +170,9 @@ uv pip install -r optional_prpl_requirements/core.txt && uv pip install -e .
 uv pip install -e ".[all]"
 
 # Specific environments
-uv pip install -e ".[geom2d]"      # Geometric 2D only
+uv pip install -e ".[geom2d]"      # Kinematic 2D only
 uv pip install -e ".[dynamic2d]"   # Dynamic 2D only
-uv pip install -e ".[geom3d]"      # Geometric 3D only
+uv pip install -e ".[geom3d]"      # Kinematic 3D only
 uv pip install -e ".[tidybot]"     # TidyBot only
 
 # Compositional
@@ -250,7 +250,7 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
                 <div class="env-categories-grid">
 
                     <div class="env-category-card">
-                        <h3><a href="environments/geometric-2d.html">Geometric 2D</a></h3>
+                        <h3><a href="environments/kinematic-2d.html">Kinematic 2D</a></h3>
                         <ul class="env-list">
                             <li><a href="environments/clutteredretrieval2d/index.html">ClutteredRetrieval2D</a> <span class="env-count">3 variants</span></li>
                             <li><a href="environments/clutteredstorage2d/index.html">ClutteredStorage2D</a> <span class="env-count">4 variants</span></li>
@@ -262,7 +262,7 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
                     </div>
 
                     <div class="env-category-card">
-                        <h3><a href="environments/geometric-3d.html">Geometric 3D</a></h3>
+                        <h3><a href="environments/kinematic-3d.html">Kinematic 3D</a></h3>
                         <ul class="env-list">
                             <li><a href="environments/basemotion3d/index.html">BaseMotion3D</a> <span class="env-count">1 variant</span></li>
                             <li><a href="environments/obstruction3d/index.html">Obstruction3D</a> <span class="env-count">5 variants</span></li>
