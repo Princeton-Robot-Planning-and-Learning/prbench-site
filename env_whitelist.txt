@@ -14,7 +14,7 @@ Table3D
 Transport3D
 BaseMotion3D
 ConstrainedCupboard3D
-Shelf3D
+DynShelf3D
 SortClutteredBlocks3D
 Rearrange3D
 SweepSimple3D

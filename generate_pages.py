@@ -272,10 +272,31 @@ def filter_markdown_for_html(content, depth=2):
     return result
 
 
+def preprocess_markdown(content):
+    """Preprocess markdown to fix common issues before conversion.
+
+    - Ensures blank lines before lists (required by Python-Markdown)
+    - Ensures blank lines before headers
+    """
+    lines = content.split('\n')
+    result = []
+    for i, line in enumerate(lines):
+        # Check if this line starts a list or header and previous line is non-empty
+        is_list_start = line.strip().startswith(('- ', '* ', '+ ')) or re.match(r'^\d+\. ', line.strip())
+        is_header = line.strip().startswith('#')
+        prev_non_empty = i > 0 and result and result[-1].strip()
+
+        if (is_list_start or is_header) and prev_non_empty:
+            result.append('')
+        result.append(line)
+    return '\n'.join(result)
+
+
 def convert_markdown_to_html(md_content):
     """Convert markdown content to HTML."""
+    preprocessed = preprocess_markdown(md_content)
     md = markdown.Markdown(extensions=['tables', 'fenced_code'])
-    return md.convert(md_content)
+    return md.convert(preprocessed)
 
 
 def create_environment_page(variant_data, group_data, category):
@@ -443,8 +464,8 @@ def generate_results_table_html(groups):
 
     return f'''        <section id="results">
             <div class="container">
-                <h2>Very Preliminary Results</h2>
-                <p>Success rates: mean ± std across 5 seeds and 50 episodes per seed.</p>
+                <h2>KinderBench: Benchmark and Results</h2>
+                <p>See the plot below for a summary of our main empirical results. See paper for details and additional results with additional metrics.</p>
 
                 <div class="results-table-wrapper">
                     <table class="results-table">
@@ -458,6 +479,7 @@ def generate_results_table_html(groups):
                         </tbody>
                     </table>
                 </div>
+                <p>Success rates: mean ± std across 5 seeds and 50 episodes per seed.</p>
             </div>
         </section>'''
 
