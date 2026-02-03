@@ -13,22 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 </head>
 <body>
-    <div class="draft-banner">EARLY DRAFT: DO NOT DISTRIBUTE</div>
-    <header>
-        <nav>
-            <div class="container">
-                <h1>PRBench: A Physical Reasoning Benchmark for Robotics</h1>
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#usage">Usage</a></li>
-                    <li><a href="#benchmark">Environments</a></li>
-                    <li><a href="#results">Results</a></li>
-                    <li><a href="#real-robots">Real Robots</a></li>
-                    <li><a href="#acknowledgements">Acknowledgements</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+{{HEADER}}
 
     <main>
         <section class="title-authors-section">
@@ -305,120 +290,9 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
             </div>
         </section>
 
-        <section id="benchmark">
-            <div class="container">
-                <h2>Environments</h2>
-                <p>PRBench environments are organized into four categories.</p>
+{{BENCHMARK_SECTION}}
 
-                <div class="env-categories-grid">
-
-                    <div class="env-category-card">
-                        <h3><a href="environments/geometric-2d.html">Geometric 2D</a></h3>
-                        <p class="category-desc">2D environments focused on geometric reasoning and spatial relationships.</p>
-                        <ul class="env-list">
-                            <li><a href="environments/clutteredretrieval2d/index.html">ClutteredRetrieval2D</a> <span class="env-count">3 variants</span></li>
-                            <li><a href="environments/clutteredstorage2d/index.html">ClutteredStorage2D</a> <span class="env-count">4 variants</span></li>
-                            <li><a href="environments/motion2d/index.html">Motion2D</a> <span class="env-count">6 variants</span></li>
-                            <li><a href="environments/obstruction2d/index.html">Obstruction2D</a> <span class="env-count">5 variants</span></li>
-                            <li><a href="environments/pushpullhook2d/index.html">PushPullHook2D</a> <span class="env-count">1 variant</span></li>
-                            <li><a href="environments/stickbutton2d/index.html">StickButton2D</a> <span class="env-count">5 variants</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="env-category-card">
-                        <h3><a href="environments/geometric-3d.html">Geometric 3D</a></h3>
-                        <p class="category-desc">3D environments for testing spatial reasoning in three dimensions.</p>
-                        <ul class="env-list">
-                            <li><a href="environments/motion3d/index.html">Motion3D</a> <span class="env-count">1 variant</span></li>
-                            <li><a href="environments/obstruction3d/index.html">Obstruction3D</a> <span class="env-count">5 variants</span></li>
-                            <li><a href="environments/packing3d/index.html">Packing3D</a> <span class="env-count">3 variants</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="env-category-card">
-                        <h3><a href="environments/dynamic-2d.html">Dynamic 2D</a></h3>
-                        <p class="category-desc">2D environments involving dynamic physical interactions and motion.</p>
-                        <ul class="env-list">
-                            <li><a href="environments/dynobstruction2d/index.html">DynObstruction2D</a> <span class="env-count">5 variants</span></li>
-                            <li><a href="environments/dynpushpullhook2d/index.html">DynPushPullHook2D</a> <span class="env-count">3 variants</span></li>
-                            <li><a href="environments/dynpusht2d/index.html">DynPushT2D</a> <span class="env-count">1 variant</span></li>
-                            <li><a href="environments/dynscooppour2d/index.html">DynScoopPour2D</a> <span class="env-count">8 variants</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="env-category-card">
-                        <h3><a href="environments/dynamic-3d.html">Dynamic 3D</a></h3>
-                        <p class="category-desc">3D environments with complex dynamics and physical interactions.</p>
-                        <ul class="env-list">
-                            <li><a href="environments/tidybot3d-base_motion/index.html">TidyBot3D-base_motion</a> <span class="env-count">1 variant</span></li>
-                            <li><a href="environments/tidybot3d-cupboard-o12-constrainedfitting/index.html">TidyBot3D-cupboard-o12-ConstrainedFitting</a> <span class="env-count">1 variant</span></li>
-                            <li><a href="environments/tidybot3d-table-o20-sortclutteredblocks/index.html">TidyBot3D-table-o20-SortClutteredBlocks</a> <span class="env-count">1 variant</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="results">
-            <div class="container">
-                <h2>Very Preliminary Results</h2>
-                <p>Success rates: mean ± std across 5 seeds and 50 episodes per seed.</p>
-
-                <div class="results-table-wrapper">
-                    <table class="results-table">
-                        <thead>
-                            <tr>
-                                <th>Environment</th>
-                                <th>RL-PPO</th>
-                                <th>RL-SAC</th>
-                                <th>Diffusion Policy</th>
-                                <th>LLM Planning</th>
-                                <th>VLM Planning</th>
-                                <th>Bilevel Planning</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="environments/motion2d/motion2d-p0-v0.html">Motion2D-p0-v0</a></td>
-                                <td>0.948 ± 0.066</td>
-                                <td>0.000 ± 0.000</td>
-                                <td>0.964 ± 0.008</td>
-                                <td>1.000 ± 0.000</td>
-                                <td>1.000 ± 0.000</td>
-                                <td>1.000 ± 0.000</td>
-                            </tr>
-                            <tr>
-                                <td><a href="environments/motion2d/motion2d-p2-v0.html">Motion2D-p2-v0</a></td>
-                                <td>0.000 ± 0.000</td>
-                                <td>0.000 ± 0.000</td>
-                                <td>0.932 ± 0.027</td>
-                                <td>0.000 ± 0.000</td>
-                                <td>0.000 ± 0.000</td>
-                                <td>0.996 ± 0.063</td>
-                            </tr>
-                            <tr>
-                                <td><a href="environments/stickbutton2d/stickbutton2d-b1-v0.html">StickButton2D-b1-v0</a></td>
-                                <td>0.072 ± 0.027</td>
-                                <td>0.012 ± 0.011</td>
-                                <td>0.652 ± 0.039</td>
-                                <td>0.287 ± 0.454</td>
-                                <td>0.227 ± 0.420</td>
-                                <td>0.992 ± 0.089</td>
-                            </tr>
-                            <tr>
-                                <td><a href="environments/stickbutton2d/stickbutton2d-b3-v0.html">StickButton2D-b3-v0</a></td>
-                                <td>0.000 ± 0.000</td>
-                                <td>0.000 ± 0.000</td>
-                                <td>0.316 ± 0.061</td>
-                                <td>0.007 ± 0.082</td>
-                                <td>0.007 ± 0.082</td>
-                                <td>0.300 ± 0.459</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+{{RESULTS_SECTION}}
 
         <section id="real-robots">
             <div class="container">
@@ -439,11 +313,7 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 PRBench. All rights reserved.</p>
-        </div>
-    </footer>
+{{FOOTER}}
 
     <script>
         function toggleCollapsible(id) {
