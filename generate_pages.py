@@ -129,12 +129,23 @@ def categorize_environment(env_name):
         return "Dynamic 2D" if is_dynamic else "Kinematic 2D"
 
 
-def extract_first_frame_as_png(gif_path, png_path):
-    """Extract the first frame of a GIF and save as PNG."""
+def extract_first_frame_as_png(gif_path, png_path, crop_square=False):
+    """Extract the first frame of a GIF and save as PNG.
+
+    If crop_square=True, crop to a centered square.
+    """
     try:
         with Image.open(gif_path) as img:
             img.seek(0)
             frame = img.convert('RGBA')
+
+            if crop_square:
+                width, height = frame.size
+                size = min(width, height)
+                left = (width - size) // 2
+                top = (height - size) // 2
+                frame = frame.crop((left, top, left + size, top + size))
+
             frame.save(png_path, 'PNG')
             return True
     except Exception as e:
@@ -612,7 +623,9 @@ def main():
         hero_gif = group_data.get('hero_gif')
         if hero_gif and hero_gif.exists():
             png_path = thumbnails_dir / f'{group_name}.png'
-            if extract_first_frame_as_png(hero_gif, png_path):
+            # Crop Dynamic 3D thumbnails to square
+            crop_square = group_data.get('category') == 'Dynamic 3D'
+            if extract_first_frame_as_png(hero_gif, png_path, crop_square=crop_square):
                 png_count += 1
             # Set URLs for use in templates (relative to group page at depth=2)
             group_data['hero_gif_url'] = f'../../prpl-mono/prbench/docs/envs/assets/group_gifs/{group_name}.gif'
