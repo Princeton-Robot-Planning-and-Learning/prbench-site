@@ -1,20 +1,24 @@
+# Kinematic 2D
 ClutteredRetrieval2D
 Motion2D
 Obstruction2D
 PushPullHook2D
 ClutteredStorage2D
 StickButton2D
+# Dynamic 2D
 DynObstruction2D
 DynPushPullHook2D
 DynPushT2D
 DynScoopPour2D
+# Kinematic 3D
 Obstruction3D
 Packing3D
 Table3D
 Transport3D
 BaseMotion3D
+# Dynamic 3D
 ConstrainedCupboard3D
-DynShelf3D
+Shelf3D
 SortClutteredBlocks3D
 Rearrange3D
 SweepSimple3D

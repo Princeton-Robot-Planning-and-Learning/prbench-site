@@ -90,6 +90,10 @@
                             <img src="environments/thumbnails/PushPullHook2D.png" alt="PushPullHook2D Demo">
                             <span class="demo-label">PushPullHook2D</span>
                         </a>
+                        <a href="environments/shelf3d/index.html" class="demo-gif-item" data-gif="prpl-mono/prbench/docs/envs/assets/group_gifs/Shelf3D.gif" data-static="environments/thumbnails/Shelf3D.png">
+                            <img src="environments/thumbnails/Shelf3D.png" alt="Shelf3D Demo">
+                            <span class="demo-label">Shelf3D</span>
+                        </a>
                         <a href="environments/stickbutton2d/index.html" class="demo-gif-item" data-gif="prpl-mono/prbench/docs/envs/assets/group_gifs/StickButton2D.gif" data-static="environments/thumbnails/StickButton2D.png">
                             <img src="environments/thumbnails/StickButton2D.png" alt="StickButton2D Demo">
                             <span class="demo-label">StickButton2D</span>
@@ -158,25 +162,19 @@
                 <h2>KinDERGym: Usage</h2>
                 <h3>Installation</h3>
 
-                <p>Coming soon.</p>
-
-                <!-- <p>KinDER will be available on PyPI when it is ready. At that time, you will be able to install it with <code>pip install kinder</code>. Until then, you can install it from source as follows. First, we strongly recommend <a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank">uv</a>. Then choose one of the following based on your needs:</p>
+                <p>KinDER will be available on PyPI following publication. At that time, you will be able to install it with <code>pip install kinder</code>. Until then, you can install it from source as follows. First, we strongly recommend <a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank">uv</a>. Then choose one of the following based on your needs:</p>
 
                 <div class="code-block">
                     <pre><code class="language-bash"># Core dependencies only
-uv pip install -r optional_prpl_requirements/core.txt && uv pip install -e .
-
 # Everything (excluding develop)
 uv pip install -e ".[all]"
 
-# Specific environments
-uv pip install -e ".[geom2d]"      # Kinematic 2D only
+# Specific environment categories
+uv pip install -e ".[kinematic2d]"      # Kinematic 2D only
 uv pip install -e ".[dynamic2d]"   # Dynamic 2D only
 uv pip install -e ".[geom3d]"      # Kinematic 3D only
-uv pip install -e ".[tidybot]"     # TidyBot only
-
-# Compositional
-uv pip install -e ".[geom2d,geom3d]"</code></pre>
+uv pip install -e ".[dynamic3d]"     # Dynamic 3D only
+</code></pre>
                 </div>
 
                 <h3>Basic Usage (Gym API)</h3>
@@ -188,7 +186,7 @@ obs, info = env.reset()  # procedural generation
 action = env.action_space.sample()
 next_obs, reward, terminated, truncated, info = env.step(action)
 img = env.render()</code></pre>
-                </div> -->
+                </div>
 
                 <h3 class="collapsible-header" onclick="toggleCollapsible('object-centric-section')">
                     Object-Centric States <span class="toggle-icon" id="object-centric-toggle">▼</span>
@@ -279,6 +277,22 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
                             <li><a href="environments/dynpushpullhook2d/index.html">DynPushPullHook2D</a> <span class="env-count">3 variants</span></li>
                             <li><a href="environments/dynpusht2d/index.html">DynPushT2D</a> <span class="env-count">1 variant</span></li>
                             <li><a href="environments/dynscooppour2d/index.html">DynScoopPour2D</a> <span class="env-count">4 variants</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="env-category-card">
+                        <h3><a href="environments/dynamic-3d.html">Dynamic 3D</a></h3>
+                        <ul class="env-list">
+                            <li><a href="environments/balancebeam3d/index.html">BalanceBeam3D</a> <span class="env-count">1 variant</span></li>
+                            <li><a href="environments/constrainedcupboard3d/index.html">ConstrainedCupboard3D</a> <span class="env-count">3 variants</span></li>
+                            <li><a href="environments/dynamo3d/index.html">Dynamo3D</a> <span class="env-count">2 variants</span></li>
+                            <li><a href="environments/rearrange3d/index.html">Rearrange3D</a> <span class="env-count">20 variants</span></li>
+                            <li><a href="environments/scooppour3d/index.html">ScoopPour3D</a> <span class="env-count">1 variant</span></li>
+                            <li><a href="environments/shelf3d/index.html">Shelf3D</a> <span class="env-count">8 variants</span></li>
+                            <li><a href="environments/sortclutteredblocks3d/index.html">SortClutteredBlocks3D</a> <span class="env-count">4 variants</span></li>
+                            <li><a href="environments/sweepintodrawer3d/index.html">SweepIntoDrawer3D</a> <span class="env-count">1 variant</span></li>
+                            <li><a href="environments/sweepsimple3d/index.html">SweepSimple3D</a> <span class="env-count">6 variants</span></li>
+                            <li><a href="environments/tossing3d/index.html">Tossing3D</a> <span class="env-count">0 variants</span></li>
                         </ul>
                     </div>
                 </div>

@@ -511,11 +511,28 @@ def generate_index_category_html(category_name, groups):
 
 
 def load_whitelist(path):
-    """Load environment whitelist from file."""
+    """Load environment whitelist from file with category assignments.
+
+    Returns a dict mapping environment name to category.
+    Categories are specified by comment lines starting with #.
+    """
     whitelist_path = Path(path)
     if not whitelist_path.exists():
         return None
-    return set(line.strip() for line in whitelist_path.read_text().splitlines() if line.strip())
+
+    env_to_category = {}
+    current_category = None
+
+    for line in whitelist_path.read_text().splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith('#'):
+            current_category = line[1:].strip()
+        elif current_category:
+            env_to_category[line] = current_category
+
+    return env_to_category
 
 
 def main():
@@ -546,7 +563,8 @@ def main():
         # Skip groups not in whitelist
         if whitelist and group_name not in whitelist:
             continue
-        group_data['category'] = categorize_environment(group_name)
+        # Use category from whitelist, fall back to auto-detection
+        group_data['category'] = whitelist.get(group_name) if whitelist else categorize_environment(group_name)
         groups[group_name] = {
             'data': group_data,
             'variants': []
