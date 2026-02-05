@@ -164,8 +164,8 @@ header h1 {
 
 .demo-gif-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -173,14 +173,14 @@ header h1 {
 .demo-gif-item {
     position: relative;
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 200px;
+    min-height: 120px;
     text-decoration: none;
     cursor: pointer;
 }
@@ -230,8 +230,8 @@ header h1 {
     right: 0;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     color: white;
-    padding: 1rem 0.75rem 0.5rem;
-    font-size: 0.9rem;
+    padding: 0.75rem 0.5rem 0.4rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-align: center;
 }
@@ -629,8 +629,8 @@ footer {
     }
 
     .demo-gif-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
     }
 
     .demo-label {
