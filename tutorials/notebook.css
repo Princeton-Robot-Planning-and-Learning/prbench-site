@@ -1,0 +1,257 @@
+/* Notebook Tutorial Styles */
+
+/* Gray page background behind the notebook */
+.notebook-page .environment-detail {
+    background: #f0f1f3;
+}
+
+/* Override nbconvert Jupyter CSS variables with concrete colors */
+.notebook-content {
+    --jp-cell-editor-background: #f8f9fa;
+    --jp-cell-editor-active-background: #e8eaf6;
+    --jp-mirror-editor-variable-color: #333;
+    --jp-mirror-editor-comment-color: #6a737d;
+    --jp-mirror-editor-error-color: #d73a49;
+    --jp-mirror-editor-keyword-color: #d73a49;
+    --jp-mirror-editor-operator-color: #005cc5;
+    --jp-mirror-editor-punctuation-color: #333;
+    --jp-mirror-editor-number-color: #005cc5;
+    --jp-mirror-editor-string-color: #032f62;
+    --jp-mirror-editor-string2-color: #032f62;
+    --jp-mirror-editor-meta-color: #6a737d;
+    --jp-mirror-editor-builtin-color: #6f42c1;
+    --jp-mirror-editor-def-color: #6f42c1;
+    --jp-mirror-editor-atom-color: #005cc5;
+    --jp-mirror-editor-property-color: #005cc5;
+    --jp-mirror-editor-qualifier-color: #6f42c1;
+    --jp-mirror-editor-tag-color: #22863a;
+    --jp-mirror-editor-attribute-color: #005cc5;
+    --jp-mirror-editor-header-color: #005cc5;
+    --jp-mirror-editor-link-color: #005cc5;
+
+    --jp-border-width: 1px;
+    --jp-warn-color2: #e8a838;
+
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem 3rem;
+    margin-bottom: 2rem;
+}
+
+/* Toolbar with download link */
+.notebook-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.notebook-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #667eea;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid #667eea;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.notebook-download:hover {
+    background: #667eea;
+    color: white;
+}
+
+/* Cell layout */
+.notebook-content .jp-Cell {
+    margin-bottom: 1.25rem;
+    padding-left: 1rem;
+    border-left: 3px solid transparent;
+}
+
+.notebook-content .jp-CodeCell {
+    border-left-color: #667eea;
+}
+
+.notebook-content .jp-Cell-inputWrapper {
+    overflow: hidden;
+}
+
+/* Hide collapsers */
+.notebook-content .jp-Collapser {
+    display: none;
+}
+
+/* Markdown cells */
+.notebook-content .jp-MarkdownCell .jp-RenderedMarkdown {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+.notebook-content .jp-RenderedMarkdown h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 0.5rem;
+}
+
+.notebook-content .jp-RenderedMarkdown h2 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.notebook-content .jp-RenderedMarkdown h3 {
+    font-size: 1.25rem;
+    color: #2c3e50;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.notebook-content .jp-RenderedMarkdown p {
+    margin-bottom: 1rem;
+}
+
+.notebook-content .jp-RenderedMarkdown a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.notebook-content .jp-RenderedMarkdown a:hover {
+    text-decoration: underline;
+}
+
+.notebook-content .jp-RenderedMarkdown code {
+    background: #e8eaf6;
+    color: #667eea;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.notebook-content .jp-RenderedMarkdown strong {
+    color: #2c3e50;
+}
+
+/* Code cells - input */
+.notebook-content .jp-CodeCell .jp-InputArea {
+    background: #2d3748;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.notebook-content .jp-CodeCell .highlight pre {
+    background: #2d3748;
+    color: #e2e8f0;
+    padding: 1rem 1.25rem;
+    margin: 0;
+    overflow-x: auto;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Override Pygments colors for dark background */
+.notebook-content .highlight .k,
+.notebook-content .highlight .kn,
+.notebook-content .highlight .kd,
+.notebook-content .highlight .kp,
+.notebook-content .highlight .kr,
+.notebook-content .highlight .kc,
+.notebook-content .highlight .kt { color: #c792ea; font-weight: normal; }
+
+.notebook-content .highlight .s,
+.notebook-content .highlight .s1,
+.notebook-content .highlight .s2,
+.notebook-content .highlight .sd,
+.notebook-content .highlight .se,
+.notebook-content .highlight .sh,
+.notebook-content .highlight .si,
+.notebook-content .highlight .sx,
+.notebook-content .highlight .sr,
+.notebook-content .highlight .ss { color: #c3e88d; }
+
+.notebook-content .highlight .n { color: #e2e8f0; }
+.notebook-content .highlight .nn,
+.notebook-content .highlight .nc { color: #ffcb6b; }
+.notebook-content .highlight .nf,
+.notebook-content .highlight .nb,
+.notebook-content .highlight .bp { color: #82aaff; }
+.notebook-content .highlight .mi,
+.notebook-content .highlight .mf,
+.notebook-content .highlight .mh,
+.notebook-content .highlight .mo,
+.notebook-content .highlight .mb,
+.notebook-content .highlight .il { color: #f78c6c; }
+.notebook-content .highlight .o,
+.notebook-content .highlight .ow { color: #89ddff; font-weight: normal; }
+.notebook-content .highlight .p,
+.notebook-content .highlight .pm { color: #89ddff; }
+.notebook-content .highlight .c,
+.notebook-content .highlight .c1,
+.notebook-content .highlight .ch,
+.notebook-content .highlight .cm,
+.notebook-content .highlight .cp,
+.notebook-content .highlight .cpf,
+.notebook-content .highlight .cs { color: #697098; font-style: italic; }
+.notebook-content .highlight .err { color: #ff5370; }
+.notebook-content .highlight .na { color: #c792ea; }
+.notebook-content .highlight .nd { color: #82aaff; }
+.notebook-content .highlight .ne { color: #ffcb6b; }
+.notebook-content .highlight .nl { color: #82aaff; }
+.notebook-content .highlight .nt { color: #f07178; }
+.notebook-content .highlight .nv,
+.notebook-content .highlight .vm,
+.notebook-content .highlight .vi,
+.notebook-content .highlight .vg { color: #e2e8f0; }
+.notebook-content .highlight .sa { color: #c3e88d; }
+.notebook-content .highlight .sc { color: #c3e88d; }
+
+/* Code cells - output */
+.notebook-content .jp-OutputArea {
+    margin-top: 0;
+}
+
+.notebook-content .jp-OutputArea-child {
+    margin: 0;
+}
+
+.notebook-content .jp-RenderedText pre {
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 0 0 8px 8px;
+    padding: 1rem 1.25rem;
+    margin: 0;
+    overflow-x: auto;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Image outputs */
+.notebook-content .jp-RenderedImage {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.notebook-content .jp-RenderedImage img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
