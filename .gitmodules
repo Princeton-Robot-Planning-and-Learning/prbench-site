@@ -1,3 +1,6 @@
-[submodule "prpl-mono"]
-	path = prpl-mono
-	url = https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono
+[submodule "kindergarden"]
+	path = kindergarden
+	url = https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden.git
+[submodule "kinder-baselines"]
+	path = kinder-baselines
+	url = https://github.com/Princeton-Robot-Planning-and-Learning/kinder-baselines.git
