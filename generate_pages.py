@@ -18,6 +18,7 @@ NAV_ITEMS = [
     ('benchmark', 'Environments'),
     ('results', 'Results'),
     ('real-robots', 'Real Robots'),
+    ('contact', 'Contact'),
 ]
 
 NOTEBOOKS = [

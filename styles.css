@@ -294,6 +294,29 @@ section p {
     text-align: justify;
 }
 
+/* Contact Section */
+#contact ul {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+    list-style: disc;
+}
+
+#contact li {
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+#contact a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
 /* Challenges Grid */
 .challenges-grid {
     display: grid;
